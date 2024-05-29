@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "604843851762",
+    "project_id": "bandung-sewa-motor",
+    "storage_bucket": "bandung-sewa-motor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604843851762:android:d5335d198ea5db2be6756b",
+        "android_client_info": {
+          "package_name": "com.bandungsewamotor.bandung_sewa_motor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDooMV-ovAGokoXV5LcyMEGdZ6s0RrhiQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

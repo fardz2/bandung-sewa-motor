@@ -1,0 +1,24 @@
+name: bandung_sewa_motor
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment:
+  sdk: ">=3.3.4 <4.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.6
+  get: 4.6.6
+  flutter:
+    sdk: flutter
+  firebase_core: ^2.32.0
+  flutter_native_splash: ^2.4.0
+
+dev_dependencies:
+  flutter_lints: 4.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/Logo.png
