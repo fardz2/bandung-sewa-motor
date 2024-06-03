@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'app/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,6 +18,10 @@ void main() async {
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      theme: ThemeData(
+        textTheme: GoogleFonts.montserratTextTheme(),
+      ),
+      debugShowCheckedModeBanner: false,
     ),
   );
   FlutterNativeSplash.remove();
