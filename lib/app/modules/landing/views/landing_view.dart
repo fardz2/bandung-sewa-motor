@@ -1,4 +1,5 @@
 import 'package:bandung_sewa_motor/app/modules/home/views/home_view.dart';
+import 'package:bandung_sewa_motor/app/modules/pesanan/views/pesanan_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -84,8 +85,9 @@ class LandingView extends GetView<LandingController> {
             child: buildBottomNavigationMenu(context, controller)),
         body: Obx(() => IndexedStack(
               index: controller.tabIndex.value,
-              children: const [
+              children: [
                 HomeView(),
+                PesananView(),
               ],
             )),
       ),

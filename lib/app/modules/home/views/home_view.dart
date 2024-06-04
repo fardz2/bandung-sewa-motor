@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 
 import '../../../widgets/kategori_bubble.dart';
 import '../controllers/home_controller.dart';
+import 'package:bandung_sewa_motor/app/modules/detail_motor/views/detail_motor_view.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -158,16 +159,27 @@ class HomeView extends GetView<HomeController> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    Container(
-                                      width: 40,
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xff54B175),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Image.asset(
-                                        'assets/icons/chevron_right.png',
-                                        width: 12,
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DetailMotorView()),
+                                        );
+                                      },
+                                      child: Container(
+                                        width: 40,
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xff54B175),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: Image.asset(
+                                          'assets/icons/chevron_right.png',
+                                          width: 12,
+                                        ),
                                       ),
                                     ),
                                   ],
