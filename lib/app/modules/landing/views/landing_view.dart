@@ -87,10 +87,6 @@ class LandingView extends GetView<LandingController> {
               index: controller.tabIndex.value,
               children: const [
                 HomeView(),
-                Center(
-                  child: Text("pesanan"),
-                ),
-                ProfilePelangganView()
               ],
             )),
       ),

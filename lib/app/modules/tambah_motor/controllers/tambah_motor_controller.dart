@@ -8,7 +8,6 @@ class TambahMotorController extends GetxController {
   Rx<String> selectedMerek = 'Honda'.obs;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final namaMotor = TextEditingController();
-  final merek = TextEditingController();
   final jumlahMotor = TextEditingController();
   final hargaMotor = TextEditingController();
   final cc = TextEditingController();
@@ -24,6 +23,10 @@ class TambahMotorController extends GetxController {
 
   @override
   void onClose() {
+    namaMotor.dispose();
+    jumlahMotor.dispose();
+    hargaMotor.dispose();
+    cc.dispose();
     super.onClose();
   }
 
