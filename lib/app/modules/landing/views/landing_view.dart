@@ -1,4 +1,5 @@
 import 'package:bandung_sewa_motor/app/modules/home/views/home_view.dart';
+import 'package:bandung_sewa_motor/app/modules/profile_pelanggan/views/profile_pelanggan_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -86,6 +87,10 @@ class LandingView extends GetView<LandingController> {
               index: controller.tabIndex.value,
               children: const [
                 HomeView(),
+                Center(
+                  child: Text("pesanan"),
+                ),
+                ProfilePelangganView()
               ],
             )),
       ),
