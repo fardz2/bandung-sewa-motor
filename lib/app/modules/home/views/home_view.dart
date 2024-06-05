@@ -59,36 +59,47 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
               const SizedBox(height: 12),
-              const SingleChildScrollView(
+              SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    KategoriBubble(
-                      text: 'All',
-                      isSelected: true,
-                    ),
-                    SizedBox(width: 16),
-                    KategoriBubble(
-                      text: 'Honda',
-                      isSelected: false,
-                    ),
-                    SizedBox(width: 16),
-                    KategoriBubble(
-                      text: 'Yamaha',
-                      isSelected: false,
-                    ),
-                    SizedBox(width: 16),
-                    KategoriBubble(
-                      text: 'Suzuki',
-                      isSelected: false,
-                    ),
-                    SizedBox(width: 16),
-                    KategoriBubble(
-                      text: 'Kawasaki',
-                      isSelected: false,
-                    ),
-                  ],
-                ),
+                child: Obx(() {
+                  return Row(
+                    children: [
+                      KategoriBubble(
+                        text: 'All',
+                        isSelected: controller.selectedCategory.value == 'All',
+                        onTap: () => controller.selectCategory('All'),
+                      ),
+                      const SizedBox(width: 16),
+                      KategoriBubble(
+                        text: 'Honda',
+                        isSelected:
+                            controller.selectedCategory.value == 'Honda',
+                        onTap: () => controller.selectCategory('Honda'),
+                      ),
+                      const SizedBox(width: 16),
+                      KategoriBubble(
+                        text: 'Yamaha',
+                        isSelected:
+                            controller.selectedCategory.value == 'Yamaha',
+                        onTap: () => controller.selectCategory('Yamaha'),
+                      ),
+                      const SizedBox(width: 16),
+                      KategoriBubble(
+                        text: 'Suzuki',
+                        isSelected:
+                            controller.selectedCategory.value == 'Suzuki',
+                        onTap: () => controller.selectCategory('Suzuki'),
+                      ),
+                      const SizedBox(width: 16),
+                      KategoriBubble(
+                        text: 'Kawasaki',
+                        isSelected:
+                            controller.selectedCategory.value == 'Kawasaki',
+                        onTap: () => controller.selectCategory('Kawasaki'),
+                      ),
+                    ],
+                  );
+                }),
               ),
               const SizedBox(height: 12),
               Expanded(
