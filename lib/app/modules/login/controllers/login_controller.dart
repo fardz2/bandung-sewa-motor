@@ -1,9 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  //TODO: Implement LoginController
+  static LoginController get to => Get.find();
 
-  final count = 0.obs;
+  var obscureText = true.obs;
+  final isLoading = false.obs;
+
+  void togglePasswordVisibility() {
+    obscureText.value = !obscureText.value;
+  }
+
+  final formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   void onInit() {
     super.onInit();
@@ -17,7 +27,7 @@ class LoginController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+    emailController.dispose();
+    passwordController.dispose();
   }
-
-  void increment() => count.value++;
 }

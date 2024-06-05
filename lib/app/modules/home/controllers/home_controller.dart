@@ -1,11 +1,20 @@
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  static HomeController get to => Get.find();
+  var selectedCategory = 'All'.obs;
 
-  final count = 0.obs;
+  void selectCategory(String category) {
+    selectedCategory.value = category;
+  }
 
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
-
-  void increment() => count.value++;
+  @override
+  void onReady() {
+    super.onReady();
+  }
 }
