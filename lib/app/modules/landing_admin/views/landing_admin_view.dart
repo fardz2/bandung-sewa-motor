@@ -1,15 +1,12 @@
-import 'package:bandung_sewa_motor/app/modules/home/views/home_view.dart';
-import 'package:bandung_sewa_motor/app/modules/pesanan/views/pesanan_view.dart';
-import 'package:bandung_sewa_motor/app/modules/profile_pelanggan/views/profile_pelanggan_view.dart';
-
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/landing_controller.dart';
+import '../../home_admin/views/home_admin_view.dart';
+import '../controllers/landing_admin_controller.dart';
 
-class LandingView extends GetView<LandingController> {
-  const LandingView({super.key});
+class LandingAdminView extends GetView<LandingAdminController> {
+  const LandingAdminView({super.key});
 
   final TextStyle unselectedLabelStyle =
       const TextStyle(fontWeight: FontWeight.w400, fontSize: 12);
@@ -85,14 +82,16 @@ class LandingView extends GetView<LandingController> {
               highlightColor: Colors.transparent,
             ),
             child: buildBottomNavigationMenu(context, controller)),
-        body: Obx(() => IndexedStack(
-              index: controller.tabIndex.value,
-              children: const [
-                HomeView(),
-                PesananView(),
-                ProfilePelangganView()
-              ],
-            )),
+        body: Obx(
+          () => IndexedStack(
+            index: controller.tabIndex.value,
+            children: const [
+              HomeAdminView(),
+              Center(child: Text('Pesanan')),
+              Center(child: Text('Profile Admin')),
+            ],
+          ),
+        ),
       ),
     );
   }

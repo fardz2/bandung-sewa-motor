@@ -9,7 +9,6 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
   static const REGISTER = _Paths.REGISTER;
 
-
   static const RESET = _Paths.RESET;
   static const DETAIL_MOTOR = _Paths.DETAIL_MOTOR;
   static const PESANAN = _Paths.PESANAN;
@@ -18,7 +17,8 @@ abstract class Routes {
   static const DETAIL_PEMBAYARAN = _Paths.DETAIL_PEMBAYARAN;
   static const PROFILE_PELANGGAN = _Paths.PROFILE_PELANGGAN;
   static const TAMBAH_MOTOR = _Paths.TAMBAH_MOTOR;
-
+  static const HOME_ADMIN = _Paths.HOME_ADMIN;
+  static const LANDING_ADMIN = _Paths.LANDING_ADMIN;
 }
 
 abstract class _Paths {
@@ -36,5 +36,6 @@ abstract class _Paths {
   static const DETAIL_PEMBAYARAN = '/detail-pembayaran';
   static const PROFILE_PELANGGAN = '/profile-pelanggan';
   static const TAMBAH_MOTOR = '/tambah-motor';
-
+  static const HOME_ADMIN = '/home-admin';
+  static const LANDING_ADMIN = '/landing-admin';
 }
