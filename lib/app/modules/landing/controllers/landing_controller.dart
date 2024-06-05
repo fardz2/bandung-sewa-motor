@@ -1,6 +1,9 @@
 import 'package:bandung_sewa_motor/app/modules/profile_pelanggan/controllers/profile_pelanggan_controller.dart';
 import 'package:get/get.dart';
 
+import '../../home/controllers/home_controller.dart';
+import '../../pesanan/controllers/pesanan_controller.dart';
+
 class LandingController extends GetxController {
   var tabIndex = 0.obs;
 
@@ -10,9 +13,17 @@ class LandingController extends GetxController {
 
   @override
   void onInit() {
+    Get.put(HomeController());
     Get.put(ProfilePelangganController());
+    Get.put(PesananController());
     super.onInit();
   }
 
-
+  @override
+  void onClose() {
+    Get.delete<HomeController>();
+    Get.delete<ProfilePelangganController>();
+    Get.delete<PesananController>();
+    super.onClose();
+  }
 }
