@@ -1,3 +1,4 @@
+import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -29,7 +30,9 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.SEARCH);
+                    },
                     child: Image.asset('assets/icons/search.png', width: 24),
                   ),
                 ],

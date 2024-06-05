@@ -1,3 +1,4 @@
+import 'package:bandung_sewa_motor/app/modules/profile_pelanggan/controllers/profile_pelanggan_controller.dart';
 import 'package:get/get.dart';
 
 class LandingController extends GetxController {
@@ -9,6 +10,7 @@ class LandingController extends GetxController {
 
   @override
   void onInit() {
+    Get.put(ProfilePelangganController());
     super.onInit();
   }
 
