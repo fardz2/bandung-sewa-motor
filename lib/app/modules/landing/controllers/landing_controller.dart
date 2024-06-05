@@ -14,8 +14,5 @@ class LandingController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
+
 }
