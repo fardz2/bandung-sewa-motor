@@ -14,12 +14,19 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/landing/bindings/landing_binding.dart';
 import '../modules/landing/views/landing_view.dart';
+
+import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/login_view.dart';
+import '../modules/register/bindings/register_binding.dart';
+import '../modules/register/views/register_view.dart';
+
 import '../modules/profile_pelanggan/bindings/profile_pelanggan_binding.dart';
 import '../modules/profile_pelanggan/views/profile_pelanggan_view.dart';
 import '../modules/search/bindings/search_binding.dart';
 import '../modules/search/views/search_view.dart';
 import '../modules/tambah_motor/bindings/tambah_motor_binding.dart';
 import '../modules/tambah_motor/views/tambah_motor_view.dart';
+
 
 part 'app_routes.dart';
 
@@ -38,6 +45,17 @@ class AppPages {
       name: _Paths.LANDING,
       page: () => const LandingView(),
       binding: LandingBinding(),
+    ),
+    GetPage(
+
+      name: _Paths.LOGIN,
+      page: () => const LoginView(),
+      binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.REGISTER,
+      page: () => const RegisterView(),
+      binding: RegisterBinding(),
     ),
     GetPage(
       name: _Paths.RESET,
