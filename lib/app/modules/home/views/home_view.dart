@@ -175,12 +175,7 @@ class HomeView extends GetView<HomeController> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  DetailMotorView()),
-                                        );
+                                        Get.toNamed(Routes.DETAIL_MOTOR);
                                       },
                                       child: Container(
                                         width: 40,
