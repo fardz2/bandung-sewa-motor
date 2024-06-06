@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 import '../../../widgets/kategori_bubble.dart';
 import '../controllers/home_controller.dart';
-import 'package:bandung_sewa_motor/app/modules/detail_motor/views/detail_motor_view.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -160,6 +159,7 @@ class HomeView extends GetView<HomeController> {
                                     style: TextStyle(
                                       fontSize: 12,
                                     ),
+
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -172,30 +172,25 @@ class HomeView extends GetView<HomeController> {
                                         style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DetailMotorView()),
-                                          );
-                                        },
-                                        child: Container(
-                                          width: 40,
-                                          padding: const EdgeInsets.all(10),
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xff54B175),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
                                           ),
-                                          child: Image.asset(
+                                        ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.toNamed(Routes.DETAIL_MOTOR);
+                                      },
+                                      child: Container(
+                                        width: 40,
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xff54B175),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: Image.asset(
                                             'assets/icons/chevron_right.png',
                                             width: 12,
                                           ),
-                                        ),
+                                      ),
                                       ),
                                     ],
                                   ),

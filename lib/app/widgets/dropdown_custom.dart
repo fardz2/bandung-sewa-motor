@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class TextFieldCustom extends StatelessWidget {
+class DropdownCustom extends StatelessWidget {
   final String label;
   final String hintText;
-  final bool obscureText;
   final FontWeight? fontWeight;
-  final Widget? suffixIcon;
-  final String? Function(String?)? validator;
-  final TextEditingController controller;
-  final TextInputType? keyboardType;
+  final dynamic value;
+  final List<String> items;
+  final void Function(dynamic) onChanged;
+  final String? Function(dynamic)? validator;
 
-  const TextFieldCustom({
+  const DropdownCustom({
     super.key,
     required this.label,
     required this.hintText,
-    required this.controller,
-    required this.obscureText,
-    this.suffixIcon,
+    required this.value,
+    required this.items,
     this.validator,
-    this.keyboardType,
     this.fontWeight,
+    required this.onChanged,
   });
 
   @override
@@ -35,14 +34,16 @@ class TextFieldCustom extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        TextFormField(
-          validator: validator,
-          obscureText: obscureText,
-          controller: controller,
-          keyboardType: keyboardType ?? TextInputType.text,
-          cursorColor: const Color(0xff54B175),
+        DropdownButtonFormField(
+          value: value,
+          onChanged: onChanged,
+          items: items.map((item) {
+            return DropdownMenuItem(
+              value: item,
+              child: Text(item),
+            );
+          }).toList(),
           decoration: InputDecoration(
-            suffixIcon: suffixIcon,
             focusedBorder: OutlineInputBorder(
               borderSide: const BorderSide(
                 color: Color(0xff54B175),
@@ -54,6 +55,7 @@ class TextFieldCustom extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
+          validator: validator,
         ),
       ],
     );

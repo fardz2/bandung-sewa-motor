@@ -36,7 +36,7 @@ class TambahMotorController extends GetxController {
     }
   }
 
-  void merekChanged(String? value) {
+  void merekChanged(value) {
     selectedMerek.value = value.toString();
   }
 }
