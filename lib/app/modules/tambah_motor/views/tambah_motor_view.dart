@@ -1,5 +1,7 @@
 import 'package:bandung_sewa_motor/app/helper/motor_validation.dart';
 import 'package:bandung_sewa_motor/app/widgets/button_custom.dart';
+import 'package:bandung_sewa_motor/app/widgets/dropdown_custom.dart';
+import 'package:bandung_sewa_motor/app/widgets/textfield_custom.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -30,8 +32,8 @@ class TambahMotorView extends GetView<TambahMotorController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Fotor Motor *",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    "Foto Motor *",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   const SizedBox(
                     height: 10,
@@ -49,104 +51,59 @@ class TambahMotorView extends GetView<TambahMotorController> {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text(
-                    "Nama Motor *",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
+                  TextFieldCustom(
+                    label: "Nama Motor *",
+                    fontWeight: FontWeight.bold,
                     controller: controller.namaMotor,
-                    decoration: InputDecoration(
-                        hintText: "Contoh : Vario 125",
-                        contentPadding: const EdgeInsets.all(15),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
+                    hintText: "Contoh : Vario 125",
+                    obscureText: false,
                     validator: MotorValidation.namaMotor,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text(
-                    "Merek *",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  DropdownButtonFormField(
+                  DropdownCustom(
+                    label: "Merek *",
+                    fontWeight: FontWeight.bold,
+                    hintText: "Honda",
                     value: controller.selectedMerek.value,
+                    items: controller.merekOptions,
                     onChanged: controller.merekChanged,
-                    items: controller.merekOptions.map((merek) {
-                      return DropdownMenuItem(
-                        value: merek,
-                        child: Text(merek),
-                      );
-                    }).toList(),
-                    decoration: InputDecoration(
-                      hintText: "Contoh : Vario 125",
-                      contentPadding: const EdgeInsets.all(15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text(
-                    "Jumlah Motor *",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
+                  TextFieldCustom(
+                    label: "Jumlah Motor *",
+                    fontWeight: FontWeight.bold,
                     controller: controller.jumlahMotor,
-                    decoration: InputDecoration(
-                        hintText: "Contoh : Vario 125",
-                        contentPadding: const EdgeInsets.all(15),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
+                    keyboardType: TextInputType.number,
+                    hintText: "Contoh : 2",
+                    obscureText: false,
                     validator: MotorValidation.jumlahMotor,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text(
-                    "Harga (perhari) *",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
+                  TextFieldCustom(
+                    label: "Harga (Perhari) *",
+                    fontWeight: FontWeight.bold,
                     controller: controller.hargaMotor,
-                    decoration: InputDecoration(
-                        hintText: "Contoh : Vario 125",
-                        contentPadding: const EdgeInsets.all(15),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
+                    keyboardType: TextInputType.number,
+                    hintText: "Contoh : Rp. 80.000",
+                    obscureText: false,
                     validator: MotorValidation.hargaMotor,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text(
-                    "CC *",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
+                  TextFieldCustom(
+                    label: "CC *",
+                    fontWeight: FontWeight.bold,
                     controller: controller.cc,
-                    decoration: InputDecoration(
-                        hintText: "Contoh : Vario 125",
-                        contentPadding: const EdgeInsets.all(15),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
+                    keyboardType: TextInputType.number,
+                    hintText: "Contoh : 120",
+                    obscureText: false,
                     validator: MotorValidation.ccMotor,
                   ),
                   const SizedBox(

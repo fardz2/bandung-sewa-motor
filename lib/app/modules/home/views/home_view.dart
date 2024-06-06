@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 import '../../../widgets/kategori_bubble.dart';
 import '../controllers/home_controller.dart';
-import 'package:bandung_sewa_motor/app/modules/detail_motor/views/detail_motor_view.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -32,7 +31,7 @@ class HomeView extends GetView<HomeController> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed(Routes.SEARCH);
+                      Get.toNamed(Routes.TAMBAH_MOTOR);
                     },
                     child: Image.asset('assets/icons/search.png', width: 24),
                   ),

@@ -1,6 +1,5 @@
 import 'package:bandung_sewa_motor/app/widgets/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CardPesanan extends StatelessWidget {
   final String noPesanan;
@@ -22,7 +21,7 @@ class CardPesanan extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       surfaceTintColor: Colors.white,
-      elevation: 1, // Set background color to white
+      elevation: 1,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
