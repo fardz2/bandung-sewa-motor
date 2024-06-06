@@ -69,7 +69,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PESANAN,
-      page: () => PesananView(),
+      page: () => const PesananView(),
       binding: PesananBinding(),
     ),
     GetPage(
