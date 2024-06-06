@@ -1,11 +1,11 @@
+import 'package:bandung_sewa_motor/app/modules/pesanan_admin/controllers/pesanan_admin_controller.dart';
 import 'package:bandung_sewa_motor/app/widgets/card_pesanan.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/pesanan_controller.dart';
 
-class PesananView extends GetView<PesananController> {
-  const PesananView({super.key});
+class PesananAdminView extends GetView<PesananAdminController> {
+  const PesananAdminView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class PesananView extends GetView<PesananController> {
       appBar: AppBar(
         title: const Text(
           'Pesanan',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 0x54, 0xB1, 0x75),
         centerTitle: true,

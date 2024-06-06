@@ -16,6 +16,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/pesanan/bindings/pesanan_binding.dart';
 import '../modules/pesanan/views/pesanan_view.dart';
+import '../modules/pesanan_admin/bindings/pesanan_admin_binding.dart';
+import '../modules/pesanan_admin/views/pesanan_admin_view.dart';
 import '../modules/profile_pelanggan/bindings/profile_pelanggan_binding.dart';
 import '../modules/profile_pelanggan/views/profile_pelanggan_view.dart';
 import '../modules/register/bindings/register_binding.dart';
@@ -99,6 +101,11 @@ class AppPages {
       name: _Paths.LANDING_ADMIN,
       page: () => const LandingAdminView(),
       binding: LandingAdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.PESANAN_ADMIN,
+      page: () => const PesananAdminView(),
+      binding: PesananAdminBinding(),
     ),
   ];
 }

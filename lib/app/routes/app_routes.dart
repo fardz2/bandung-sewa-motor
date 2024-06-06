@@ -19,6 +19,7 @@ abstract class Routes {
   static const TAMBAH_MOTOR = _Paths.TAMBAH_MOTOR;
   static const HOME_ADMIN = _Paths.HOME_ADMIN;
   static const LANDING_ADMIN = _Paths.LANDING_ADMIN;
+  static const PESANAN_ADMIN = _Paths.PESANAN_ADMIN;
 }
 
 abstract class _Paths {
@@ -38,4 +39,5 @@ abstract class _Paths {
   static const TAMBAH_MOTOR = '/tambah-motor';
   static const HOME_ADMIN = '/home-admin';
   static const LANDING_ADMIN = '/landing-admin';
+  static const PESANAN_ADMIN = '/pesanan-admin';
 }

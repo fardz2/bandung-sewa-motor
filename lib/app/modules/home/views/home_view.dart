@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 import '../../../widgets/kategori_bubble.dart';
 import '../controllers/home_controller.dart';
-import 'package:bandung_sewa_motor/app/modules/detail_motor/views/detail_motor_view.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -175,12 +174,7 @@ class HomeView extends GetView<HomeController> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  DetailMotorView()),
-                                        );
+                                        Get.toNamed(Routes.DETAIL_MOTOR);
                                       },
                                       child: Container(
                                         width: 40,
