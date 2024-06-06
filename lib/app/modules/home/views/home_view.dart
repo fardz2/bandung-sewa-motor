@@ -31,7 +31,7 @@ class HomeView extends GetView<HomeController> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed(Routes.TAMBAH_MOTOR);
+                      Get.toNamed(Routes.SEARCH);
                     },
                     child: Image.asset('assets/icons/search.png', width: 24),
                   ),
