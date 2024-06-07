@@ -44,6 +44,7 @@ class AppPages {
 
   static const INITIAL = Routes.LOGIN;
 
+
   static final routes = [
     GetPage(
       name: _Paths.HOME,
