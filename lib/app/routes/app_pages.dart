@@ -44,11 +44,10 @@ import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/reset/bindings/reset_binding.dart';
 import '../modules/reset/views/reset_view.dart';
-import '../modules/search/bindings/search_binding.dart';
-import '../modules/search/views/search_view.dart';
+import '../modules/search_motor/bindings/search_motor_binding.dart';
+import '../modules/search_motor/views/search_view.dart';
 import '../modules/tambah_motor/bindings/tambah_motor_binding.dart';
 import '../modules/tambah_motor/views/tambah_motor_view.dart';
-
 
 part 'app_routes.dart';
 
@@ -72,7 +71,7 @@ class AppPages {
       name: _Paths.PERSYARATAN,
       page: () => const PersyaratanView(),
       binding: PersyaratanBinding(),
-     ),
+    ),
     GetPage(
       name: _Paths.LOGIN,
       page: () => const LoginView(),
@@ -99,15 +98,14 @@ class AppPages {
       binding: PesananBinding(),
     ),
     GetPage(
-      name: _Paths.SEARCH,
-      page: () => const SearchView(),
-      binding: SearchBinding(),
+      name: _Paths.SEARCH_MOTOR,
+      page: () => const SearchMotorView(),
+      binding: SearchMotorBinding(),
     ),
     GetPage(
       name: _Paths.DETAIL_PEMBAYARAN,
       page: () => const DetailPembayaranView(),
       binding: DetailPembayaranBinding(),
-
     ),
     GetPage(
       name: _Paths.DETAILMOTORADMIN,

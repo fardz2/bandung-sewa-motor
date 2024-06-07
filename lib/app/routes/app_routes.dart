@@ -17,7 +17,7 @@ abstract class Routes {
   static const DETAIL_MOTOR = _Paths.DETAIL_MOTOR;
   static const PESANAN = _Paths.PESANAN;
 
-  static const SEARCH = _Paths.SEARCH;
+  static const SEARCH_MOTOR = _Paths.SEARCH_MOTOR;
   static const DETAIL_PEMBAYARAN = _Paths.DETAIL_PEMBAYARAN;
   static const PROFILE_PELANGGAN = _Paths.PROFILE_PELANGGAN;
   static const TAMBAH_MOTOR = _Paths.TAMBAH_MOTOR;
@@ -29,7 +29,6 @@ abstract class Routes {
   static const BUKTI_PEMBAYARAN = _Paths.BUKTI_PEMBAYARAN;
   static const PROFILE_ADMIN = _Paths.PROFILE_ADMIN;
   static const KONFIRMASI_PESANAN = _Paths.KONFIRMASI_PESANAN;
-
 }
 
 abstract class _Paths {
@@ -41,14 +40,13 @@ abstract class _Paths {
   static const DETAILMOTORADMIN = '/detailmotoradmin';
   static const SEWAMOTOR = '/sewamotor';
 
-
   static const LOGIN = '/login';
   static const REGISTER = '/register';
   static const RESET = '/reset';
   static const DETAIL_MOTOR = '/detail-motor';
   static const PESANAN = '/pesanan';
 
-  static const SEARCH = '/search';
+  static const SEARCH_MOTOR = '/search-motor';
   static const DETAIL_PEMBAYARAN = '/detail-pembayaran';
   static const PROFILE_PELANGGAN = '/profile-pelanggan';
   static const TAMBAH_MOTOR = '/tambah-motor';
@@ -60,5 +58,4 @@ abstract class _Paths {
   static const BUKTI_PEMBAYARAN = '/bukti-pembayaran';
   static const PROFILE_ADMIN = '/profile-admin';
   static const KONFIRMASI_PESANAN = '/konfirmasi-pesanan';
-
 }
