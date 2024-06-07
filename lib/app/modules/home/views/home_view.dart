@@ -1,5 +1,6 @@
 import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
 
@@ -103,11 +104,13 @@ class HomeView extends GetView<HomeController> {
               const SizedBox(height: 12),
               Expanded(
                 child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  shrinkWrap: true,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                     crossAxisCount: 2,
-                    childAspectRatio: 0.68,
+                    childAspectRatio: MediaQuery.of(context).size.width /
+                        (MediaQuery.of(context).size.height / 1.3 + 10),
                   ),
                   itemCount: 4,
                   itemBuilder: (context, index) {
@@ -143,56 +146,59 @@ class HomeView extends GetView<HomeController> {
                               ),
                             ),
                             const SizedBox(height: 8),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Honda Beat',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                const Text(
-                                  '110cc',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Text(
-                                      'Rp. 80.000/hari',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Honda Beat',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
                                     ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Get.toNamed(Routes.DETAIL_MOTOR);
-                                      },
-                                      child: Container(
-                                        width: 40,
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xff54B175),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        child: Image.asset(
-                                          'assets/icons/chevron_right.png',
-                                          width: 12,
+                                  ),
+                                  const SizedBox(height: 4),
+                                  const Text(
+                                    '110cc',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Text(
+                                        'Rp. 80.000/hari',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                      GestureDetector(
+                                        onTap: () {
+                                          Get.toNamed(Routes.DETAIL_MOTOR);
+                                        },
+                                        child: Container(
+                                          width: 40,
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff54B175),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          child: Image.asset(
+                                            'assets/icons/chevron_right.png',
+                                            width: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),

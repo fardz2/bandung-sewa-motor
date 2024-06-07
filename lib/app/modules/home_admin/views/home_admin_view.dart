@@ -81,11 +81,12 @@ class HomeAdminView extends GetView<HomeAdminController> {
               Expanded(
                 child: GridView.builder(
                   shrinkWrap: true,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                     crossAxisCount: 2,
-                    childAspectRatio: 0.64,
+                    childAspectRatio: MediaQuery.of(context).size.width /
+                        (MediaQuery.of(context).size.height / 1.3 + 10),
                   ),
                   itemCount: 4,
                   itemBuilder: (context, index) {
