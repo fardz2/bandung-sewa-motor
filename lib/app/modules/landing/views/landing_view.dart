@@ -3,6 +3,7 @@ import 'package:bandung_sewa_motor/app/modules/pesanan/views/pesanan_view.dart';
 import 'package:bandung_sewa_motor/app/modules/profile_pelanggan/views/profile_pelanggan_view.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
@@ -78,21 +79,26 @@ class LandingView extends GetView<LandingController> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        bottomNavigationBar: Theme(
-            data: ThemeData(
-              splashColor: const Color(0xff54B175).withOpacity(0.2),
-              highlightColor: Colors.transparent,
-            ),
-            child: buildBottomNavigationMenu(context, controller)),
-        body: Obx(() => IndexedStack(
-              index: controller.tabIndex.value,
-              children: const [
-                HomeView(),
-                PesananView(),
-                ProfilePelangganView()
-              ],
-            )),
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: const SystemUiOverlayStyle(
+          statusBarColor: Color(0xff54B175),
+        ),
+        child: Scaffold(
+          bottomNavigationBar: Theme(
+              data: ThemeData(
+                splashColor: const Color(0xff54B175).withOpacity(0.2),
+                highlightColor: Colors.transparent,
+              ),
+              child: buildBottomNavigationMenu(context, controller)),
+          body: Obx(() => IndexedStack(
+                index: controller.tabIndex.value,
+                children: const [
+                  HomeView(),
+                  PesananView(),
+                  ProfilePelangganView()
+                ],
+              )),
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
@@ -75,21 +76,26 @@ class LandingAdminView extends GetView<LandingAdminController> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        bottomNavigationBar: Theme(
-            data: ThemeData(
-              splashColor: const Color(0xff54B175).withOpacity(0.2),
-              highlightColor: Colors.transparent,
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: const SystemUiOverlayStyle(
+          statusBarColor: Color(0xff54B175),
+        ),
+        child: Scaffold(
+          bottomNavigationBar: Theme(
+              data: ThemeData(
+                splashColor: const Color(0xff54B175).withOpacity(0.2),
+                highlightColor: Colors.transparent,
+              ),
+              child: buildBottomNavigationMenu(context, controller)),
+          body: Obx(
+            () => IndexedStack(
+              index: controller.tabIndex.value,
+              children: const [
+                HomeAdminView(),
+                Center(child: Text('Pesanan')),
+                Center(child: Text('Profile Admin')),
+              ],
             ),
-            child: buildBottomNavigationMenu(context, controller)),
-        body: Obx(
-          () => IndexedStack(
-            index: controller.tabIndex.value,
-            children: const [
-              HomeAdminView(),
-              Center(child: Text('Pesanan')),
-              Center(child: Text('Profile Admin')),
-            ],
           ),
         ),
       ),
