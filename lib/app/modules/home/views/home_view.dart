@@ -103,12 +103,11 @@ class HomeView extends GetView<HomeController> {
               const SizedBox(height: 12),
               Expanded(
                 child: GridView.builder(
-                  shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                     crossAxisCount: 2,
-                    childAspectRatio: 0.64,
+                    childAspectRatio: 0.68,
                   ),
                   itemCount: 4,
                   itemBuilder: (context, index) {
@@ -133,6 +132,7 @@ class HomeView extends GetView<HomeController> {
                           children: [
                             Container(
                               width: double.infinity,
+                              height: 140,
                               decoration: const BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8)),
@@ -142,38 +142,36 @@ class HomeView extends GetView<HomeController> {
                                 'assets/images/beat.png',
                               ),
                             ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Honda Beat',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                            const SizedBox(height: 8),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Honda Beat',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                  const SizedBox(height: 4),
-                                  const Text(
-                                    '110cc',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                    ),
-
+                                ),
+                                const SizedBox(height: 4),
+                                const Text(
+                                  '110cc',
+                                  style: TextStyle(
+                                    fontSize: 12,
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      const Text(
-                                        'Rp. 80.000/hari',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      'Rp. 80.000/hari',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                     GestureDetector(
                                       onTap: () {
                                         Get.toNamed(Routes.DETAIL_MOTOR);
@@ -187,15 +185,14 @@ class HomeView extends GetView<HomeController> {
                                               BorderRadius.circular(8),
                                         ),
                                         child: Image.asset(
-                                            'assets/icons/chevron_right.png',
-                                            width: 12,
-                                          ),
+                                          'assets/icons/chevron_right.png',
+                                          width: 12,
+                                        ),
                                       ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ],
                         ),
