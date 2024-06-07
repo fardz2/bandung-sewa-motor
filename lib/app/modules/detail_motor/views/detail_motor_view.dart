@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/detail_motor_controller.dart';
 // import 'package:bandung_sewa_motor/app/modules/pesanan/views/pesanan_view.dart';
 
@@ -134,6 +135,7 @@ class DetailMotorView extends GetView<DetailMotorController> {
                       //   context,
                       //   MaterialPageRoute(builder: (context) => PesananView()),
                       // );
+                      Get.toNamed(Routes.METODE_BAYAR);
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(

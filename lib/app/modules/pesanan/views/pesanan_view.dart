@@ -2,6 +2,7 @@ import 'package:bandung_sewa_motor/app/widgets/card_pesanan.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/pesanan_controller.dart';
 
 class PesananView extends GetView<PesananController> {
@@ -28,7 +29,9 @@ class PesananView extends GetView<PesananController> {
               namaMotor: "Honda Beat 2018",
               lokasi: "Sewa Motor Lempuyangan",
               harga: "120.000",
-              onPressed: () {});
+              onPressed: () {
+                Get.toNamed(Routes.DETAIL_PESANAN);
+              });
         },
       ),
     );

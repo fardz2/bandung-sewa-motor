@@ -88,7 +88,9 @@ class LoginView extends GetView<LoginController> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Get.toNamed(Routes.RESET);
+                          },
                           child: const Text(
                             'Lupa Password?',
                             style: TextStyle(

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/detail_pesanan_controller.dart';
+import '../controllers/konfirmasi_pesanan_controller.dart';
 
-class DetailPesananView extends GetView<DetailPesananController> {
-  const DetailPesananView({super.key});
+class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
+  const KonfirmasiPesananView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +13,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
         title: const Column(
           children: [
             Text(
-              'Detail Pesanan',
+              'Konfirmasi Pesanan',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -214,7 +214,130 @@ class DetailPesananView extends GetView<DetailPesananController> {
                 ),
               ],
             ),
-            const SizedBox(height: 52),
+            const SizedBox(height: 16),
+            const Text(
+              "Rincian Bayar",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 4),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Harga Sewa (x2)",
+                  style: TextStyle(color: Color(0xff8A8A8E)),
+                ),
+                Text(
+                  "Rp 160.000",
+                  style: TextStyle(color: Color(0xff8A8A8E)),
+                ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Ongkos Antar",
+                  style: TextStyle(color: Color(0xffF37921)),
+                ),
+                Text(
+                  "Rp 10.000",
+                  style: TextStyle(color: Color(0xffF37921)),
+                ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Total Bayar",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Color(0xff8A8A8E)),
+                ),
+                Text(
+                  "Rp 170.000",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Color(0xff8A8A8E)),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              "Bukti Pembayaran",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width / 2,
+              decoration: BoxDecoration(
+                  color: const Color(0xff828282),
+                  borderRadius: BorderRadius.circular(10)),
+              child: const Center(
+                child: Icon(Icons.camera_alt),
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              "Foto KTP",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width / 2,
+              decoration: BoxDecoration(
+                  color: const Color(0xff828282),
+                  borderRadius: BorderRadius.circular(10)),
+              child: const Center(
+                child: Icon(Icons.camera_alt),
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              "Foto SIM C",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width / 2,
+              decoration: BoxDecoration(
+                  color: const Color(0xff828282),
+                  borderRadius: BorderRadius.circular(10)),
+              child: const Center(
+                child: Icon(Icons.camera_alt),
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              "Bukti Reservasi Hotel",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width / 2,
+              decoration: BoxDecoration(
+                  color: const Color(0xff828282),
+                  borderRadius: BorderRadius.circular(10)),
+              child: const Center(
+                child: Icon(Icons.camera_alt),
+              ),
+            ),
+            const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
@@ -226,7 +349,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
                 elevation: 0,
               ),
               child: const Text(
-                "Hubungi Kantor Sewa",
+                "Konfirmasi Pesanan",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16,
@@ -246,7 +369,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
                 elevation: 0,
               ),
               child: const Text(
-                "Batalkan Pesanan",
+                "Tolak Pesanan",
                 style: TextStyle(
                   color: Color(0xff8A8A8E),
                   fontSize: 16,
@@ -254,6 +377,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
                 ),
               ),
             ),
+            const SizedBox(height: 16),
           ],
         ),
       ),
