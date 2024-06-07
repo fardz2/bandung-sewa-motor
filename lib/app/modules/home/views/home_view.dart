@@ -1,5 +1,6 @@
 import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
 
@@ -104,11 +105,12 @@ class HomeView extends GetView<HomeController> {
               Expanded(
                 child: GridView.builder(
                   shrinkWrap: true,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                     crossAxisCount: 2,
-                    childAspectRatio: 0.64,
+                    childAspectRatio: MediaQuery.of(context).size.width /
+                        (MediaQuery.of(context).size.height / 1.3 + 10),
                   ),
                   itemCount: 4,
                   itemBuilder: (context, index) {
@@ -133,6 +135,7 @@ class HomeView extends GetView<HomeController> {
                           children: [
                             Container(
                               width: double.infinity,
+                              height: 140,
                               decoration: const BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8)),
@@ -142,6 +145,7 @@ class HomeView extends GetView<HomeController> {
                                 'assets/images/beat.png',
                               ),
                             ),
+                            const SizedBox(height: 8),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,7 +163,6 @@ class HomeView extends GetView<HomeController> {
                                     style: TextStyle(
                                       fontSize: 12,
                                     ),
-
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -172,25 +175,25 @@ class HomeView extends GetView<HomeController> {
                                         style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Get.toNamed(Routes.DETAIL_MOTOR);
+                                        },
+                                        child: Container(
+                                          width: 40,
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff54B175),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
                                           ),
-                                        ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Get.toNamed(Routes.DETAIL_MOTOR);
-                                      },
-                                      child: Container(
-                                        width: 40,
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xff54B175),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        child: Image.asset(
+                                          child: Image.asset(
                                             'assets/icons/chevron_right.png',
                                             width: 12,
                                           ),
-                                      ),
+                                        ),
                                       ),
                                     ],
                                   ),
