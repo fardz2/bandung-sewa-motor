@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/bukti_pembayaran_controller.dart';
 
 class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
@@ -32,7 +33,9 @@ class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
         centerTitle: true,
         backgroundColor: const Color(0xff54B175),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
           icon: const Icon(
             Icons.arrow_back_outlined,
             color: Colors.white,
@@ -57,7 +60,7 @@ class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
                       ),
                     ),
                     Text(
-                      "Dadang Suharja",
+                      "Salman Ananda",
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -191,7 +194,9 @@ class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.offNamed(Routes.LANDING);
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xff54B175),
             minimumSize: const Size(double.infinity, 40),

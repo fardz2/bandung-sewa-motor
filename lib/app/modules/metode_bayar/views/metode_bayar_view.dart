@@ -23,7 +23,9 @@ class MetodeBayarView extends GetView<MetodeBayarController> {
           centerTitle: true,
           backgroundColor: const Color(0xff54B175),
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.back();
+            },
             icon: const Icon(
               Icons.arrow_back_outlined,
               color: Colors.white,
