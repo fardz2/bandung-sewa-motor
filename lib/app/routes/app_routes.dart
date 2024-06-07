@@ -6,6 +6,10 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const LANDING = _Paths.LANDING;
 
+  static const PERSYARATAN = _Paths.PERSYARATAN;
+  static const DETAILMOTORADMIN = _Paths.DETAILMOTORADMIN;
+  static const SEWAMOTOR = _Paths.SEWAMOTOR;
+
   static const LOGIN = _Paths.LOGIN;
   static const REGISTER = _Paths.REGISTER;
 
@@ -25,12 +29,18 @@ abstract class Routes {
   static const BUKTI_PEMBAYARAN = _Paths.BUKTI_PEMBAYARAN;
   static const PROFILE_ADMIN = _Paths.PROFILE_ADMIN;
   static const KONFIRMASI_PESANAN = _Paths.KONFIRMASI_PESANAN;
+
 }
 
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
   static const LANDING = '/landing';
+
+  static const PERSYARATAN = '/persyaratan';
+  static const DETAILMOTORADMIN = '/detailmotoradmin';
+  static const SEWAMOTOR = '/sewamotor';
+
 
   static const LOGIN = '/login';
   static const REGISTER = '/register';
@@ -50,4 +60,5 @@ abstract class _Paths {
   static const BUKTI_PEMBAYARAN = '/bukti-pembayaran';
   static const PROFILE_ADMIN = '/profile-admin';
   static const KONFIRMASI_PESANAN = '/konfirmasi-pesanan';
+
 }
