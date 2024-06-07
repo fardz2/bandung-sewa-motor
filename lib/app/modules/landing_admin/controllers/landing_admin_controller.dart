@@ -1,3 +1,4 @@
+import 'package:bandung_sewa_motor/app/modules/pesanan_admin/controllers/pesanan_admin_controller.dart';
 import 'package:get/get.dart';
 
 import '../../home_admin/controllers/home_admin_controller.dart';
@@ -12,6 +13,7 @@ class LandingAdminController extends GetxController {
   @override
   void onInit() {
     Get.put(HomeAdminController());
+    Get.put(PesananAdminController());
     super.onInit();
   }
 
@@ -23,6 +25,7 @@ class LandingAdminController extends GetxController {
   @override
   void onClose() {
     Get.delete<HomeAdminController>();
+    Get.delete<PesananAdminController>();
     super.onClose();
   }
 }

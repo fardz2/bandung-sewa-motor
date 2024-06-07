@@ -1,3 +1,4 @@
+import 'package:bandung_sewa_motor/app/modules/pesanan_admin/views/pesanan_admin_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -92,7 +93,7 @@ class LandingAdminView extends GetView<LandingAdminController> {
               index: controller.tabIndex.value,
               children: const [
                 HomeAdminView(),
-                Center(child: Text('Pesanan')),
+                PesananAdminView(),
                 Center(child: Text('Profile Admin')),
               ],
             ),

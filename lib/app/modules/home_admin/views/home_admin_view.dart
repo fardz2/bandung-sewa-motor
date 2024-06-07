@@ -185,7 +185,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xff54B175),
         onPressed: () {
-          Get.offNamed(Routes.TAMBAH_MOTOR);
+          Get.toNamed(Routes.TAMBAH_MOTOR);
         },
         child: const Icon(
           Icons.add,
