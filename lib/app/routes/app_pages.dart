@@ -24,6 +24,8 @@ import '../modules/pesanan/bindings/pesanan_binding.dart';
 import '../modules/pesanan/views/pesanan_view.dart';
 import '../modules/pesanan_admin/bindings/pesanan_admin_binding.dart';
 import '../modules/pesanan_admin/views/pesanan_admin_view.dart';
+import '../modules/profile_admin/bindings/profile_admin_binding.dart';
+import '../modules/profile_admin/views/profile_admin_view.dart';
 import '../modules/profile_pelanggan/bindings/profile_pelanggan_binding.dart';
 import '../modules/profile_pelanggan/views/profile_pelanggan_view.dart';
 import '../modules/register/bindings/register_binding.dart';
@@ -40,7 +42,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.DETAIL_PESANAN;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -127,6 +129,11 @@ class AppPages {
       name: _Paths.BUKTI_PEMBAYARAN,
       page: () => const BuktiPembayaranView(),
       binding: BuktiPembayaranBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE_ADMIN,
+      page: () => const ProfileAdminView(),
+      binding: ProfileAdminBinding(),
     ),
   ];
 }

@@ -20,6 +20,12 @@ class LandingController extends GetxController {
   }
 
   @override
+  void onReady() {
+    changeTabIndex(0);
+    super.onReady();
+  }
+
+  @override
   void onClose() {
     Get.delete<HomeController>();
     Get.delete<ProfilePelangganController>();

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../models/user_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../widgets/kategori_bubble.dart';
 import '../controllers/home_admin_controller.dart';
@@ -17,23 +18,35 @@ class HomeAdminView extends GetView<HomeAdminController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Halo, Admin',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Image.asset('assets/icons/search.png', width: 24),
-                  ),
-                ],
-              ),
+              StreamBuilder<UserModel>(
+                  stream: controller.getUserData(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Halo, ${snapshot.data!.name}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.SEARCH);
+                          },
+                          child:
+                              Image.asset('assets/icons/search.png', width: 24),
+                        ),
+                      ],
+                    );
+                  }),
               const SizedBox(height: 14),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,

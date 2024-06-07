@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 
 import '../../../models/user_model.dart';
 import '../../../routes/app_pages.dart';
-import '../controllers/profile_pelanggan_controller.dart';
+import '../controllers/profile_admin_controller.dart';
 
-class ProfilePelangganView extends GetView<ProfilePelangganController> {
-  const ProfilePelangganView({super.key});
+class ProfileAdminView extends GetView<ProfileAdminController> {
+  const ProfileAdminView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,20 +65,6 @@ class ProfilePelangganView extends GetView<ProfilePelangganController> {
                   ),
                   const SizedBox(
                     height: 40,
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.phone),
-                    title: Text(
-                      snapshot.data!.phone,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  ListTile(
-                    leading: Image.asset("assets/icons/persyaratan.png"),
-                    title: const Text(
-                      "Persyaratan",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
                   ),
                   GestureDetector(
                     onTap: () async {

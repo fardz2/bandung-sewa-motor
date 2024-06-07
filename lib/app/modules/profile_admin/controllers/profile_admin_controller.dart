@@ -3,15 +3,15 @@ import 'package:get/get.dart';
 import '../../../helper/auth_service.dart';
 import '../../../helper/firestore_service.dart';
 
-class HomeController extends GetxController {
-  static HomeController get to => Get.find();
-  var selectedCategory = 'All'.obs;
-
-  void selectCategory(String category) {
-    selectedCategory.value = category;
-  }
+class ProfileAdminController extends GetxController {
+  static ProfileAdminController get to => Get.find();
 
   final authService = Get.put(AuthService());
+
+  logout() {
+    authService.logout();
+  }
+
   final firestoreService = Get.put(FirestoreService());
 
   getUserData() {
@@ -23,6 +23,7 @@ class HomeController extends GetxController {
     }
   }
 
+  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -32,4 +33,11 @@ class HomeController extends GetxController {
   void onReady() {
     super.onReady();
   }
+
+  @override
+  void onClose() {
+    super.onClose();
+  }
+
+  void increment() => count.value++;
 }
