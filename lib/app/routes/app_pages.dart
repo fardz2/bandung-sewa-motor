@@ -1,9 +1,13 @@
 import 'package:get/get.dart';
 
+import '../modules/bukti_pembayaran/bindings/bukti_pembayaran_binding.dart';
+import '../modules/bukti_pembayaran/views/bukti_pembayaran_view.dart';
 import '../modules/detail_motor/bindings/detail_motor_binding.dart';
 import '../modules/detail_motor/views/detail_motor_view.dart';
 import '../modules/detail_pembayaran/bindings/detail_pembayaran_binding.dart';
 import '../modules/detail_pembayaran/views/detail_pembayaran_view.dart';
+import '../modules/detail_pesanan/bindings/detail_pesanan_binding.dart';
+import '../modules/detail_pesanan/views/detail_pesanan_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home_admin/bindings/home_admin_binding.dart';
@@ -14,6 +18,8 @@ import '../modules/landing_admin/bindings/landing_admin_binding.dart';
 import '../modules/landing_admin/views/landing_admin_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/metode_bayar/bindings/metode_bayar_binding.dart';
+import '../modules/metode_bayar/views/metode_bayar_view.dart';
 import '../modules/pesanan/bindings/pesanan_binding.dart';
 import '../modules/pesanan/views/pesanan_view.dart';
 import '../modules/pesanan_admin/bindings/pesanan_admin_binding.dart';
@@ -34,7 +40,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LANDING;
+  static const INITIAL = Routes.DETAIL_PESANAN;
 
   static final routes = [
     GetPage(
@@ -106,6 +112,21 @@ class AppPages {
       name: _Paths.PESANAN_ADMIN,
       page: () => const PesananAdminView(),
       binding: PesananAdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.METODE_BAYAR,
+      page: () => const MetodeBayarView(),
+      binding: MetodeBayarBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_PESANAN,
+      page: () => const DetailPesananView(),
+      binding: DetailPesananBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUKTI_PEMBAYARAN,
+      page: () => const BuktiPembayaranView(),
+      binding: BuktiPembayaranBinding(),
     ),
   ];
 }

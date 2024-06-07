@@ -108,6 +108,5 @@ class CardPesanan extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

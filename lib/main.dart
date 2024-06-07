@@ -12,9 +12,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    statusBarBrightness: Brightness.light,
-    statusBarIconBrightness: Brightness.light,
+    statusBarColor: Color(0xff54B175),
   ));
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

@@ -20,6 +20,9 @@ abstract class Routes {
   static const HOME_ADMIN = _Paths.HOME_ADMIN;
   static const LANDING_ADMIN = _Paths.LANDING_ADMIN;
   static const PESANAN_ADMIN = _Paths.PESANAN_ADMIN;
+  static const METODE_BAYAR = _Paths.METODE_BAYAR;
+  static const DETAIL_PESANAN = _Paths.DETAIL_PESANAN;
+  static const BUKTI_PEMBAYARAN = _Paths.BUKTI_PEMBAYARAN;
 }
 
 abstract class _Paths {
@@ -40,4 +43,7 @@ abstract class _Paths {
   static const HOME_ADMIN = '/home-admin';
   static const LANDING_ADMIN = '/landing-admin';
   static const PESANAN_ADMIN = '/pesanan-admin';
+  static const METODE_BAYAR = '/metode-bayar';
+  static const DETAIL_PESANAN = '/detail-pesanan';
+  static const BUKTI_PEMBAYARAN = '/bukti-pembayaran';
 }
