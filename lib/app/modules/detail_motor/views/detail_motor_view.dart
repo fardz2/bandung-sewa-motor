@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/detail_motor_controller.dart';
 // import 'package:bandung_sewa_motor/app/modules/pesanan/views/pesanan_view.dart';
 
@@ -20,82 +22,88 @@ class DetailMotorView extends GetView<DetailMotorController> {
           'Detail',
           style: TextStyle(color: Colors.white),
         ),
-        iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Color.fromARGB(255, 0x54, 0xB1, 0x75),
+        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: const Color.fromARGB(255, 0x54, 0xB1, 0x75),
         centerTitle: true,
       ),
       body: Stack(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // Image
-              SizedBox(
-                height: 300,
-                child: Image.asset(
-                  'assets/images/beat.png',
-                  fit: BoxFit.cover,
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Image
+                SizedBox(
+                  height: 300,
+                  child: Image.asset(
+                    'assets/images/beat.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              // Title
-              Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 18),
-                    Text(
-                      'Honda Beat 2018',
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Honda',
-                      style: TextStyle(fontSize: 18, color: Colors.black26),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      '125cc',
-                      style: TextStyle(fontSize: 18, color: Colors.black26),
-                    ),
-                    SizedBox(height: 25),
-                    Text(
-                      'Fitur',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 8),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Row(
-                            children: [
-                              // Feature Card 1
-                              featureCard(
-                                imagePath: 'assets/images/helm.png',
-                                text: '2 Helm',
-                              ),
-                              SizedBox(width: 16),
-                              // Feature Card 2
-                              featureCard(
-                                imagePath: 'assets/images/jas.png',
-                                text: '2 Jas Hujan',
-                              ),
-                              SizedBox(width: 16),
-                              // Feature Card 3
-                              featureCard(
-                                imagePath: 'assets/images/driver.png',
-                                text: 'Antar motor',
-                              ),
-                            ],
+                // Title
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 18),
+                      const Text(
+                        'Honda Beat 2018',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      const Text(
+                        'Honda',
+                        style: TextStyle(fontSize: 12, color: Colors.black26),
+                      ),
+                      const SizedBox(height: 10),
+                      const Text(
+                        '125cc',
+                        style: TextStyle(fontSize: 12, color: Colors.black26),
+                      ),
+                      const SizedBox(height: 25),
+                      const Text(
+                        'Fitur',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Row(
+                              children: [
+                                // Feature Card 1
+                                featureCard(
+                                  imagePath: 'assets/images/helm.png',
+                                  text: '2 Helm',
+                                ),
+                                const SizedBox(width: 16),
+                                // Feature Card 2
+                                featureCard(
+                                  imagePath: 'assets/images/jas.png',
+                                  text: '2 Jas Hujan',
+                                ),
+                                const SizedBox(width: 16),
+                                // Feature Card 3
+                                featureCard(
+                                  imagePath: 'assets/images/driver.png',
+                                  text: 'Antar motor',
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(
+                  height: 100,
+                )
+              ],
+            ),
           ),
           Positioned(
             bottom: 0,
@@ -107,7 +115,7 @@ class DetailMotorView extends GetView<DetailMotorController> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
@@ -127,22 +135,23 @@ class DetailMotorView extends GetView<DetailMotorController> {
                       //   context,
                       //   MaterialPageRoute(builder: (context) => PesananView()),
                       // );
+                      Get.toNamed(Routes.METODE_BAYAR);
                     },
-                    child: Text(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          const Color.fromARGB(255, 0x54, 0xB1, 0x75)),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    ),
+                    child: const Text(
                       'Pesan Sekarang',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          Color.fromARGB(255, 0x54, 0xB1, 0x75)),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
                       ),
                     ),
                   ),
@@ -167,10 +176,10 @@ class DetailMotorView extends GetView<DetailMotorController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(imagePath, height: 40),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             text,
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black, fontSize: 10),
           ),
         ],
       ),

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../models/user_model.dart';
 import '../../../widgets/kategori_bubble.dart';
 import '../controllers/home_controller.dart';
-import 'package:bandung_sewa_motor/app/modules/detail_motor/views/detail_motor_view.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -19,25 +19,33 @@ class HomeView extends GetView<HomeController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Halo, Salman',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(Routes.SEARCH);
-                    },
-                    child: Image.asset('assets/icons/search.png', width: 24),
-                  ),
-                ],
-              ),
+              StreamBuilder<UserModel>(
+                  stream: controller.getUserData(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const SizedBox();
+                    }
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Halo, ${snapshot.data!.name}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.SEARCH);
+                          },
+                          child:
+                              Image.asset('assets/icons/search.png', width: 24),
+                        ),
+                      ],
+                    );
+                  }),
               const SizedBox(height: 14),
               Container(
                 width: double.infinity,
@@ -59,45 +67,58 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
               const SizedBox(height: 12),
-              const SingleChildScrollView(
+              SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    KategoriBubble(
-                      text: 'All',
-                      isSelected: true,
-                    ),
-                    SizedBox(width: 16),
-                    KategoriBubble(
-                      text: 'Honda',
-                      isSelected: false,
-                    ),
-                    SizedBox(width: 16),
-                    KategoriBubble(
-                      text: 'Yamaha',
-                      isSelected: false,
-                    ),
-                    SizedBox(width: 16),
-                    KategoriBubble(
-                      text: 'Suzuki',
-                      isSelected: false,
-                    ),
-                    SizedBox(width: 16),
-                    KategoriBubble(
-                      text: 'Kawasaki',
-                      isSelected: false,
-                    ),
-                  ],
-                ),
+                child: Obx(() {
+                  return Row(
+                    children: [
+                      KategoriBubble(
+                        text: 'All',
+                        isSelected: controller.selectedCategory.value == 'All',
+                        onTap: () => controller.selectCategory('All'),
+                      ),
+                      const SizedBox(width: 16),
+                      KategoriBubble(
+                        text: 'Honda',
+                        isSelected:
+                            controller.selectedCategory.value == 'Honda',
+                        onTap: () => controller.selectCategory('Honda'),
+                      ),
+                      const SizedBox(width: 16),
+                      KategoriBubble(
+                        text: 'Yamaha',
+                        isSelected:
+                            controller.selectedCategory.value == 'Yamaha',
+                        onTap: () => controller.selectCategory('Yamaha'),
+                      ),
+                      const SizedBox(width: 16),
+                      KategoriBubble(
+                        text: 'Suzuki',
+                        isSelected:
+                            controller.selectedCategory.value == 'Suzuki',
+                        onTap: () => controller.selectCategory('Suzuki'),
+                      ),
+                      const SizedBox(width: 16),
+                      KategoriBubble(
+                        text: 'Kawasaki',
+                        isSelected:
+                            controller.selectedCategory.value == 'Kawasaki',
+                        onTap: () => controller.selectCategory('Kawasaki'),
+                      ),
+                    ],
+                  );
+                }),
               ),
               const SizedBox(height: 12),
               Expanded(
                 child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  shrinkWrap: true,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                     crossAxisCount: 2,
-                    childAspectRatio: 0.68,
+                    childAspectRatio: MediaQuery.of(context).size.width /
+                        (MediaQuery.of(context).size.height / 1.3 + 10),
                   ),
                   itemCount: 4,
                   itemBuilder: (context, index) {
@@ -133,61 +154,59 @@ class HomeView extends GetView<HomeController> {
                               ),
                             ),
                             const SizedBox(height: 8),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Honda Beat',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                const Text(
-                                  '110cc',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Text(
-                                      'Rp. 80.000/hari',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Honda Beat',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
                                     ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  DetailMotorView()),
-                                        );
-                                      },
-                                      child: Container(
-                                        width: 40,
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xff54B175),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        child: Image.asset(
-                                          'assets/icons/chevron_right.png',
-                                          width: 12,
+                                  ),
+                                  const SizedBox(height: 4),
+                                  const Text(
+                                    '110cc',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Text(
+                                        'Rp. 80.000/hari',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                      GestureDetector(
+                                        onTap: () {
+                                          Get.toNamed(Routes.DETAIL_MOTOR);
+                                        },
+                                        child: Container(
+                                          width: 40,
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff54B175),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          child: Image.asset(
+                                            'assets/icons/chevron_right.png',
+                                            width: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),

@@ -1,11 +1,35 @@
 import 'package:get/get.dart';
 
+import '../../../helper/auth_service.dart';
+import '../../../helper/firestore_service.dart';
+
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  static HomeController get to => Get.find();
+  var selectedCategory = 'All'.obs;
 
-  final count = 0.obs;
+  void selectCategory(String category) {
+    selectedCategory.value = category;
+  }
 
+  final authService = Get.put(AuthService());
+  final firestoreService = Get.put(FirestoreService());
 
+  getUserData() {
+    final userUID = authService.user.value?.uid;
+    if (userUID != null) {
+      return firestoreService.getUserStream(userUID);
+    } else {
+      return null;
+    }
+  }
 
-  void increment() => count.value++;
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+  }
 }

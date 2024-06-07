@@ -2,6 +2,7 @@ import 'package:bandung_sewa_motor/app/widgets/button_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/detail_pembayaran_controller.dart';
 
 class DetailPembayaranView extends GetView<DetailPembayaranController> {
@@ -120,7 +121,11 @@ class DetailPembayaranView extends GetView<DetailPembayaranController> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                ButtonCustom(name: "Bayar Sekarang", onPressed: () {})
+                ButtonCustom(
+                    name: "Bayar Sekarang",
+                    onPressed: () {
+                      Get.toNamed(Routes.BUKTI_PEMBAYARAN);
+                    })
               ],
             ),
           ],

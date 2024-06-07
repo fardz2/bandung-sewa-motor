@@ -17,7 +17,9 @@ class CardSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(color: Color(0xffF9F9FB)),
+      decoration: BoxDecoration(
+          color: const Color(0xffF9F9FB),
+          borderRadius: BorderRadius.circular(10)),
       padding: const EdgeInsets.only(bottom: 20),
       margin: const EdgeInsets.only(bottom: 30),
       width: MediaQuery.of(context).size.width,
