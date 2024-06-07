@@ -7,6 +7,7 @@ abstract class Routes {
   static const LANDING = _Paths.LANDING;
   static const PERSYARATAN = _Paths.PERSYARATAN;
   static const DETAILMOTORADMIN = _Paths.DETAILMOTORADMIN;
+  static const SEWAMOTOR = _Paths.SEWAMOTOR;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const LANDING = '/landing';
   static const PERSYARATAN = '/persyaratan';
   static const DETAILMOTORADMIN = '/detailmotoradmin';
+  static const SEWAMOTOR = '/sewamotor';
 }

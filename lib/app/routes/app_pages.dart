@@ -8,6 +8,8 @@ import '../modules/landing/bindings/landing_binding.dart';
 import '../modules/landing/views/landing_view.dart';
 import '../modules/persyaratan/bindings/persyaratan_binding.dart';
 import '../modules/persyaratan/views/persyaratan_view.dart';
+import '../modules/sewamotor/bindings/sewamotor_binding.dart';
+import '../modules/sewamotor/views/sewamotor_view.dart';
 
 part 'app_routes.dart';
 
@@ -36,6 +38,11 @@ class AppPages {
       name: _Paths.DETAILMOTORADMIN,
       page: () => const DetailmotoradminView(),
       binding: DetailmotoradminBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEWAMOTOR,
+      page: () => const SewamotorView(),
+      binding: SewamotorBinding(),
     ),
   ];
 }
