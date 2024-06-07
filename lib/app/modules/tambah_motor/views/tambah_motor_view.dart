@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/tambah_motor_controller.dart';
 
 class TambahMotorView extends GetView<TambahMotorController> {
@@ -15,14 +16,19 @@ class TambahMotorView extends GetView<TambahMotorController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff54B175),
-        iconTheme: const IconThemeData(color: Colors.white),
-        title: const Text(
-          "Tambah Motor",
-          style: TextStyle(color: Colors.white, fontSize: 16),
-        ),
-        centerTitle: true,
-      ),
+          backgroundColor: const Color(0xff54B175),
+          iconTheme: const IconThemeData(color: Colors.white),
+          title: const Text(
+            "Tambah Motor",
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Get.offNamed(Routes.LANDING_ADMIN);
+            },
+          )),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),

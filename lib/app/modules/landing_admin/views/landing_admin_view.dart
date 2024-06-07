@@ -1,10 +1,16 @@
+
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
+
 import 'package:bandung_sewa_motor/app/modules/pesanan_admin/views/pesanan_admin_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
 import '../../home_admin/views/home_admin_view.dart';
+import '../../profile_admin/views/profile_admin_view.dart';
 import '../controllers/landing_admin_controller.dart';
 
 class LandingAdminView extends GetView<LandingAdminController> {
@@ -91,10 +97,10 @@ class LandingAdminView extends GetView<LandingAdminController> {
           body: Obx(
             () => IndexedStack(
               index: controller.tabIndex.value,
-              children: const [
+              children: [
                 HomeAdminView(),
                 PesananAdminView(),
-                Center(child: Text('Profile Admin')),
+                ProfileAdminView(),
               ],
             ),
           ),

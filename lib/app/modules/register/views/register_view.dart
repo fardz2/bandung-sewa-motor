@@ -149,7 +149,7 @@ class RegisterView extends GetView<RegisterController> {
                         return ElevatedButton(
                           onPressed: () async {
                             if (controller.formKey.currentState!.validate()) {
-                              // controller.register();
+                              controller.register();
                             }
                           },
                           style: ElevatedButton.styleFrom(

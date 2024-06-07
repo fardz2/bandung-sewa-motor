@@ -1,9 +1,9 @@
 import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
 
+import '../../../models/user_model.dart';
 import '../../../widgets/kategori_bubble.dart';
 import '../controllers/home_controller.dart';
 
@@ -19,25 +19,33 @@ class HomeView extends GetView<HomeController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Halo, Salman',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(Routes.SEARCH);
-                    },
-                    child: Image.asset('assets/icons/search.png', width: 24),
-                  ),
-                ],
-              ),
+              StreamBuilder<UserModel>(
+                  stream: controller.getUserData(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const SizedBox();
+                    }
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Halo, ${snapshot.data!.name}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.SEARCH);
+                          },
+                          child:
+                              Image.asset('assets/icons/search.png', width: 24),
+                        ),
+                      ],
+                    );
+                  }),
               const SizedBox(height: 14),
               Container(
                 width: double.infinity,
