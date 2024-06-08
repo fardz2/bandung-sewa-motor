@@ -1,34 +1,37 @@
+import 'dart:ui';
+
 import 'package:bandung_sewa_motor/app/helper/format_harga.dart';
 import 'package:bandung_sewa_motor/app/models/motor_model.dart';
+import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:bandung_sewa_motor/app/widgets/feature_card.dart';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
-import '../controllers/detail_motor_controller.dart';
+import '../controllers/detailmotoradmin_controller.dart';
 
-class DetailMotorView extends GetView<DetailMotorController> {
-  const DetailMotorView({super.key});
+class DetailmotoradminView extends GetView<DetailmotoradminController> {
+  const DetailmotoradminView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => Get.back(),
-          icon: const Icon(
-            Icons.arrow_back_outlined,
-          ),
-        ),
+        backgroundColor: const Color(0xFF54B175),
         title: const Text(
-          'Detail',
+          'Detail Motor',
           style: TextStyle(color: Colors.white),
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color.fromARGB(255, 0x54, 0xB1, 0x75),
         centerTitle: true,
+        leading: IconButton(
+          icon: Image.asset('assets/images/back.png'),
+          color: Colors.white,
+          onPressed: () {
+            Get.back();
+          },
+        ),
       ),
       body: StreamBuilder<MotorModel>(
           stream: controller.getDetailMotor(),
@@ -44,6 +47,32 @@ class DetailMotorView extends GetView<DetailMotorController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: PopupMenuButton<String>(
+                          color: const Color(0xFF54B175),
+                          onSelected: (String result) {
+                            print(result);
+                          },
+                          itemBuilder: (BuildContext context) =>
+                              <PopupMenuEntry<String>>[
+                            const PopupMenuItem<String>(
+                              value: 'Hapus',
+                              child: Text(
+                                'Hapus',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            const PopupMenuItem<String>(
+                              value: 'Edit',
+                              child: Text(
+                                'Edit',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       // Image
                       SizedBox(
                         height: 300,
@@ -147,7 +176,7 @@ class DetailMotorView extends GetView<DetailMotorController> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Get.toNamed(Routes.SEWAMOTOR);
+                            Get.toNamed(Routes.METODE_BAYAR);
                           },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(

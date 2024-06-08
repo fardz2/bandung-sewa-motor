@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class SearchController extends GetxController {
-  //TODO: Implement DetailController
+class PersyaratanController extends GetxController {
+  //TODO: Implement PersyaratanController
 
   final count = 0.obs;
   @override

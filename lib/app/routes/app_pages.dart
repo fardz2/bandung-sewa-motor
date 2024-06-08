@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
 
+import '../modules/detailmotoradmin/bindings/detailmotoradmin_binding.dart';
+import '../modules/detailmotoradmin/views/detailmotoradmin_view.dart';
+
 import '../modules/bukti_pembayaran/bindings/bukti_pembayaran_binding.dart';
 import '../modules/bukti_pembayaran/views/bukti_pembayaran_view.dart';
 import '../modules/detail_motor/bindings/detail_motor_binding.dart';
@@ -8,6 +11,7 @@ import '../modules/detail_pembayaran/bindings/detail_pembayaran_binding.dart';
 import '../modules/detail_pembayaran/views/detail_pembayaran_view.dart';
 import '../modules/detail_pesanan/bindings/detail_pesanan_binding.dart';
 import '../modules/detail_pesanan/views/detail_pesanan_view.dart';
+
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home_admin/bindings/home_admin_binding.dart';
@@ -16,6 +20,12 @@ import '../modules/konfirmasi_pesanan/bindings/konfirmasi_pesanan_binding.dart';
 import '../modules/konfirmasi_pesanan/views/konfirmasi_pesanan_view.dart';
 import '../modules/landing/bindings/landing_binding.dart';
 import '../modules/landing/views/landing_view.dart';
+
+import '../modules/persyaratan/bindings/persyaratan_binding.dart';
+import '../modules/persyaratan/views/persyaratan_view.dart';
+import '../modules/sewamotor/bindings/sewamotor_binding.dart';
+import '../modules/sewamotor/views/sewamotor_view.dart';
+
 import '../modules/landing_admin/bindings/landing_admin_binding.dart';
 import '../modules/landing_admin/views/landing_admin_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -34,8 +44,8 @@ import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/reset/bindings/reset_binding.dart';
 import '../modules/reset/views/reset_view.dart';
-import '../modules/search/bindings/search_binding.dart';
-import '../modules/search/views/search_view.dart';
+import '../modules/search_motor/bindings/search_motor_binding.dart';
+import '../modules/search_motor/views/search_view.dart';
 import '../modules/tambah_motor/bindings/tambah_motor_binding.dart';
 import '../modules/tambah_motor/views/tambah_motor_view.dart';
 
@@ -56,6 +66,11 @@ class AppPages {
       name: _Paths.LANDING,
       page: () => const LandingView(),
       binding: LandingBinding(),
+    ),
+    GetPage(
+      name: _Paths.PERSYARATAN,
+      page: () => const PersyaratanView(),
+      binding: PersyaratanBinding(),
     ),
     GetPage(
       name: _Paths.LOGIN,
@@ -83,9 +98,9 @@ class AppPages {
       binding: PesananBinding(),
     ),
     GetPage(
-      name: _Paths.SEARCH,
-      page: () => const SearchView(),
-      binding: SearchBinding(),
+      name: _Paths.SEARCH_MOTOR,
+      page: () => const SearchMotorView(),
+      binding: SearchMotorBinding(),
     ),
     GetPage(
       name: _Paths.DETAIL_PEMBAYARAN,
@@ -93,14 +108,14 @@ class AppPages {
       binding: DetailPembayaranBinding(),
     ),
     GetPage(
-      name: _Paths.PROFILE_PELANGGAN,
-      page: () => const ProfilePelangganView(),
-      binding: ProfilePelangganBinding(),
+      name: _Paths.DETAILMOTORADMIN,
+      page: () => const DetailmotoradminView(),
+      binding: DetailmotoradminBinding(),
     ),
     GetPage(
-      name: _Paths.TAMBAH_MOTOR,
-      page: () => const TambahMotorView(),
-      binding: TambahMotorBinding(),
+      name: _Paths.SEWAMOTOR,
+      page: () => const SewamotorView(),
+      binding: SewamotorBinding(),
     ),
     GetPage(
       name: _Paths.HOME_ADMIN,

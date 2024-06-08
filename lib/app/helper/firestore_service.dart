@@ -1,3 +1,4 @@
+import 'package:bandung_sewa_motor/app/models/motor_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
@@ -38,6 +39,7 @@ class FirestoreService extends GetxController {
     await _firestore.collection('users').doc(userID).delete();
   }
 
+
   // Motor Collection CRUD
   Future<void> addMotorbike(MotorModel motorbike) async {
     // await _firestore.collection('motor').doc().set(motorbike.toMap());
@@ -51,7 +53,7 @@ class FirestoreService extends GetxController {
     return _firestore.collection('motor').snapshots();
   }
 
-  Stream<MotorModel> getMotorbike(String motorID) {
+  Stream<MotorModel> getDetailMotor(String motorID) {
     return _firestore
         .collection('motor')
         .doc(motorID)
@@ -59,11 +61,23 @@ class FirestoreService extends GetxController {
         .map((event) => MotorModel.fromFirestore(event));
   }
 
+
   //stream motor by merek
   Stream<QuerySnapshot<Map<String, dynamic>>> getMotorByMerek(String merek) {
     return _firestore
         .collection('motor')
         .where('merek', isEqualTo: merek)
         .snapshots();
+  }
+  Stream<List<MotorModel>> getMotorSearchStream(String namaMotor) {
+    return _firestore
+        .collection('motor')
+        .orderBy('namaMotor')
+        .startAt([namaMotor])
+        .endAt(['$namaMotor\uf8ff'])
+        .snapshots()
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => MotorModel.fromFirestore(doc)).toList());
+
   }
 }

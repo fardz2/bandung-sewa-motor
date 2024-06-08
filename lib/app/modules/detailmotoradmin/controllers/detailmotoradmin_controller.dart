@@ -1,8 +1,8 @@
 import 'package:bandung_sewa_motor/app/helper/firestore_service.dart';
 import 'package:get/get.dart';
 
-class DetailMotorController extends GetxController {
-  //TODO: Implement DetailMotorController
+class DetailmotoradminController extends GetxController {
+  //TODO: Implement DetailmotoradminController
 
   final motorID = Get.arguments;
   final firestoreService = Get.put(FirestoreService());
