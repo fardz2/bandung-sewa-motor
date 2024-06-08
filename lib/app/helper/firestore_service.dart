@@ -47,6 +47,10 @@ class FirestoreService extends GetxController {
     });
   }
 
+  Future<void> deleteMotor(String motorID) async {
+    await _firestore.collection('motor').doc(motorID).delete();
+  }
+
   Stream<QuerySnapshot<Map<String, dynamic>>> getAllMotorbike() {
     return _firestore.collection('motor').snapshots();
   }
