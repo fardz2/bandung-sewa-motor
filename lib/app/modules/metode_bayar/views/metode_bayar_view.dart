@@ -1,3 +1,4 @@
+import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -186,7 +187,9 @@ class MetodeBayarView extends GetView<MetodeBayarController> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed(Routes.DETAIL_PEMBAYARAN);
+                            },
                             child: const Icon(
                               Icons.chevron_right,
                               color: Color(0xff4F4F4F),
