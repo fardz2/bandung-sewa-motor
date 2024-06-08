@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MotorModel {
-
   String motorID;
   String namaMotor;
   String gambarUrl;
@@ -31,6 +30,7 @@ class MotorModel {
       cc: data['cc'],
       harga: data['harga'],
       jumlah: data['jumlah'],
+      status: data['status'],
     );
   }
 
@@ -42,7 +42,7 @@ class MotorModel {
       harga: data['harga'],
       jumlah: data['jumlah'],
       merek: data['merek'],
-      motorId: data['motorID'],
+      motorID: data['motorID'],
       namaMotor: data['namaMotor'],
       status: data['status'],
     );
@@ -59,20 +59,6 @@ class MotorModel {
       'jumlah': jumlah,
       'status': status,
     };
-  }
-
-  factory MotorModel.fromFirestore(DocumentSnapshot doc) {
-    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-    return MotorModel(
-      motorID: doc.id,
-      namaMotor: data['namaMotor'] as String,
-      gambarUrl: data['gambarUrl'] as String,
-      merek: data['merek'] as String,
-      cc: data['cc'] as int,
-      harga: data['harga'] as int,
-      jumlah: data['jumlah'] as int,
-      status: data['status'] as String,
-    );
   }
 
   factory MotorModel.fromJson(Map<String, dynamic> json) => MotorModel(
