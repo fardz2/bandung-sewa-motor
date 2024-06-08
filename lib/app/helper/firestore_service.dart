@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
+import '../models/motor_model.dart';
 import '../models/user_model.dart';
 
 class FirestoreService extends GetxController {
@@ -35,5 +36,34 @@ class FirestoreService extends GetxController {
 
   Future<void> deleteUser(String userID) async {
     await _firestore.collection('users').doc(userID).delete();
+  }
+
+  // Motor Collection CRUD
+  Future<void> addMotorbike(MotorModel motorbike) async {
+    // await _firestore.collection('motor').doc().set(motorbike.toMap());
+    var doc = await _firestore.collection('motor').add(motorbike.toMap());
+    await _firestore.collection('motor').doc(doc.id).update({
+      'motorID': doc.id,
+    });
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getAllMotorbike() {
+    return _firestore.collection('motor').snapshots();
+  }
+
+  Stream<MotorModel> getMotorbike(String motorID) {
+    return _firestore
+        .collection('motor')
+        .doc(motorID)
+        .snapshots()
+        .map((event) => MotorModel.fromFirestore(event));
+  }
+
+  //stream motor by merek
+  Stream<QuerySnapshot<Map<String, dynamic>>> getMotorByMerek(String merek) {
+    return _firestore
+        .collection('motor')
+        .where('merek', isEqualTo: merek)
+        .snapshots();
   }
 }

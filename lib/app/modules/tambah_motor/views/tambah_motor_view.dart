@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bandung_sewa_motor/app/helper/motor_validation.dart';
 import 'package:bandung_sewa_motor/app/widgets/button_custom.dart';
 import 'package:bandung_sewa_motor/app/widgets/dropdown_custom.dart';
@@ -44,16 +46,32 @@ class TambahMotorView extends GetView<TambahMotorController> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.width / 2,
-                    decoration: BoxDecoration(
-                        color: const Color(0xff828282),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const Center(
-                      child: Icon(Icons.camera_alt),
-                    ),
-                  ),
+                  Obx(() {
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.width / 2,
+                      decoration: BoxDecoration(
+                          color: const Color(0xff828282),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: controller.gambarMotor.value.path != ""
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.file(
+                                File(controller.gambarMotor.value.path),
+                              ),
+                            )
+                          : GestureDetector(
+                              onTap: () async {
+                                await controller.getImage(true);
+                              },
+                              child: const Icon(
+                                Icons.add_a_photo,
+                                size: 50,
+                                color: Colors.white,
+                              ),
+                            ),
+                    );
+                  }),
                   const SizedBox(
                     height: 10,
                   ),

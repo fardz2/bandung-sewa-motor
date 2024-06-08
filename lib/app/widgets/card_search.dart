@@ -25,7 +25,10 @@ class CardSearch extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
-          Image.asset(image),
+          Image.network(
+            image,
+            width: 250,
+          ),
           const SizedBox(
             height: 20,
           ),
