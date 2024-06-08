@@ -160,5 +160,15 @@ class AppPages {
       page: () => const KonfirmasiPesananView(),
       binding: KonfirmasiPesananBinding(),
     ),
+    GetPage(
+      name: _Paths.TAMBAH_MOTOR,
+      page: () => const TambahMotorView(),
+      binding: TambahMotorBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE_PELANGGAN,
+      page: () => const ProfilePelangganView(),
+      binding: ProfilePelangganBinding(),
+    ),
   ];
 }
