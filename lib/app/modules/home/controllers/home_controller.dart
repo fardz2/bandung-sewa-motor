@@ -23,6 +23,20 @@ class HomeController extends GetxController {
     }
   }
 
+  // Get all motorbike
+  getAllMotorbike() {
+    return firestoreService.getAllMotorbike();
+  }
+
+  // Get motorbike by category
+  getMotorbikeByCategory() {
+    if (selectedCategory.value == 'All') {
+      return firestoreService.getAllMotorbike();
+    } else {
+      return firestoreService.getMotorByMerek(selectedCategory.value);
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();
