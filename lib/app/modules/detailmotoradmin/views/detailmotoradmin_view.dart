@@ -1,19 +1,13 @@
-import 'dart:ui';
-
 import 'package:bandung_sewa_motor/app/helper/format_harga.dart';
 import 'package:bandung_sewa_motor/app/models/motor_model.dart';
-import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:bandung_sewa_motor/app/widgets/feature_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../controllers/detailmotoradmin_controller.dart';
 
 class DetailmotoradminView extends GetView<DetailmotoradminController> {
-  const DetailmotoradminView({Key? key}) : super(key: key);
+  const DetailmotoradminView({super.key});
 
   @override
   Widget build(BuildContext context) {
