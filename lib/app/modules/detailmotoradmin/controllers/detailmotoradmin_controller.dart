@@ -39,7 +39,7 @@ class DetailmotoradminController extends GetxController {
         backgroundColor: Colors.green,
         colorText: Colors.white,
       );
-      Get.toNamed(Routes.HOME_ADMIN);
+      Get.offNamed(Routes.LANDING_ADMIN);
     } catch (e) {
       Get.snackbar(
         "error",

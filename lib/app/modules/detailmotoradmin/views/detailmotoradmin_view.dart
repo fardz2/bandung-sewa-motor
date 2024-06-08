@@ -25,7 +25,7 @@ class DetailmotoradminView extends GetView<DetailmotoradminController> {
           icon: Image.asset('assets/images/back.png'),
           color: Colors.white,
           onPressed: () {
-            Get.back();
+            Get.offNamed(Routes.LANDING_ADMIN);
           },
         ),
       ),
@@ -62,7 +62,7 @@ class DetailmotoradminView extends GetView<DetailmotoradminController> {
                                       onPressed: () {
                                         Get.back();
                                       },
-                                      child: const Text('CANCE'),
+                                      child: const Text('CANCEL'),
                                     ),
                                     ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -93,9 +93,15 @@ class DetailmotoradminView extends GetView<DetailmotoradminController> {
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
-                            const PopupMenuItem<String>(
+                            PopupMenuItem<String>(
+                              onTap: () {
+                                Get.toNamed(
+                                  Routes.EDIT_MOTOR,
+                                  arguments: snapshot.data!.motorID,
+                                );
+                              },
                               value: 'Edit',
-                              child: Text(
+                              child: const Text(
                                 'Edit',
                                 style: TextStyle(color: Colors.white),
                               ),
