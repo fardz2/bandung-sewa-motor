@@ -1,3 +1,5 @@
+import 'package:bandung_sewa_motor/app/modules/profile_pelanggan/bindings/profile_pelanggan_binding.dart';
+import 'package:bandung_sewa_motor/app/modules/profile_pelanggan/views/profile_pelanggan_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/detailmotoradmin/bindings/detailmotoradmin_binding.dart';

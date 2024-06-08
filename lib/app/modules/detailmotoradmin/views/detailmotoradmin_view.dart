@@ -1,7 +1,9 @@
 import 'package:bandung_sewa_motor/app/helper/format_harga.dart';
 import 'package:bandung_sewa_motor/app/models/motor_model.dart';
+import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:bandung_sewa_motor/app/widgets/feature_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../controllers/detailmotoradmin_controller.dart';
@@ -46,7 +48,41 @@ class DetailmotoradminView extends GetView<DetailmotoradminController> {
                         child: PopupMenuButton<String>(
                           color: const Color(0xFF54B175),
                           onSelected: (String result) {
-                            print(result);
+                            // result == "Hapus"
+                            //     ? controller.hapusMotor(snapshot.data!.motorID)
+                            //     : "";
+                            if (result == "Hapus") {
+                              Get.dialog(
+                                AlertDialog(
+                                  title: Text(snapshot.data!.namaMotor),
+                                  content: Text(
+                                      'Yakin ingin menghapus motor ${snapshot.data!.namaMotor}?'),
+                                  actions: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      child: const Text('CANCE'),
+                                    ),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.red),
+                                      onPressed: () {
+                                        controller.hapusMotor(
+                                            snapshot.data!.motorID,
+                                            snapshot.data!.gambarUrl);
+                                      },
+                                      child: const Text(
+                                        'HAPUS',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else {
+                              print(result);
+                            }
                           },
                           itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry<String>>[
