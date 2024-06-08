@@ -38,8 +38,6 @@ import '../modules/pesanan_admin/bindings/pesanan_admin_binding.dart';
 import '../modules/pesanan_admin/views/pesanan_admin_view.dart';
 import '../modules/profile_admin/bindings/profile_admin_binding.dart';
 import '../modules/profile_admin/views/profile_admin_view.dart';
-import '../modules/profile_pelanggan/bindings/profile_pelanggan_binding.dart';
-import '../modules/profile_pelanggan/views/profile_pelanggan_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/reset/bindings/reset_binding.dart';
@@ -89,8 +87,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DETAIL_MOTOR,
-      page: () => DetailMotorView(),
+      page: () => const DetailMotorView(),
       binding: DetailMotorBinding(),
+    ),
+    GetPage(
+      name: _Paths.TAMBAH_MOTOR,
+      page: () => const TambahMotorView(),
+      binding: TambahMotorBinding(),
     ),
     GetPage(
       name: _Paths.PESANAN,
