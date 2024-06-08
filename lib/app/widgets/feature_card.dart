@@ -26,6 +26,5 @@ class FeatureCard extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }
