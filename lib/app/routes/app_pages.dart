@@ -64,7 +64,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LANDING,
-      page: () => LandingView(),
+      page: () => const LandingView(),
       binding: LandingBinding(),
     ),
     GetPage(

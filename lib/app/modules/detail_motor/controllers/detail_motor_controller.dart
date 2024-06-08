@@ -1,9 +1,11 @@
+import 'package:bandung_sewa_motor/app/helper/firestore_service.dart';
 import 'package:get/get.dart';
 
 class DetailMotorController extends GetxController {
   //TODO: Implement DetailMotorController
 
-  final count = 0.obs;
+  final motorID = Get.arguments;
+  final firestoreService = Get.put(FirestoreService());
   @override
   void onInit() {
     super.onInit();
@@ -16,5 +18,7 @@ class DetailMotorController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+  getDetailMotor() {
+    return firestoreService.getDetailMotor(motorID);
+  }
 }

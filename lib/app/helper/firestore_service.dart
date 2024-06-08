@@ -38,6 +38,14 @@ class FirestoreService extends GetxController {
     await _firestore.collection('users').doc(userID).delete();
   }
 
+  Stream<MotorModel> getDetailMotor(String motorID) {
+    return _firestore
+        .collection('motor')
+        .doc(motorID)
+        .snapshots()
+        .map((event) => MotorModel.fromFirestore(event));
+  }
+
   Stream<List<MotorModel>> getMotorSearchStream(String namaMotor) {
     return _firestore
         .collection('motor')

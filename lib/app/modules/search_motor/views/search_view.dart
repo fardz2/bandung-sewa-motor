@@ -66,7 +66,8 @@ class SearchMotorView extends GetView<SearchMotorController> {
                           nama: snapshot.data![index].namaMotor,
                           merek: snapshot.data![index].merek,
                           onTap: () {
-                            Get.toNamed(Routes.DETAIL_MOTOR);
+                            Get.toNamed(Routes.DETAIL_MOTOR,
+                                arguments: snapshot.data?[index].motorId);
                           },
                           harga:
                               "${FormatHarga.formatRupiah(snapshot.data![index].harga)}/perhari",

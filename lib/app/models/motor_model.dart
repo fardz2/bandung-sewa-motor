@@ -21,7 +21,6 @@ class MotorModel {
   String namaMotor;
   String status;
 
-  // Factory constructor untuk membuat MotorModel dari Firestore snapshot
   factory MotorModel.fromFirestore(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     return MotorModel(
@@ -36,7 +35,6 @@ class MotorModel {
     );
   }
 
-  // Factory constructor untuk membuat MotorModel dari JSON
   factory MotorModel.fromJson(Map<String, dynamic> json) => MotorModel(
         cc: json["cc"],
         gambarUrl: json["gambarUrl"],
