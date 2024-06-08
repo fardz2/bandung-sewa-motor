@@ -75,6 +75,9 @@ class ProfilePelangganView extends GetView<ProfilePelangganController> {
                     ),
                   ),
                   ListTile(
+                    onTap: () {
+                      Get.toNamed(Routes.PERSYARATAN);
+                    },
                     leading: Image.asset("assets/icons/persyaratan.png"),
                     title: const Text(
                       "Persyaratan",

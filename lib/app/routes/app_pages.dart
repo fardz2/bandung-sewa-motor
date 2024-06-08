@@ -1,9 +1,4 @@
-import 'package:bandung_sewa_motor/app/modules/profile_pelanggan/bindings/profile_pelanggan_binding.dart';
-import 'package:bandung_sewa_motor/app/modules/profile_pelanggan/views/profile_pelanggan_view.dart';
 import 'package:get/get.dart';
-
-import '../modules/detailmotoradmin/bindings/detailmotoradmin_binding.dart';
-import '../modules/detailmotoradmin/views/detailmotoradmin_view.dart';
 
 import '../modules/bukti_pembayaran/bindings/bukti_pembayaran_binding.dart';
 import '../modules/bukti_pembayaran/views/bukti_pembayaran_view.dart';
@@ -13,7 +8,10 @@ import '../modules/detail_pembayaran/bindings/detail_pembayaran_binding.dart';
 import '../modules/detail_pembayaran/views/detail_pembayaran_view.dart';
 import '../modules/detail_pesanan/bindings/detail_pesanan_binding.dart';
 import '../modules/detail_pesanan/views/detail_pesanan_view.dart';
-
+import '../modules/detailmotoradmin/bindings/detailmotoradmin_binding.dart';
+import '../modules/detailmotoradmin/views/detailmotoradmin_view.dart';
+import '../modules/edit_motor/bindings/edit_motor_binding.dart';
+import '../modules/edit_motor/views/edit_motor_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home_admin/bindings/home_admin_binding.dart';
@@ -22,30 +20,30 @@ import '../modules/konfirmasi_pesanan/bindings/konfirmasi_pesanan_binding.dart';
 import '../modules/konfirmasi_pesanan/views/konfirmasi_pesanan_view.dart';
 import '../modules/landing/bindings/landing_binding.dart';
 import '../modules/landing/views/landing_view.dart';
-
-import '../modules/persyaratan/bindings/persyaratan_binding.dart';
-import '../modules/persyaratan/views/persyaratan_view.dart';
-import '../modules/sewamotor/bindings/sewamotor_binding.dart';
-import '../modules/sewamotor/views/sewamotor_view.dart';
-
 import '../modules/landing_admin/bindings/landing_admin_binding.dart';
 import '../modules/landing_admin/views/landing_admin_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/metode_bayar/bindings/metode_bayar_binding.dart';
 import '../modules/metode_bayar/views/metode_bayar_view.dart';
+import '../modules/persyaratan/bindings/persyaratan_binding.dart';
+import '../modules/persyaratan/views/persyaratan_view.dart';
 import '../modules/pesanan/bindings/pesanan_binding.dart';
 import '../modules/pesanan/views/pesanan_view.dart';
 import '../modules/pesanan_admin/bindings/pesanan_admin_binding.dart';
 import '../modules/pesanan_admin/views/pesanan_admin_view.dart';
 import '../modules/profile_admin/bindings/profile_admin_binding.dart';
 import '../modules/profile_admin/views/profile_admin_view.dart';
+import '../modules/profile_pelanggan/bindings/profile_pelanggan_binding.dart';
+import '../modules/profile_pelanggan/views/profile_pelanggan_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/reset/bindings/reset_binding.dart';
 import '../modules/reset/views/reset_view.dart';
 import '../modules/search_motor/bindings/search_motor_binding.dart';
 import '../modules/search_motor/views/search_view.dart';
+import '../modules/sewamotor/bindings/sewamotor_binding.dart';
+import '../modules/sewamotor/views/sewamotor_view.dart';
 import '../modules/tambah_motor/bindings/tambah_motor_binding.dart';
 import '../modules/tambah_motor/views/tambah_motor_view.dart';
 
@@ -171,6 +169,11 @@ class AppPages {
       name: _Paths.PROFILE_PELANGGAN,
       page: () => const ProfilePelangganView(),
       binding: ProfilePelangganBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_MOTOR,
+      page: () => const EditMotorView(),
+      binding: EditMotorBinding(),
     ),
   ];
 }

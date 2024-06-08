@@ -34,6 +34,15 @@ class FirestoreService extends GetxController {
     await _firestore.collection('users').doc(user.userID).update(user.toMap());
   }
 
+  //update user hotelUrl ktpURl simUrl
+  Future<void> updateUserUrl(UserModel user) async {
+    await _firestore.collection('users').doc(user.userID).update({
+      'hotelUrl': user.hotelUrl,
+      'ktpUrl': user.ktpUrl,
+      'simUrl': user.simUrl,
+    });
+  }
+
   Future<void> deleteUser(String userID) async {
     await _firestore.collection('users').doc(userID).delete();
   }
@@ -63,6 +72,13 @@ class FirestoreService extends GetxController {
         .map((event) => MotorModel.fromFirestore(event));
   }
 
+  //getdetailmotor future
+  Future<MotorModel> getDetailMotorFuture(String motorID) async {
+    DocumentSnapshot doc =
+        await _firestore.collection('motor').doc(motorID).get();
+    return MotorModel.fromFirestore(doc);
+  }
+
   //stream motor by merek
   Stream<QuerySnapshot<Map<String, dynamic>>> getMotorByMerek(String merek) {
     return _firestore
@@ -80,5 +96,25 @@ class FirestoreService extends GetxController {
         .snapshots()
         .map((snapshot) =>
             snapshot.docs.map((doc) => MotorModel.fromFirestore(doc)).toList());
+  }
+
+  //update motor
+  Future<void> updateMotor(MotorModel motor) async {
+    await _firestore
+        .collection('motor')
+        .doc(motor.motorID)
+        .update(motor.toMap());
+  }
+
+  //update motor without gamvarUrl
+  Future<void> updateMotorTanpaGambarUrl(MotorModel motor) async {
+    await _firestore.collection('motor').doc(motor.motorID).update({
+      'namaMotor': motor.namaMotor,
+      'merek': motor.merek,
+      'jumlah': motor.jumlah,
+      'harga': motor.harga,
+      'cc': motor.cc,
+      'status': motor.status,
+    });
   }
 }
