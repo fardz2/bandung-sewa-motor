@@ -34,6 +34,15 @@ class FirestoreService extends GetxController {
     await _firestore.collection('users').doc(user.userID).update(user.toMap());
   }
 
+  //update user hotelUrl ktpURl simUrl
+  Future<void> updateUserUrl(UserModel user) async {
+    await _firestore.collection('users').doc(user.userID).update({
+      'hotelUrl': user.hotelUrl,
+      'ktpUrl': user.ktpUrl,
+      'simUrl': user.simUrl,
+    });
+  }
+
   Future<void> deleteUser(String userID) async {
     await _firestore.collection('users').doc(userID).delete();
   }

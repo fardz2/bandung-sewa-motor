@@ -36,9 +36,7 @@ class EditMotorController extends GetxController {
         jumlahMotor.text = value.jumlah.toString();
         hargaMotor.text = value.harga.toString();
         cc.text = value.cc.toString();
-        print('Merek sebelum update: ${selectedMerek.value}');
         selectedMerek.value = value.merek;
-        print('Merek setelah update: ${selectedMerek.value}');
       });
     } catch (e) {
       Get.snackbar(

@@ -194,7 +194,7 @@ class HomeView extends GetView<HomeController> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Text(
-                                              '${FormatHarga.formatRupiah(snapshot.data.docs[index].get("harga"))}}/hari',
+                                              '${FormatHarga.formatRupiah(snapshot.data.docs[index].get("harga"))}/hari',
                                               style: const TextStyle(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.bold,
