@@ -174,28 +174,28 @@ class DetailmotoradminView extends GetView<DetailmotoradminController> {
                             ),
                           ],
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Get.toNamed(Routes.METODE_BAYAR);
-                          },
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                const Color.fromARGB(255, 0x54, 0xB1, 0x75)),
-                            shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                          ),
-                          child: const Text(
-                            'Pesan Sekarang',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+                        // ElevatedButton(
+                        //   onPressed: () {
+                        //     Get.toNamed(Routes.METODE_BAYAR);
+                        //   },
+                        //   style: ButtonStyle(
+                        //     backgroundColor: MaterialStateProperty.all(
+                        //         const Color.fromARGB(255, 0x54, 0xB1, 0x75)),
+                        //     shape: MaterialStateProperty.all(
+                        //       RoundedRectangleBorder(
+                        //         borderRadius: BorderRadius.circular(8),
+                        //       ),
+                        //     ),
+                        //   ),
+                        //   child: const Text(
+                        //     'Pesan Sekarang',
+                        //     style: TextStyle(
+                        //       color: Colors.white,
+                        //       fontSize: 16,
+                        //       fontWeight: FontWeight.bold,
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
