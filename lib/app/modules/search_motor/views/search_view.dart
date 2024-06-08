@@ -66,8 +66,14 @@ class SearchMotorView extends GetView<SearchMotorController> {
                           nama: snapshot.data![index].namaMotor,
                           merek: snapshot.data![index].merek,
                           onTap: () {
-                            Get.toNamed(Routes.DETAIL_MOTOR,
-                                arguments: snapshot.data?[index].motorID);
+                            if (controller.authService.user.value?.email ==
+                                "admin@gmail.com") {
+                              Get.toNamed(Routes.DETAILMOTORADMIN,
+                                  arguments: snapshot.data?[index].motorID);
+                            } else {
+                              Get.toNamed(Routes.DETAIL_MOTOR,
+                                  arguments: snapshot.data?[index].motorID);
+                            }
                           },
                           harga:
                               "${FormatHarga.formatRupiah(snapshot.data![index].harga)}/perhari",
