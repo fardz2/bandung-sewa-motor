@@ -264,14 +264,16 @@ class SewamotorView extends GetView<SewamotorController> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    FormatHarga.formatRupiah(
-                                        snapshot.data!.harga *
-                                            controller.totalDays.value),
-                                    style: const TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600),
-                                  ),
+                                  Obx(() {
+                                    return Text(
+                                      FormatHarga.formatRupiah(
+                                          snapshot.data!.harga *
+                                              controller.totalDays.value),
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600),
+                                    );
+                                  }),
                                   Obx(() => controller.opsi.value == "antar"
                                       ? Text(
                                           FormatHarga.formatRupiah(
