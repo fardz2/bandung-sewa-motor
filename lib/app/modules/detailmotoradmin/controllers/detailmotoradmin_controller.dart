@@ -22,6 +22,7 @@ class DetailmotoradminController extends GetxController {
 
   @override
   void onClose() {}
+
   getDetailMotor() {
     return firestoreService.getDetailMotor(motorID);
   }

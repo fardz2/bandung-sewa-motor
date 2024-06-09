@@ -51,43 +51,41 @@ class DetailmotoradminView extends GetView<DetailmotoradminController> {
                             // result == "Hapus"
                             //     ? controller.hapusMotor(snapshot.data!.motorID)
                             //     : "";
-                            if (result == "Hapus") {
-                              Get.dialog(
-                                AlertDialog(
-                                  title: Text(snapshot.data!.namaMotor),
-                                  content: Text(
-                                      'Yakin ingin menghapus motor ${snapshot.data!.namaMotor}?'),
-                                  actions: [
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        Get.back();
-                                      },
-                                      child: const Text('CANCEL'),
-                                    ),
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.red),
-                                      onPressed: () {
-                                        controller.hapusMotor(
-                                            snapshot.data!.motorID,
-                                            snapshot.data!.gambarUrl);
-                                      },
-                                      child: const Text(
-                                        'HAPUS',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            } else {
-                              print(result);
-                            }
                           },
                           itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry<String>>[
-                            const PopupMenuItem<String>(
+                            PopupMenuItem<String>(
                               value: 'Hapus',
+                              onTap: () {
+                                Get.dialog(
+                                  AlertDialog(
+                                    title: Text(snapshot.data!.namaMotor),
+                                    content: Text(
+                                        'Yakin ingin menghapus motor ${snapshot.data!.namaMotor}?'),
+                                    actions: [
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                        child: const Text('CANCEL'),
+                                      ),
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.red),
+                                        onPressed: () {
+                                          controller.hapusMotor(
+                                              snapshot.data!.motorID,
+                                              snapshot.data!.gambarUrl);
+                                        },
+                                        child: const Text(
+                                          'HAPUS',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
                               child: Text(
                                 'Hapus',
                                 style: TextStyle(color: Colors.white),

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bandung_sewa_motor/app/modules/detailmotoradmin/controllers/detailmotoradmin_controller.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -66,6 +67,7 @@ class EditMotorController extends GetxController {
     jumlahMotor.dispose();
     hargaMotor.dispose();
     cc.dispose();
+    Get.delete<DetailmotoradminController>();
     super.onClose();
   }
 
@@ -128,7 +130,6 @@ class EditMotorController extends GetxController {
         jumlahMotor.clear();
         hargaMotor.clear();
         cc.clear();
-        Get.offNamed(Routes.LANDING_ADMIN);
       } else {
         String url = await uploadFile(File(gambarMotor.value.path));
         firestoreService.updateMotor(MotorModel(
@@ -153,8 +154,8 @@ class EditMotorController extends GetxController {
         hargaMotor.clear();
         cc.clear();
         gambarMotor.value = XFile("");
-        Get.offNamed(Routes.LANDING_ADMIN);
       }
+      Get.offNamed(Routes.LANDING_ADMIN);
     }
   }
 }

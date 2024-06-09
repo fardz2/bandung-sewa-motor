@@ -147,7 +147,8 @@ class DetailMotorView extends GetView<DetailMotorController> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Get.toNamed(Routes.SEWAMOTOR);
+                            Get.toNamed(Routes.SEWAMOTOR,
+                                arguments: snapshot.data?.motorID);
                           },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
