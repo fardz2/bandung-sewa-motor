@@ -45,6 +45,7 @@ class ResetView extends GetView<ResetController> {
             ),
             SizedBox(height: 8),
             TextField(
+              controller: controller.emailController,
               decoration: InputDecoration(
                 hintText: 'user@gmail.com',
                 hintStyle: TextStyle(
@@ -63,7 +64,8 @@ class ResetView extends GetView<ResetController> {
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () =>
+                    controller.resetPassword(controller.emailController.text),
                 child: Text(
                   'Kirim',
                   style: TextStyle(
