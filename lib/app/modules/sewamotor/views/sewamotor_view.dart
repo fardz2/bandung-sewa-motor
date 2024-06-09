@@ -169,58 +169,67 @@ class SewamotorView extends GetView<SewamotorController> {
                                 : const SizedBox(height: 0),
                           ),
                           const SizedBox(height: 16),
-                          const Row(
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "Durasi Sewa",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
                               ),
-                              Text(
-                                "Ubah",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
+                              GestureDetector(
+                                onTap: () {
+                                  controller.getDateTimeRangePicker(context);
+                                },
+                                child: const Text(
+                                  "Ubah",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ],
                           ),
                           const SizedBox(height: 4),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Pengambilan :",
-                                    style: TextStyle(color: Color(0xff8A8A8E)),
-                                  ),
-                                  Text(
-                                    "23 Juni 2021(15.00)",
-                                  ),
-                                ],
-                              ),
-                              Container(
-                                height: 24,
-                                width: 1,
-                                color: const Color(0xff4F4F4F),
-                              ),
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Pengembalian :",
-                                    style: TextStyle(color: Color(0xff8A8A8E)),
-                                  ),
-                                  Text(
-                                    "24 Juni 2021(15.00)",
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                          Obx(() {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Pengambilan :",
+                                      style:
+                                          TextStyle(color: Color(0xff8A8A8E)),
+                                    ),
+                                    Text(
+                                      controller.awalSewa.value,
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  height: 24,
+                                  width: 1,
+                                  color: const Color(0xff4F4F4F),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Pengembalian :",
+                                      style:
+                                          TextStyle(color: Color(0xff8A8A8E)),
+                                    ),
+                                    Text(
+                                      controller.akhirSewa.value,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          }),
                           const SizedBox(height: 32),
                           const Text(
                             "Rincian Bayar *",
@@ -234,10 +243,13 @@ class SewamotorView extends GetView<SewamotorController> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(
-                                    "Harga Sewa (2hari)",
-                                    style: TextStyle(color: Color(0xff8A8A8E)),
-                                  ),
+                                  Obx(() {
+                                    return Text(
+                                      "Harga Sewa (${controller.totalDays.value} hari)",
+                                      style: const TextStyle(
+                                          color: Color(0xff8A8A8E)),
+                                    );
+                                  }),
                                   Obx(() => controller.opsi.value == "antar"
                                       ? const Text(
                                           "Ongkos Antar",
@@ -254,7 +266,8 @@ class SewamotorView extends GetView<SewamotorController> {
                                 children: [
                                   Text(
                                     FormatHarga.formatRupiah(
-                                        snapshot.data!.harga),
+                                        snapshot.data!.harga *
+                                            controller.totalDays.value),
                                     style: const TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600),
