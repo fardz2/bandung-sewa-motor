@@ -1,9 +1,14 @@
+import 'package:bandung_sewa_motor/app/modules/bukti_pembayaran/bindings/bukti_pembayaran_binding.dart';
+import 'package:bandung_sewa_motor/app/modules/bukti_pembayaran/views/bukti_pembayaran_view.dart';
 import 'package:get/get.dart';
 
-import '../modules/bukti_pembayaran/bindings/bukti_pembayaran_binding.dart';
-import '../modules/bukti_pembayaran/views/bukti_pembayaran_view.dart';
-import '../modules/detail_motor/bindings/detail_motor_binding.dart';
-import '../modules/detail_motor/views/detail_motor_view.dart';
+import 'package:bandung_sewa_motor/app/modules/detail_motor/bindings/detail_motor_binding.dart';
+import 'package:bandung_sewa_motor/app/modules/detail_motor/views/detail_motor_view.dart';
+import 'package:bandung_sewa_motor/app/modules/pesanan/bindings/pesanan_binding.dart';
+import 'package:bandung_sewa_motor/app/modules/pesanan/views/pesanan_view.dart';
+import 'package:bandung_sewa_motor/app/modules/reset/bindings/reset_binding.dart';
+import 'package:bandung_sewa_motor/app/modules/reset/views/reset_view.dart';
+
 import '../modules/detail_pembayaran/bindings/detail_pembayaran_binding.dart';
 import '../modules/detail_pembayaran/views/detail_pembayaran_view.dart';
 import '../modules/detail_pesanan/bindings/detail_pesanan_binding.dart';
@@ -64,21 +69,6 @@ class AppPages {
       name: _Paths.LANDING,
       page: () => const LandingView(),
       binding: LandingBinding(),
-    ),
-    GetPage(
-      name: _Paths.PERSYARATAN,
-      page: () => const PersyaratanView(),
-      binding: PersyaratanBinding(),
-    ),
-    GetPage(
-      name: _Paths.LOGIN,
-      page: () => const LoginView(),
-      binding: LoginBinding(),
-    ),
-    GetPage(
-      name: _Paths.REGISTER,
-      page: () => const RegisterView(),
-      binding: RegisterBinding(),
     ),
     GetPage(
       name: _Paths.RESET,
@@ -171,9 +161,9 @@ class AppPages {
       binding: ProfilePelangganBinding(),
     ),
     GetPage(
-      name: _Paths.EDIT_MOTOR,
-      page: () => const EditMotorView(),
-      binding: EditMotorBinding(),
+      name: _Paths.TAMBAH_MOTOR,
+      page: () => const TambahMotorView(),
+      binding: TambahMotorBinding(),
     ),
   ];
 }

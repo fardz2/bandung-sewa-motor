@@ -21,10 +21,10 @@ class ResetView extends GetView<ResetController> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
-            Text(
+            const Text(
               'Masukkan email untuk reset password',
               style: TextStyle(
                 color: Colors.black26,
@@ -32,10 +32,10 @@ class ResetView extends GetView<ResetController> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 18,
             ),
-            Text(
+            const Text(
               'Email',
               style: TextStyle(
                 color: Colors.black26,
@@ -43,36 +43,29 @@ class ResetView extends GetView<ResetController> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             TextField(
+              controller: controller.emailController,
               decoration: InputDecoration(
                 hintText: 'user@gmail.com',
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: Colors.black26,
                   fontSize: 16,
                   fontFamily: 'QuickSand',
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(color: Colors.transparent),
+                  borderSide: const BorderSide(color: Colors.transparent),
                 ),
               ),
             ),
-            SizedBox(height: 45),
-            Container(
+            const SizedBox(height: 45),
+            SizedBox(
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  'Kirim',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'QuickSand',
-                  ),
-                ),
+                onPressed: () =>
+                    controller.resetPassword(controller.emailController.text),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
                       Color.fromARGB(255, 0x54, 0xB1, 0x75)),
@@ -80,6 +73,15 @@ class ResetView extends GetView<ResetController> {
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
+                  ),
+                ),
+                child: const Text(
+                  'Kirim',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'QuickSand',
                   ),
                 ),
               ),
