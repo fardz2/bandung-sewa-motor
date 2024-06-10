@@ -1,9 +1,20 @@
 import 'package:get/get.dart';
 
-class MetodeBayarController extends GetxController {
-  //TODO: Implement MetodeBayarController
+import '../../../helper/firestore_service.dart';
 
-  final count = 0.obs;
+class MetodeBayarController extends GetxController {
+  String pesananID = Get.arguments;
+
+  final firestoreService = Get.put(FirestoreService());
+
+  getDetailPesanan() {
+    return firestoreService.getPesananByIdStream(pesananID);
+  }
+
+  getMotorById(String motorID) {
+    return firestoreService.getDetailMotor(motorID);
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +29,4 @@ class MetodeBayarController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

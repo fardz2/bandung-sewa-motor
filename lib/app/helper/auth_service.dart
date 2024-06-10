@@ -37,7 +37,6 @@ class AuthService extends GetxController {
           name: name,
           email: email,
           phone: phone,
-          rentalHistory: [],
         );
         await _firestoreController.addUser(userModel);
         Get.snackbar('Success', 'Akun berhasil di buat',

@@ -5,7 +5,6 @@ class UserModel {
   String name;
   String email;
   String phone;
-  List<String> rentalHistory;
   String gambarUrl;
   String ktpUrl;
   String hotelUrl;
@@ -16,7 +15,6 @@ class UserModel {
     required this.name,
     required this.email,
     required this.phone,
-    required this.rentalHistory,
     this.gambarUrl = '',
     this.ktpUrl = '',
     this.hotelUrl = '',
@@ -29,7 +27,6 @@ class UserModel {
       name: data['name'],
       email: data['email'],
       phone: data['phone'],
-      rentalHistory: List<String>.from(data['rentalHistory']),
       gambarUrl: data['gambarUrl'],
       ktpUrl: data['ktpUrl'],
       hotelUrl: data['hotelUrl'],
@@ -44,7 +41,6 @@ class UserModel {
       name: data['name'],
       email: data['email'],
       phone: data['phone'],
-      rentalHistory: List<String>.from(data['rentalHistory']),
       gambarUrl: data['gambarUrl'],
       ktpUrl: data['ktpUrl'],
       hotelUrl: data['hotelUrl'],
@@ -58,7 +54,6 @@ class UserModel {
       'name': name,
       'email': email,
       'phone': phone,
-      'rentalHistory': rentalHistory,
       'gambarUrl': gambarUrl,
       'ktpUrl': ktpUrl,
       'hotelUrl': hotelUrl,
