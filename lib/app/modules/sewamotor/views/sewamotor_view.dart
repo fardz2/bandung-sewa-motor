@@ -1,6 +1,5 @@
 import 'package:bandung_sewa_motor/app/helper/format_harga.dart';
 import 'package:bandung_sewa_motor/app/models/motor_model.dart';
-import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -37,260 +36,251 @@ class SewamotorView extends GetView<SewamotorController> {
             }
             return Stack(
               children: [
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 18, vertical: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                height: 60,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xffEFEFF0),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Center(
-                                  child: Image.network(
-                                    snapshot.data!.gambarUrl,
-                                    width: 40,
-                                  ),
+                SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 18, vertical: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                color: const Color(0xffEFEFF0),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Center(
+                                child: Image.network(
+                                  snapshot.data!.gambarUrl,
+                                  width: 40,
                                 ),
                               ),
-                              const SizedBox(width: 16),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    snapshot.data!.namaMotor,
-                                    style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const Text(
-                                    "Bandung Sewa motor",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Color(0xff4F4F4F),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 16),
-                          const Text(
-                            "Opsi Layanan",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(height: 16),
-                          Obx(
-                            () => Row(children: [
-                              opsiLayanan(
-                                  "assets/images/location.png",
-                                  "assets/images/location_nonactive.png",
-                                  "Ambil Ditempat",
-                                  controller.opsi.value == "ambil",
-                                  () => controller.selectOption("ambil")),
-                              const SizedBox(width: 10),
-                              opsiLayanan(
-                                  "assets/images/antar_active.png",
-                                  "assets/images/antar_nonactive.png",
-                                  "Antar",
-                                  controller.opsi.value == "antar",
-                                  () => controller.selectOption("antar")),
-                            ]),
-                          ),
-                          Row(
-                            children: [
-                              Image.asset(
-                                "assets/images/warning_icon.png",
-                                width: 18,
-                              ),
-                              const SizedBox(width: 8),
-                              const Text(
-                                "Antar akan ada tambahan ongkos",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Color(0xff4F4F4F),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 16),
-                          const Text(
-                            "Lokasi Pengambilan *",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
                             ),
+                            const SizedBox(width: 16),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  snapshot.data!.namaMotor,
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const Text(
+                                  "Bandung Sewa motor",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Color(0xff4F4F4F),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          "Opsi Layanan",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 16),
+                        Obx(
+                          () => Row(children: [
+                            opsiLayanan(
+                                "assets/images/location.png",
+                                "assets/images/location_nonactive.png",
+                                "Ambil Ditempat",
+                                controller.opsi.value == "ambil",
+                                () => controller.selectOption("ambil")),
+                            const SizedBox(width: 10),
+                            opsiLayanan(
+                                "assets/images/antar_active.png",
+                                "assets/images/antar_nonactive.png",
+                                "Antar",
+                                controller.opsi.value == "antar",
+                                () => controller.selectOption("antar")),
+                          ]),
+                        ),
+                        Row(
+                          children: [
+                            Image.asset(
+                              "assets/images/warning_icon.png",
+                              width: 18,
+                            ),
+                            const SizedBox(width: 8),
+                            const Text(
+                              "Antar akan ada tambahan ongkos",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xff4F4F4F),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          "Lokasi Pengambilan *",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
                           ),
-                          const SizedBox(height: 4),
-                          const Text(
-                            "Jl. Melati II No. 30 Blok 8 Perumahan Sadang Serang Kel. Sekeloa Kec. Coblong",
-                            style: TextStyle(color: Color(0xff4F4F4F)),
-                          ),
-                          const SizedBox(height: 16),
-                          Obx(
-                            () => controller.opsi.value == "antar"
-                                ? Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        "Lokasi Antar *",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                        ),
+                        const SizedBox(height: 4),
+                        const Text(
+                          "Jl. Melati II No. 30 Blok 8 Perumahan Sadang Serang Kel. Sekeloa Kec. Coblong",
+                          style: TextStyle(color: Color(0xff4F4F4F)),
+                        ),
+                        const SizedBox(height: 16),
+                        Obx(
+                          () => controller.opsi.value == "antar"
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Lokasi Antar *",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                      const SizedBox(height: 4),
-                                      TextField(
-                                          controller: controller.lokasi_antar,
-                                          decoration: InputDecoration(
-                                              hintText:
-                                                  "Conton: Hotel Bandung Raya",
-                                              hintStyle: const TextStyle(
-                                                  color: Colors.black26,
-                                                  fontSize: 16),
-                                              border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
-                                                  borderSide: const BorderSide(
-                                                      color: Colors
-                                                          .transparent)))),
-                                    ],
-                                  )
-                                : const SizedBox(height: 0),
-                          ),
-                          const SizedBox(height: 16),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                "Durasi Sewa",
+                                    ),
+                                    const SizedBox(height: 4),
+                                    TextField(
+                                        controller: controller.lokasi_antar,
+                                        decoration: InputDecoration(
+                                            hintText:
+                                                "Conton: Hotel Bandung Raya",
+                                            hintStyle: const TextStyle(
+                                                color: Colors.black26,
+                                                fontSize: 16),
+                                            border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                                borderSide: const BorderSide(
+                                                    color:
+                                                        Colors.transparent)))),
+                                  ],
+                                )
+                              : const SizedBox(height: 0),
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "Durasi Sewa",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                controller.getDateTimeRangePicker(context);
+                              },
+                              child: const Text(
+                                "Ubah",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  controller.getDateTimeRangePicker(context);
-                                },
-                                child: const Text(
-                                  "Ubah",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 4),
-                          Obx(() {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      "Pengambilan :",
-                                      style:
-                                          TextStyle(color: Color(0xff8A8A8E)),
-                                    ),
-                                    Text(
-                                      controller.awalSewa.value,
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  height: 24,
-                                  width: 1,
-                                  color: const Color(0xff4F4F4F),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      "Pengembalian :",
-                                      style:
-                                          TextStyle(color: Color(0xff8A8A8E)),
-                                    ),
-                                    Text(
-                                      controller.akhirSewa.value,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            );
-                          }),
-                          const SizedBox(height: 32),
-                          const Text(
-                            "Rincian Bayar *",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
                             ),
-                          ),
-                          Row(
+                          ],
+                        ),
+                        const SizedBox(height: 4),
+                        Obx(() {
+                          return Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Obx(() {
-                                    return Text(
-                                      "Harga Sewa (${controller.totalDays.value} hari)",
-                                      style: const TextStyle(
-                                          color: Color(0xff8A8A8E)),
-                                    );
-                                  }),
-                                  Obx(() => controller.opsi.value == "antar"
-                                      ? const Text(
-                                          "Ongkos Antar",
-                                          style:
-                                              TextStyle(color: Colors.orange),
-                                        )
-                                      : const SizedBox(
-                                          height: 0,
-                                        ))
+                                  const Text(
+                                    "Pengambilan :",
+                                    style: TextStyle(color: Color(0xff8A8A8E)),
+                                  ),
+                                  Text(
+                                    controller.awalSewa.value,
+                                  ),
                                 ],
+                              ),
+                              Container(
+                                height: 24,
+                                width: 1,
+                                color: const Color(0xff4F4F4F),
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Obx(() {
-                                    return Text(
-                                      FormatHarga.formatRupiah(
-                                          snapshot.data!.harga *
-                                              controller.totalDays.value),
-                                      style: const TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w600),
-                                    );
-                                  }),
-                                  Obx(() => controller.opsi.value == "antar"
-                                      ? Text(
-                                          FormatHarga.formatRupiah(
-                                              controller.ongkir.value),
-                                          style: const TextStyle(
-                                              color: Colors.orange),
-                                        )
-                                      : const SizedBox(
-                                          height: 0,
-                                        ))
+                                  const Text(
+                                    "Pengembalian :",
+                                    style: TextStyle(color: Color(0xff8A8A8E)),
+                                  ),
+                                  Text(
+                                    controller.akhirSewa.value,
+                                  ),
                                 ],
                               ),
                             ],
+                          );
+                        }),
+                        const SizedBox(height: 32),
+                        const Text(
+                          "Rincian Bayar *",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
                           ),
-                          const SizedBox(height: 100),
-                        ],
-                      ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Obx(() {
+                                  return Text(
+                                    "Harga Sewa (${controller.totalDays.value} hari)",
+                                    style: const TextStyle(
+                                        color: Color(0xff8A8A8E)),
+                                  );
+                                }),
+                                Obx(() => controller.opsi.value == "antar"
+                                    ? const Text(
+                                        "Ongkos Antar",
+                                        style: TextStyle(color: Colors.orange),
+                                      )
+                                    : const SizedBox(
+                                        height: 0,
+                                      ))
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Obx(() {
+                                  return Text(
+                                    FormatHarga.formatRupiah(
+                                        snapshot.data!.harga *
+                                            controller.totalDays.value),
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600),
+                                  );
+                                }),
+                                Obx(() => controller.opsi.value == "antar"
+                                    ? Text(
+                                        FormatHarga.formatRupiah(
+                                            controller.ongkir.value),
+                                        style: const TextStyle(
+                                            color: Colors.orange),
+                                      )
+                                    : const SizedBox(
+                                        height: 0,
+                                      ))
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 100),
+                      ],
                     ),
                   ),
                 ),
@@ -325,7 +315,29 @@ class SewamotorView extends GetView<SewamotorController> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Get.toNamed(Routes.METODE_BAYAR);
+                            Get.dialog(
+                              AlertDialog(
+                                title: const Text('Konfirmasi Pesanan'),
+                                content: const Text(
+                                    'Apakah anda yakin ingin memesan motor ini?'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    child: const Text('Batal'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () async {
+                                      await controller.buatPesanan(
+                                          controller.totalHarga(
+                                              snapshot.data!.harga.toInt()));
+                                    },
+                                    child: const Text('Ya'),
+                                  ),
+                                ],
+                              ),
+                            );
                           },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../models/motor_model.dart';
+import '../models/pesanan_model.dart';
 import '../models/user_model.dart';
 
 class FirestoreService extends GetxController {
@@ -21,7 +22,6 @@ class FirestoreService extends GetxController {
     return null;
   }
 
-  // stream
   Stream<UserModel> getUserStream(String userID) {
     return _firestore
         .collection('users')
@@ -106,7 +106,7 @@ class FirestoreService extends GetxController {
         .update(motor.toMap());
   }
 
-  //update motor without gamvarUrl
+  //update motor without gambarUrl
   Future<void> updateMotorTanpaGambarUrl(MotorModel motor) async {
     await _firestore.collection('motor').doc(motor.motorID).update({
       'namaMotor': motor.namaMotor,
@@ -116,5 +116,46 @@ class FirestoreService extends GetxController {
       'cc': motor.cc,
       'status': motor.status,
     });
+  }
+
+  // Pesanan Collection CRUD
+  Future<String> generateAutoId() async {
+    final QuerySnapshot result = await FirebaseFirestore.instance
+        .collection('pesanan')
+        .orderBy('pesananID', descending: true)
+        .limit(1)
+        .get();
+
+    if (result.docs.isNotEmpty) {
+      final lastId = result.docs.first['pesananID'] as String;
+      final numericPart = int.tryParse(lastId.substring(3)) ?? 0;
+      final newId = 'SMJ${(numericPart + 1).toString().padLeft(5, '0')}';
+      return newId;
+    } else {
+      return 'SMJ00001';
+    }
+  }
+
+  Future<void> addPesanan(PesananModel pesanan) async {
+    await _firestore.collection('pesanan').add(pesanan.toMap());
+  }
+
+  Stream<List<PesananModel>> getAllPesananStream() {
+    return FirebaseFirestore.instance
+        .collection('pesanan')
+        .snapshots()
+        .map((querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        return PesananModel.fromFirestore(doc);
+      }).toList();
+    });
+  }
+
+  Stream<PesananModel> getPesananByIdStream(String pesananID) {
+    return _firestore
+        .collection('pesanan')
+        .where('pesananID', isEqualTo: pesananID)
+        .snapshots()
+        .map((event) => PesananModel.fromFirestore(event.docs.first));
   }
 }
