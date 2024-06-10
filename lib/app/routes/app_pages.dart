@@ -33,8 +33,6 @@ import '../modules/metode_bayar/bindings/metode_bayar_binding.dart';
 import '../modules/metode_bayar/views/metode_bayar_view.dart';
 import '../modules/persyaratan/bindings/persyaratan_binding.dart';
 import '../modules/persyaratan/views/persyaratan_view.dart';
-import '../modules/pesanan/bindings/pesanan_binding.dart';
-import '../modules/pesanan/views/pesanan_view.dart';
 import '../modules/pesanan_admin/bindings/pesanan_admin_binding.dart';
 import '../modules/pesanan_admin/views/pesanan_admin_view.dart';
 import '../modules/profile_admin/bindings/profile_admin_binding.dart';
@@ -43,8 +41,6 @@ import '../modules/profile_pelanggan/bindings/profile_pelanggan_binding.dart';
 import '../modules/profile_pelanggan/views/profile_pelanggan_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
-import '../modules/reset/bindings/reset_binding.dart';
-import '../modules/reset/views/reset_view.dart';
 import '../modules/search_motor/bindings/search_motor_binding.dart';
 import '../modules/search_motor/views/search_view.dart';
 import '../modules/sewamotor/bindings/sewamotor_binding.dart';
@@ -164,6 +160,26 @@ class AppPages {
       name: _Paths.TAMBAH_MOTOR,
       page: () => const TambahMotorView(),
       binding: TambahMotorBinding(),
+    ),
+    GetPage(
+      name: _Paths.REGISTER,
+      page: () => const RegisterView(),
+      binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN,
+      page: () => const LoginView(),
+      binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.PERSYARATAN,
+      page: () => const PersyaratanView(),
+      binding: PersyaratanBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_MOTOR,
+      page: () => const EditMotorView(),
+      binding: EditMotorBinding(),
     ),
   ];
 }
