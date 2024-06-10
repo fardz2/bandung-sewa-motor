@@ -1,3 +1,5 @@
+import 'package:bandung_sewa_motor/app/modules/bukti_pembayaran/bindings/bukti_pembayaran_binding.dart';
+import 'package:bandung_sewa_motor/app/modules/bukti_pembayaran/views/bukti_pembayaran_view.dart';
 import 'package:get/get.dart';
 
 import 'package:bandung_sewa_motor/app/modules/detail_motor/bindings/detail_motor_binding.dart';
@@ -87,9 +89,11 @@ class AppPages {
       name: _Paths.PESANAN,
       page: () => const PesananView(),
       binding: PesananBinding(),
-      name: _Paths.SEARCH,
-      page: () => const SearchView(),
-      binding: SearchBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH_MOTOR,
+      page: () => const SearchMotorView(),
+      binding: SearchMotorBinding(),
     ),
     GetPage(
       name: _Paths.DETAIL_PEMBAYARAN,

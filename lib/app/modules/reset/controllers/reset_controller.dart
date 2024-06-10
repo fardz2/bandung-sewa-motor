@@ -9,7 +9,7 @@ class ResetController extends GetxController {
   void resetPassword(String email) async {
     if (email != "" && GetUtils.isEmail(email)) {
       await auth.sendPasswordResetEmail(email: email);
-      Get.snackbar('Success', 'Password reset link sent to your email');
+      Get.snackbar('Success', 'Tautan reset password dikirimkan ke email Anda');
     } else {
       Get.snackbar('Error', 'Please enter a valid email');
     }
