@@ -141,7 +141,21 @@ class DetailPembayaranView extends GetView<DetailPembayaranController> {
                 ButtonCustom(
                     name: "Bayar Sekarang",
                     onPressed: () {
-                      Get.toNamed(Routes.BUKTI_PEMBAYARAN);
+                      if (controller.fotoHotel.value.isEmpty ||
+                          controller.fotoSIM.value.isEmpty ||
+                          controller.fotoHotel.value.isEmpty) {
+                        Get.snackbar(
+                          "Persyaratan",
+                          "Mohon dilengkapi terlebih dahulu persyaratannya",
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                        Get.toNamed(Routes.PERSYARATAN);
+                      } else {
+                        Get.toNamed(Routes.BUKTI_PEMBAYARAN,
+                            arguments: controller.pesananID.value);
+                      }
                     })
               ],
             ),
