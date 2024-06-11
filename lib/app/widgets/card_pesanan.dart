@@ -63,7 +63,7 @@ class CardPesanan extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      "Rp $harga",
+                      harga,
                       style: const TextStyle(
                           fontSize: 14,
                           color: Colors.green,

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:bandung_sewa_motor/app/helper/format_harga.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -11,9 +14,9 @@ class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Column(
+        title: Column(
           children: [
-            Text(
+            const Text(
               'Upload Bukti Bayar',
               style: TextStyle(
                 color: Colors.white,
@@ -22,8 +25,8 @@ class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
               ),
             ),
             Text(
-              'No. Pesanan: SMJ000233',
-              style: TextStyle(
+              'No. Pesanan: ${controller.pesananID.value}',
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 12,
               ),
@@ -120,10 +123,10 @@ class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
               ),
             ),
             const SizedBox(height: 16),
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Jumlah Total Bayar",
                   style: TextStyle(
                     fontSize: 12,
@@ -132,15 +135,18 @@ class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
                 ),
                 Row(
                   children: [
-                    Text(
-                      "Rp. 120.123",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                    Obx(
+                      () => Text(
+                        FormatHarga.formatRupiah(
+                            controller.totalPembayaran.value),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                    SizedBox(width: 12),
-                    Icon(
+                    const SizedBox(width: 12),
+                    const Icon(
                       Icons.copy_rounded,
                       size: 18,
                       color: Color(0xff828282),
@@ -178,25 +184,39 @@ class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
               ),
             ),
             const SizedBox(height: 10),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width / 2,
-              decoration: BoxDecoration(
-                  color: const Color(0xff828282),
-                  borderRadius: BorderRadius.circular(10)),
-              child: const Center(
-                child: Icon(Icons.camera_alt),
-              ),
-            ),
+            Obx(() {
+              return GestureDetector(
+                onTap: () {
+                  controller.getImage(true);
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.width / 2,
+                  decoration: BoxDecoration(
+                      color: const Color(0xff828282),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: controller.buktiPembayaran.value.path != ""
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.file(
+                            File(controller.buktiPembayaran.value.path),
+                          ),
+                        )
+                      : const Icon(
+                          Icons.add_a_photo,
+                          size: 50,
+                          color: Colors.white,
+                        ),
+                ),
+              );
+            }),
           ],
         ),
       ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child: ElevatedButton(
-          onPressed: () {
-            Get.offNamed(Routes.LANDING);
-          },
+          onPressed: controller.submit,
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xff54B175),
             minimumSize: const Size(double.infinity, 40),

@@ -1,3 +1,4 @@
+import 'package:bandung_sewa_motor/app/models/pembayaran_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
@@ -140,6 +141,18 @@ class FirestoreService extends GetxController {
     await _firestore.collection('pesanan').add(pesanan.toMap());
   }
 
+  Future<void> updatePesananPembayaran(
+      String pesananID, String pembayaranID) async {
+    QuerySnapshot querySnapshot = await _firestore
+        .collection('pesanan')
+        .where("pesananID", isEqualTo: pesananID)
+        .get();
+
+    for (DocumentSnapshot doc in querySnapshot.docs) {
+      await doc.reference.update({"pembayaranID": pembayaranID});
+    }
+  }
+
   Stream<List<PesananModel>> getAllPesananStream() {
     return FirebaseFirestore.instance
         .collection('pesanan')
@@ -157,5 +170,23 @@ class FirestoreService extends GetxController {
         .where('pesananID', isEqualTo: pesananID)
         .snapshots()
         .map((event) => PesananModel.fromFirestore(event.docs.first));
+  }
+
+  Stream<List<PesananModel>> getPesananByUserIDStream(String userID) {
+    return _firestore
+        .collection('pesanan')
+        .where('userID', isEqualTo: userID)
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+            .map((doc) => PesananModel.fromFirestore(doc))
+            .toList());
+  }
+
+  Future<String> addPembayaran(PembayaranModel pembayaran) async {
+    var doc = await _firestore.collection('pembayaran').add(pembayaran.toMap());
+    await _firestore.collection('pembayaran').doc(doc.id).update({
+      'pembayaranID': doc.id,
+    });
+    return doc.id.toString();
   }
 }
