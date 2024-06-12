@@ -92,7 +92,7 @@ class FirestoreService extends GetxController {
     return _firestore
         .collection('motor')
         .orderBy('namaMotor')
-        .startAt([namaMotor.capitalize])
+        .startAt([namaMotor])
         .endAt(['$namaMotor\uf8ff'])
         .snapshots()
         .map((snapshot) =>
@@ -116,6 +116,14 @@ class FirestoreService extends GetxController {
       'harga': motor.harga,
       'cc': motor.cc,
       'status': motor.status,
+    });
+  }
+
+  Future<void> updateMotorJumlah(
+      String motorID, int jumlah, String status) async {
+    await _firestore.collection('motor').doc(motorID).update({
+      'jumlah': jumlah,
+      'status': status,
     });
   }
 

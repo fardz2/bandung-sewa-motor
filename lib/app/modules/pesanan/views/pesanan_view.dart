@@ -14,6 +14,7 @@ class PesananView extends GetView<PesananController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text(
           'Pesanan',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -40,13 +41,15 @@ class PesananView extends GetView<PesananController> {
                 final motor = combinedList[index]['motor'] as MotorModel;
                 return CardPesanan(
                   noPesanan: pesanan.pesananID.toString(),
-                  tanggal: "Rab, 23 Jun 2021", // Format this date properly
+                  tanggal:
+                      pesanan.tanggalPemesanan, // Format this date properly
                   namaMotor: motor.namaMotor,
                   lokasi: "Sewa Motor Lempuyangan",
                   harga: FormatHarga.formatRupiah(
                       pesanan.rincianHarga["totalHarga"]),
                   onPressed: () {
-                    Get.toNamed(Routes.DETAIL_PESANAN);
+                    Get.toNamed(Routes.DETAIL_PESANAN,
+                        arguments: pesanan.pesananID.toString());
                   },
                 );
               },

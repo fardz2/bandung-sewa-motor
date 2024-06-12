@@ -174,6 +174,7 @@ class HomeView extends GetView<HomeController> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
+                                          overflow: TextOverflow.ellipsis,
                                           '${snapshot.data.docs[index].get('merek')} ${snapshot.data.docs[index].get('namaMotor')}',
                                           style: const TextStyle(
                                             fontSize: 14,

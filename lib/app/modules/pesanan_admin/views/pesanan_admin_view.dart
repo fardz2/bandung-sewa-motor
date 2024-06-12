@@ -41,7 +41,7 @@ class PesananAdminView extends GetView<PesananAdminController> {
                 final motor = combinedList[index]['motor'] as MotorModel;
                 return CardPesanan(
                   noPesanan: pesanan.pesananID.toString(),
-                  tanggal: "Rab, 23 Jun 2021",
+                  tanggal: pesanan.tanggalPemesanan,
                   namaMotor: motor.namaMotor,
                   lokasi: "Sewa Motor Lempuyangan",
                   harga: FormatHarga.formatRupiah(

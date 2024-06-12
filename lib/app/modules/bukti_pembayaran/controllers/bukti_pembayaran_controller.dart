@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:bandung_sewa_motor/app/models/pembayaran_model.dart';
-import 'package:bandung_sewa_motor/app/models/pesanan_model.dart';
+import 'package:bandung_sewa_motor/app/modules/detail_motor/controllers/detail_motor_controller.dart';
 import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -15,19 +15,28 @@ class BuktiPembayaranController extends GetxController {
   //TODO: Implement BuktiPembayaranController
 
   var pesananID = "".obs;
+  var motorID = "".obs;
   // var metode = "".obs;
   var totalHarga = 0.obs;
   var ongkir = 0.obs;
   var totalPembayaran = 0.obs;
+  var jumlah = 0.obs;
 
   final authService = Get.put(AuthService());
   final firestoreService = Get.put(FirestoreService());
 
-  getDetailPesanan() {
+  getDetailPesanan() async {
     firestoreService.getPesananByIdStream(pesananID.value).listen((event) {
       totalHarga.value = event.rincianHarga['totalHarga'];
       ongkir.value = event.rincianHarga['ongkir'];
+      motorID.value = event.motorID;
       totalPembayaran.value = totalHarga.value + ongkir.value;
+    });
+  }
+
+  getDetailMotor() async {
+    firestoreService.getDetailMotor(motorID.value).listen((even) {
+      jumlah.value = even.jumlah;
     });
   }
 
@@ -74,6 +83,7 @@ class BuktiPembayaranController extends GetxController {
         colorText: Colors.white,
       );
     } else {
+      await getDetailMotor();
       String url = await uploadFile(File(buktiPembayaran.value.path));
 
       String pembayaranID = await firestoreService.addPembayaran(
@@ -89,9 +99,12 @@ class BuktiPembayaranController extends GetxController {
         pesananID.value,
         pembayaranID,
       );
+
+      await firestoreService.updateMotorJumlah(motorID.value, jumlah.value - 1,
+          jumlah.value - 1 == 0 ? "Tidak Tersedia" : "Tersedia");
       Get.snackbar(
         "Sukses",
-        "Data motor berhasil ditambahkan",
+        "Pesanan telah dibuat",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.green,
         colorText: Colors.white,
@@ -105,8 +118,9 @@ class BuktiPembayaranController extends GetxController {
   @override
   void onInit() {
     pesananID.value = Get.arguments;
-    print(pesananID.value);
+
     // metode.value = Get.arguments['metode'];
+
     getDetailPesanan();
 
     super.onInit();
@@ -119,6 +133,7 @@ class BuktiPembayaranController extends GetxController {
 
   @override
   void onClose() {
+    Get.delete<DetailMotorController>();
     super.onClose();
   }
 }

@@ -154,6 +154,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
+                                          overflow: TextOverflow.ellipsis,
                                           '${snapshot.data.docs[index].get('merek')} ${snapshot.data.docs[index].get('namaMotor')}',
                                           style: const TextStyle(
                                             fontSize: 14,
@@ -180,7 +181,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                            GestureDetector(
+                                            InkWell(
                                               onTap: () => Get.toNamed(
                                                 Routes.DETAILMOTORADMIN,
                                                 arguments: snapshot
