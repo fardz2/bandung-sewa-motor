@@ -21,7 +21,8 @@ class CardPesanan extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       surfaceTintColor: Colors.white,
-      elevation: 1,
+      color: Colors.white,
+      elevation: 5,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -23,6 +23,7 @@ class SearchMotorController extends GetxController {
   }
 
   getMotorSearch(String search) {
-    return firestoreService.getMotorSearchStream(search);
+    return firestoreService
+        .getMotorSearchStream(search.capitalizeFirst.toString());
   }
 }

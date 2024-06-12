@@ -102,25 +102,39 @@ class SewamotorController extends GetxController {
         tanggalAkhir: akhirSewa.value,
         antar: false,
         rincianHarga: rincianHarga,
+        tanggalPemesanan:
+            DateFormat('dd MMMM yyyy', 'id_ID').format(DateTime.now()),
         status: "Menunggu Konfirmasi",
       ));
     } else {
-      await firestoreService.addPesanan(PesananModel(
-        pesananID: newId,
-        userID: userID,
-        motorID: motorID,
-        tanggalAwal: awalSewa.value,
-        tanggalAkhir: akhirSewa.value,
-        antar: true,
-        rincianHarga: rincianHarga,
-        lokasiAntar: lokasi_antar.text,
-        status: "Menunggu Konfirmasi",
-      ));
+      if (lokasi_antar.text.isEmpty) {
+        Get.snackbar(
+          "Peringatan",
+          "Lokasi pengantaran harus diisi",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      } else {
+        await firestoreService.addPesanan(PesananModel(
+          pesananID: newId,
+          userID: userID,
+          motorID: motorID,
+          tanggalAwal: awalSewa.value,
+          tanggalAkhir: akhirSewa.value,
+          antar: true,
+          rincianHarga: rincianHarga,
+          lokasiAntar: lokasi_antar.text,
+          tanggalPemesanan:
+              DateFormat('dd MMMM yyyy', 'id_ID').format(DateTime.now()),
+          status: "Menunggu Konfirmasi",
+        ));
+        Get.offNamed(
+          Routes.METODE_BAYAR,
+          arguments: newId,
+        );
+      }
     }
-    Get.offNamed(
-      Routes.METODE_BAYAR,
-      arguments: newId,
-    );
   }
 
   @override

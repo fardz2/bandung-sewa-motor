@@ -12,6 +12,7 @@ class PesananModel {
   String? lokasiAntar;
   String? konfirmasiID;
   String? pembayaranID;
+  String tanggalPemesanan;
 
   PesananModel({
     required this.pesananID,
@@ -25,6 +26,7 @@ class PesananModel {
     this.lokasiAntar = "",
     this.konfirmasiID = "",
     this.pembayaranID = "",
+    required this.tanggalPemesanan,
   });
 
   factory PesananModel.fromMap(Map<String, dynamic> data) {
@@ -40,6 +42,7 @@ class PesananModel {
       lokasiAntar: data['lokasiAntar'],
       konfirmasiID: data['konfirmasiID'],
       pembayaranID: data['pembayaranID'],
+      tanggalPemesanan: data['tanggalPemesanan'],
     );
   }
 
@@ -57,6 +60,7 @@ class PesananModel {
       lokasiAntar: data['lokasiAntar'],
       konfirmasiID: data['konfirmasiID'],
       pembayaranID: data['pembayaranID'],
+      tanggalPemesanan: data['tanggalPemesanan'],
     );
   }
 
@@ -73,6 +77,7 @@ class PesananModel {
       'lokasiAntar': lokasiAntar,
       'konfirmasiID': konfirmasiID,
       'pembayaranID': pembayaranID,
+      'tanggalPemesanan': tanggalPemesanan,
     };
   }
 }
