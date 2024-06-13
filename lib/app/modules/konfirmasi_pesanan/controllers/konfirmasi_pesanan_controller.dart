@@ -1,11 +1,32 @@
 import 'package:get/get.dart';
 
-class KonfirmasiPesananController extends GetxController {
-  //TODO: Implement KonfirmasiPesananController
+import '../../../helper/firestore_service.dart';
 
-  final count = 0.obs;
+class KonfirmasiPesananController extends GetxController {
+  static KonfirmasiPesananController get to => Get.find();
+
+  final pesananID = Get.arguments;
+  final firestoreService = Get.put(FirestoreService());
+
+  getDetailPesanan() {
+    return firestoreService.getPesananByIdStream(pesananID);
+  }
+
+  getUserData(String pelangganID) {
+    return firestoreService.getUserStream(pelangganID);
+  }
+
+  getMotorData(String motorID) {
+    return firestoreService.getDetailMotor(motorID);
+  }
+
+  getPembayaranData(String pembayaranID) {
+    return firestoreService.getPembayaranByIdStream(pembayaranID);
+  }
+
   @override
   void onInit() {
+    getDetailPesanan();
     super.onInit();
   }
 
@@ -18,6 +39,4 @@ class KonfirmasiPesananController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

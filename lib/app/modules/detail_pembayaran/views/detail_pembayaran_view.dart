@@ -155,8 +155,28 @@ class DetailPembayaranView extends GetView<DetailPembayaranController> {
                         );
                         Get.toNamed(Routes.PERSYARATAN);
                       } else if (controller.metode.value == "Transfer") {
-                        Get.toNamed(Routes.BUKTI_PEMBAYARAN,
-                            arguments: controller.pesananID.value);
+                        Get.dialog(
+                          AlertDialog(
+                            title: const Text("Konfirmasi"),
+                            content: const Text(
+                                "Apakah anda yakin ingin melakukan pemesanan ini dengan transfer?"),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                child: const Text("Batal"),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Get.toNamed(Routes.BUKTI_PEMBAYARAN,
+                                      arguments: controller.pesananID.value);
+                                },
+                                child: const Text("Ya"),
+                              ),
+                            ],
+                          ),
+                        );
                       } else {
                         Get.dialog(
                           AlertDialog(

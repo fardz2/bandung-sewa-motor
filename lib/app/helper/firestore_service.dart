@@ -198,4 +198,12 @@ class FirestoreService extends GetxController {
     });
     return doc.id.toString();
   }
+
+  Stream<PembayaranModel> getPembayaranByIdStream(String pembayaranID) {
+    return _firestore
+        .collection('pembayaran')
+        .where('pembayaranID', isEqualTo: pembayaranID)
+        .snapshots()
+        .map((event) => PembayaranModel.fromFirestore(event.docs.first));
+  }
 }
