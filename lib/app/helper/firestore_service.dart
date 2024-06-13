@@ -164,6 +164,7 @@ class FirestoreService extends GetxController {
   Stream<List<PesananModel>> getAllPesananStream() {
     return FirebaseFirestore.instance
         .collection('pesanan')
+        .orderBy('createdAt', descending: true)
         .snapshots()
         .map((querySnapshot) {
       return querySnapshot.docs.map((doc) {

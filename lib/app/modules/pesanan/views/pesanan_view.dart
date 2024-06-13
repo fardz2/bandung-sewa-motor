@@ -8,7 +8,7 @@ import '../../../routes/app_pages.dart';
 import '../controllers/pesanan_controller.dart';
 
 class PesananView extends GetView<PesananController> {
-  const PesananView({Key? key}) : super(key: key);
+  const PesananView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +33,9 @@ class PesananView extends GetView<PesananController> {
             return const Center(child: Text('Tidak ada data'));
           } else {
             final combinedList = snapshot.data as List<Map<String, dynamic>>;
+            combinedList.sort((a, b) => (b['pesanan'] as PesananModel)
+                .pesananID
+                .compareTo((a['pesanan'] as PesananModel).pesananID));
             return ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
               itemCount: combinedList.length,
@@ -47,6 +50,7 @@ class PesananView extends GetView<PesananController> {
                   lokasi: "Sewa Motor Lempuyangan",
                   harga: FormatHarga.formatRupiah(
                       pesanan.rincianHarga["totalHarga"]),
+                  status: pesanan.status,
                   onPressed: () {
                     Get.toNamed(Routes.DETAIL_PESANAN,
                         arguments: pesanan.pesananID.toString());

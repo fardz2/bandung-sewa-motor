@@ -13,6 +13,7 @@ class PesananModel {
   String? konfirmasiID;
   String? pembayaranID;
   String tanggalPemesanan;
+  Timestamp? createdAt;
 
   PesananModel({
     required this.pesananID,
@@ -27,6 +28,7 @@ class PesananModel {
     this.konfirmasiID = "",
     this.pembayaranID = "",
     required this.tanggalPemesanan,
+    this.createdAt,
   });
 
   factory PesananModel.fromMap(Map<String, dynamic> data) {
@@ -43,6 +45,7 @@ class PesananModel {
       konfirmasiID: data['konfirmasiID'],
       pembayaranID: data['pembayaranID'],
       tanggalPemesanan: data['tanggalPemesanan'],
+      createdAt: data['createdAt'] as Timestamp,
     );
   }
 
@@ -61,6 +64,7 @@ class PesananModel {
       konfirmasiID: data['konfirmasiID'],
       pembayaranID: data['pembayaranID'],
       tanggalPemesanan: data['tanggalPemesanan'],
+      createdAt: data['createdAt'] as Timestamp,
     );
   }
 
@@ -78,6 +82,7 @@ class PesananModel {
       'konfirmasiID': konfirmasiID,
       'pembayaranID': pembayaranID,
       'tanggalPemesanan': tanggalPemesanan,
+      'createdAt': createdAt,
     };
   }
 }

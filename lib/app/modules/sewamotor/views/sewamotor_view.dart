@@ -177,9 +177,9 @@ class SewamotorView extends GetView<SewamotorController> {
                                 controller.getDateTimeRangePicker(context);
                               },
                               child: const Text(
-                                "Ubah",
+                                "Pilih Tanggal",
                                 style: TextStyle(
-                                    color: Colors.black,
+                                    color: Color(0xFF54B175),
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -279,89 +279,97 @@ class SewamotorView extends GetView<SewamotorController> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 100),
-                      ],
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    color: Colors.white, // Set background color to white
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Obx(() => Text(
-                                  FormatHarga.formatRupiah(
-                                      controller.totalHarga(
-                                          snapshot.data!.harga.toInt())),
-                                  style: const TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                            const Text(
-                              'Per Hari',
-                              style: TextStyle(
-                                  fontSize: 16, color: Colors.black54),
-                            ),
-                          ],
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Get.dialog(
-                              AlertDialog(
-                                title: const Text('Konfirmasi Pesanan'),
-                                content: const Text(
-                                    'Apakah anda yakin ingin memesan motor ini?'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    child: const Text('Batal'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () async {
-                                      await controller.buatPesanan(
-                                          controller.totalHarga(
-                                              snapshot.data!.harga.toInt()));
-                                    },
-                                    child: const Text('Ya'),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                const Color.fromARGB(255, 0x54, 0xB1, 0x75)),
-                            shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                          ),
-                          child: const Text(
-                            'Pesan Sekarang',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),
                 ),
               ],
+            );
+          }),
+      bottomNavigationBar: StreamBuilder<MotorModel>(
+          stream: controller.getDetailMotor(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return const CircularProgressIndicator();
+            }
+            return Container(
+              width: double.infinity,
+              height: 82,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    spreadRadius: 0,
+                    blurRadius: 10,
+                    offset: const Offset(0, -4),
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Obx(() => Text(
+                            FormatHarga.formatRupiah(controller
+                                .totalHarga(snapshot.data!.harga.toInt())),
+                            style: const TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold),
+                          )),
+                      const Text(
+                        'Per Hari',
+                        style: TextStyle(fontSize: 16, color: Colors.black54),
+                      ),
+                    ],
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.dialog(
+                        AlertDialog(
+                          title: const Text('Konfirmasi Pesanan'),
+                          content: const Text(
+                              'Apakah anda yakin ingin memesan motor ini?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Get.back();
+                              },
+                              child: const Text('Batal'),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                await controller.buatPesanan(controller
+                                    .totalHarga(snapshot.data!.harga.toInt()));
+                              },
+                              child: const Text('Ya'),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          const Color.fromARGB(255, 0x54, 0xB1, 0x75)),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    ),
+                    child: const Text(
+                      'Pesan Sekarang',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             );
           }),
     );

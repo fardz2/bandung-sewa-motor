@@ -1,12 +1,8 @@
-import 'dart:ffi';
-
 import 'package:bandung_sewa_motor/app/helper/auth_service.dart';
 import 'package:bandung_sewa_motor/app/helper/firestore_service.dart';
 import 'package:get/get.dart';
 
 class DetailPesananController extends GetxController {
-  //TODO: Implement DetailPesananController
-
   final pesananID = Get.arguments;
   final no_pesanan = "".obs;
   final nama_motor = "".obs;

@@ -1,23 +1,22 @@
 import 'package:bandung_sewa_motor/app/widgets/dotted_line.dart';
 import 'package:flutter/material.dart';
 
-class CardPesanan extends StatelessWidget {
+class CardPesananAdmin extends StatelessWidget {
   final String noPesanan;
   final String tanggal;
   final String namaMotor;
   final String lokasi;
   final String harga;
   final VoidCallback onPressed;
-  final String status;
-  const CardPesanan(
-      {super.key,
-      required this.noPesanan,
-      required this.tanggal,
-      required this.namaMotor,
-      required this.lokasi,
-      required this.harga,
-      required this.onPressed,
-      required this.status});
+  const CardPesananAdmin({
+    super.key,
+    required this.noPesanan,
+    required this.tanggal,
+    required this.namaMotor,
+    required this.lokasi,
+    required this.harga,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -87,9 +86,9 @@ class CardPesanan extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  status,
-                  style: const TextStyle(
+                const Text(
+                  "Konfirmasi Pesanan",
+                  style: TextStyle(
                     color: Color.fromARGB(255, 0x54, 0xB1, 0x75),
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
