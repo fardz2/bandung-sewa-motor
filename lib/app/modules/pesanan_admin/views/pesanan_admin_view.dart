@@ -1,10 +1,10 @@
 import 'package:bandung_sewa_motor/app/helper/format_harga.dart';
 import 'package:bandung_sewa_motor/app/models/motor_model.dart';
 import 'package:bandung_sewa_motor/app/models/pesanan_model.dart';
-import 'package:bandung_sewa_motor/app/widgets/card_pesanan.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../routes/app_pages.dart';
+import '../../../widgets/card_pesanan_admin.dart';
 import '../controllers/pesanan_admin_controller.dart';
 
 class PesananAdminView extends GetView<PesananAdminController> {
@@ -39,7 +39,7 @@ class PesananAdminView extends GetView<PesananAdminController> {
               itemBuilder: (context, index) {
                 final pesanan = combinedList[index]['pesanan'] as PesananModel;
                 final motor = combinedList[index]['motor'] as MotorModel;
-                return CardPesanan(
+                return CardPesananAdmin(
                   noPesanan: pesanan.pesananID.toString(),
                   tanggal: pesanan.tanggalPemesanan,
                   namaMotor: motor.namaMotor,

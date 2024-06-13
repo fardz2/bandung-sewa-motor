@@ -1,4 +1,5 @@
 import 'package:bandung_sewa_motor/app/helper/firestore_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -105,7 +106,12 @@ class SewamotorController extends GetxController {
         tanggalPemesanan:
             DateFormat('dd MMMM yyyy', 'id_ID').format(DateTime.now()),
         status: "Menunggu Konfirmasi",
+        createdAt: Timestamp.now(),
       ));
+      Get.offNamed(
+        Routes.METODE_BAYAR,
+        arguments: newId,
+      );
     } else {
       if (lokasi_antar.text.isEmpty) {
         Get.snackbar(
@@ -128,6 +134,7 @@ class SewamotorController extends GetxController {
           tanggalPemesanan:
               DateFormat('dd MMMM yyyy', 'id_ID').format(DateTime.now()),
           status: "Menunggu Konfirmasi",
+          createdAt: Timestamp.now(),
         ));
         Get.offNamed(
           Routes.METODE_BAYAR,

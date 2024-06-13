@@ -91,7 +91,7 @@ class DetailPembayaranView extends GetView<DetailPembayaranController> {
                         const SizedBox(height: 30),
                         customRow(
                           const Text("Metode Pembayaran"),
-                          controller.metode.value == "Transfer BCA"
+                          controller.metode.value == "Transfer"
                               ? Image.asset('assets/icons/bca.png')
                               : const Text(
                                   "CASH",
@@ -139,7 +139,9 @@ class DetailPembayaranView extends GetView<DetailPembayaranController> {
                 ),
                 const SizedBox(height: 20),
                 ButtonCustom(
-                    name: "Bayar Sekarang",
+                    name: controller.metode.value == "Transfer"
+                        ? "Bayar Sekarang"
+                        : "Pesan",
                     onPressed: () {
                       if (controller.fotoHotel.value.isEmpty ||
                           controller.fotoSIM.value.isEmpty ||
@@ -152,9 +154,31 @@ class DetailPembayaranView extends GetView<DetailPembayaranController> {
                           colorText: Colors.white,
                         );
                         Get.toNamed(Routes.PERSYARATAN);
-                      } else {
+                      } else if (controller.metode.value == "Transfer") {
                         Get.toNamed(Routes.BUKTI_PEMBAYARAN,
                             arguments: controller.pesananID.value);
+                      } else {
+                        Get.dialog(
+                          AlertDialog(
+                            title: const Text("Konfirmasi"),
+                            content: const Text(
+                                "Apakah anda yakin ingin melakukan pemesanan ini dengan Cash?"),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                child: const Text("Batal"),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  controller.confirmPesananCash();
+                                },
+                                child: const Text("Ya"),
+                              ),
+                            ],
+                          ),
+                        );
                       }
                     })
               ],

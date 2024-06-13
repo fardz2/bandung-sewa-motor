@@ -224,7 +224,7 @@ class MetodeBayarView extends GetView<MetodeBayarController> {
                                 Get.toNamed(Routes.DETAIL_PEMBAYARAN,
                                     arguments: {
                                       "pesananID": snapshot.data!.pesananID,
-                                      "metode": "Transfer BCA",
+                                      "metode": "Transfer",
                                     });
                               },
                               child: Row(
