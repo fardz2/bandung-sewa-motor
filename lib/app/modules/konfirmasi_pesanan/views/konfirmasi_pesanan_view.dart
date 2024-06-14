@@ -1,7 +1,13 @@
+import 'package:bandung_sewa_motor/app/models/pembayaran_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
+import '../../../helper/format_harga.dart';
+import '../../../models/motor_model.dart';
+import '../../../models/pesanan_model.dart';
+import '../../../models/user_model.dart';
 import '../controllers/konfirmasi_pesanan_controller.dart';
 
 class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
@@ -10,9 +16,9 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Column(
+        title: Column(
           children: [
-            Text(
+            const Text(
               'Konfirmasi Pesanan',
               style: TextStyle(
                 color: Colors.white,
@@ -21,8 +27,8 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
               ),
             ),
             Text(
-              'No. Pesanan: SMJ000233',
-              style: TextStyle(
+              'No. Pesanan: ${controller.pesananID}',
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 12,
               ),
@@ -41,346 +47,442 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: ListView(
-          children: [
-            const SizedBox(height: 8),
-            const Center(
-              child: Text(
-                "Menunggu Konfirmasi",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff54B175),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                Container(
-                  height: 60,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    color: const Color(0xffEFEFF0),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Image.asset(
-                      "assets/images/beat.png",
-                      width: 40,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Honda Beat",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Bandung Sewa motor",
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xff4F4F4F),
+      body: StreamBuilder<PesananModel>(
+          stream: controller.getDetailPesanan(),
+          builder: (context, pesananSnapshot) {
+            if (!pesananSnapshot.hasData) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: ListView(
+                children: [
+                  const SizedBox(height: 8),
+                  Center(
+                    child: Text(
+                      pesananSnapshot.data!.status,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xff54B175),
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                Image.asset(
-                  "assets/icons/check_icon.png",
-                  width: 18,
-                ),
-                const SizedBox(width: 8),
-                const Text(
-                  "Bisa Refund",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Color(0xff4F4F4F),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 4),
-            Row(
-              children: [
-                Image.asset(
-                  "assets/icons/warning_icon.png",
-                  width: 18,
-                ),
-                const SizedBox(width: 8),
-                const Text(
-                  "Tidak bisa reschedule",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Color(0xff4F4F4F),
+                  const SizedBox(height: 16),
+                  StreamBuilder<MotorModel>(
+                      stream: controller
+                          .getMotorData(pesananSnapshot.data!.motorID),
+                      builder: (context, motorSnapshot) {
+                        if (!motorSnapshot.hasData) {
+                          return const Center(
+                            child: SizedBox(),
+                          );
+                        }
+                        return Row(
+                          children: [
+                            Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                color: const Color(0xffEFEFF0),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Center(
+                                child: motorSnapshot.connectionState ==
+                                        ConnectionState.waiting
+                                    ? const SizedBox()
+                                    : Image.network(
+                                        motorSnapshot.data!.gambarUrl,
+                                        width: 40,
+                                      ),
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${motorSnapshot.data!.merek} ${motorSnapshot.data!.namaMotor}",
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  pesananSnapshot.data!.antar
+                                      ? "Diantar"
+                                      : "Ambil Di Tempat",
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Color(0xff4F4F4F),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        );
+                      }),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Image.asset(
+                        "assets/icons/check_icon.png",
+                        width: 18,
+                      ),
+                      const SizedBox(width: 8),
+                      const Text(
+                        "Bisa Refund",
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xff4F4F4F),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              "Data Penyewa",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2),
-                border: Border.all(
-                  color: Colors.black,
-                ),
-              ),
-              child: const Text(
-                "Salman Ananda ( 08123456789 )",
-                style: TextStyle(color: Color(0xff4F4F4F)),
-              ),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              "Lokasi Pengambilan *",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            const Text(
-              "Jl. Melati II No. 30 Blok 8 Perumahan Sadang Serang Kel. Sekeloa Kec. Coblong",
-              style: TextStyle(color: Color(0xff4F4F4F)),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              "Lokasi Pengembalian *",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            const Text(
-              "Jl. Melati II No. 30 Blok 8 Perumahan Sadang Serang Kel. Sekeloa Kec. Coblong",
-              style: TextStyle(color: Color(0xff4F4F4F)),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              "Durasi Sewa *",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Pengambilan :",
-                      style: TextStyle(color: Color(0xff8A8A8E)),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      Image.asset(
+                        "assets/icons/warning_icon.png",
+                        width: 18,
+                      ),
+                      const SizedBox(width: 8),
+                      const Text(
+                        "Tidak bisa reschedule",
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xff4F4F4F),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "Data Penyewa",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
                     ),
-                    Text(
-                      "12 Juni 2024",
+                  ),
+                  const SizedBox(height: 4),
+                  StreamBuilder<UserModel>(
+                      stream:
+                          controller.getUserData(pesananSnapshot.data!.userID),
+                      builder: (context, userSnapshot) {
+                        if (!userSnapshot.hasData) {
+                          return const Center(
+                            child: SizedBox(),
+                          );
+                        }
+                        return Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(2),
+                            border: Border.all(
+                              color: Colors.black,
+                            ),
+                          ),
+                          child: Text(
+                            "${userSnapshot.data!.name} ( ${userSnapshot.data!.phone} )",
+                            style: const TextStyle(color: Color(0xff4F4F4F)),
+                          ),
+                        );
+                      }),
+                  const SizedBox(height: 16),
+                  Text(
+                    pesananSnapshot.data!.antar
+                        ? "Lokasi Antar *"
+                        : "Lokasi Pengambilan *",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
-                Container(
-                  height: 24,
-                  width: 1,
-                  color: const Color(0xff4F4F4F),
-                ),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Pengembalian :",
-                      style: TextStyle(color: Color(0xff8A8A8E)),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    pesananSnapshot.data!.antar
+                        ? pesananSnapshot.data!.lokasiAntar.toString()
+                        : "Jl. Melati II No. 30 Blok 8 Perumahan Sadang Serang Kel. Sekeloa Kec. Coblong",
+                    style: const TextStyle(color: Color(0xff4F4F4F)),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "Lokasi Pengembalian *",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
                     ),
-                    Text(
-                      "13 Juni 2024",
+                  ),
+                  const SizedBox(height: 4),
+                  const Text(
+                    "Jl. Melati II No. 30 Blok 8 Perumahan Sadang Serang Kel. Sekeloa Kec. Coblong",
+                    style: TextStyle(color: Color(0xff4F4F4F)),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "Durasi Sewa *",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              "Rincian Bayar",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Pengambilan :",
+                            style: TextStyle(color: Color(0xff8A8A8E)),
+                          ),
+                          Text(
+                            pesananSnapshot.data!.tanggalAwal,
+                          ),
+                        ],
+                      ),
+                      Container(
+                        height: 24,
+                        width: 1,
+                        color: const Color(0xff4F4F4F),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Pengembalian :",
+                            style: TextStyle(color: Color(0xff8A8A8E)),
+                          ),
+                          Text(
+                            pesananSnapshot.data!.tanggalAkhir,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "Rincian Bayar",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Harga Sewa (${DateFormat("dd MMMM yyyy", "id_ID").parse(pesananSnapshot.data!.tanggalAkhir).difference(DateFormat("dd MMMM yyyy", "id_ID").parse(pesananSnapshot.data!.tanggalAwal)).inDays + 1})",
+                        style: const TextStyle(color: Color(0xff8A8A8E)),
+                      ),
+                      Text(
+                        FormatHarga.formatRupiah(
+                            pesananSnapshot.data!.rincianHarga['totalHarga']),
+                        style: const TextStyle(color: Color(0xff8A8A8E)),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  pesananSnapshot.data!.antar
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "Ongkos Antar",
+                              style: TextStyle(color: Color(0xffF37921)),
+                            ),
+                            Text(
+                              FormatHarga.formatRupiah(
+                                  pesananSnapshot.data!.rincianHarga['ongkir']),
+                              style: const TextStyle(color: Color(0xffF37921)),
+                            ),
+                          ],
+                        )
+                      : const SizedBox(),
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Total Bayar",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff8A8A8E)),
+                      ),
+                      Text(
+                        FormatHarga.formatRupiah(
+                            pesananSnapshot.data!.rincianHarga['totalHarga'] +
+                                pesananSnapshot.data!.rincianHarga['ongkir']),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff8A8A8E)),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "Bukti Pembayaran",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  StreamBuilder<PembayaranModel>(
+                      stream: controller.getPembayaranData(
+                          pesananSnapshot.data!.pembayaranID.toString()),
+                      builder: (context, pembayaranSnapshot) {
+                        if (!pembayaranSnapshot.hasData) {
+                          return const Center(
+                            child: SizedBox(),
+                          );
+                        }
+                        return pembayaranSnapshot.data!.metode == "transfer"
+                            ? Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.width / 2,
+                                decoration: BoxDecoration(
+                                    color: const Color(0xff828282),
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: pembayaranSnapshot.connectionState ==
+                                        ConnectionState.waiting
+                                    ? const SizedBox()
+                                    : Image.network(
+                                        pembayaranSnapshot
+                                            .data!.buktiPembayaran,
+                                      ),
+                              )
+                            : Row(
+                                children: [
+                                  Text(
+                                    pembayaranSnapshot.data!.metode,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              );
+                      }),
+                  const SizedBox(height: 16),
+                  StreamBuilder<UserModel>(
+                      stream:
+                          controller.getUserData(pesananSnapshot.data!.userID),
+                      builder: (context, userSnapshot) {
+                        if (!userSnapshot.hasData) {
+                          return const Center(
+                            child: SizedBox(),
+                          );
+                        }
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Foto KTP",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.width / 2,
+                              decoration: BoxDecoration(
+                                  color: const Color(0xff828282),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: userSnapshot.connectionState ==
+                                      ConnectionState.waiting
+                                  ? const SizedBox()
+                                  : Image.network(
+                                      userSnapshot.data!.ktpUrl,
+                                    ),
+                            ),
+                            const SizedBox(height: 16),
+                            const Text(
+                              "Foto SIM C",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.width / 2,
+                              decoration: BoxDecoration(
+                                  color: const Color(0xff828282),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: userSnapshot.connectionState ==
+                                      ConnectionState.waiting
+                                  ? const SizedBox()
+                                  : Image.network(
+                                      userSnapshot.data!.simUrl,
+                                    ),
+                            ),
+                            const SizedBox(height: 16),
+                            const Text(
+                              "Bukti Reservasi Hotel",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.width / 2,
+                              decoration: BoxDecoration(
+                                  color: const Color(0xff828282),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: userSnapshot.connectionState ==
+                                      ConnectionState.waiting
+                                  ? const SizedBox()
+                                  : Image.network(
+                                      userSnapshot.data!.hotelUrl,
+                                    ),
+                            ),
+                          ],
+                        );
+                      }),
+                  const SizedBox(height: 32),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xff54B175),
+                      minimumSize: const Size(double.infinity, 40),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      elevation: 0,
+                    ),
+                    child: const Text(
+                      "Konfirmasi Pesanan",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      minimumSize: const Size(double.infinity, 40),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        side: const BorderSide(color: Color(0xff8A8A8E)),
+                      ),
+                      elevation: 0,
+                    ),
+                    child: const Text(
+                      "Tolak Pesanan",
+                      style: TextStyle(
+                        color: Color(0xff8A8A8E),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                ],
               ),
-            ),
-            const SizedBox(height: 4),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Harga Sewa (x2)",
-                  style: TextStyle(color: Color(0xff8A8A8E)),
-                ),
-                Text(
-                  "Rp 160.000",
-                  style: TextStyle(color: Color(0xff8A8A8E)),
-                ),
-              ],
-            ),
-            const SizedBox(height: 4),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Ongkos Antar",
-                  style: TextStyle(color: Color(0xffF37921)),
-                ),
-                Text(
-                  "Rp 10.000",
-                  style: TextStyle(color: Color(0xffF37921)),
-                ),
-              ],
-            ),
-            const SizedBox(height: 4),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Total Bayar",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Color(0xff8A8A8E)),
-                ),
-                Text(
-                  "Rp 170.000",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Color(0xff8A8A8E)),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              "Bukti Pembayaran",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width / 2,
-              decoration: BoxDecoration(
-                  color: const Color(0xff828282),
-                  borderRadius: BorderRadius.circular(10)),
-              child: const Center(
-                child: Icon(Icons.camera_alt),
-              ),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              "Foto KTP",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width / 2,
-              decoration: BoxDecoration(
-                  color: const Color(0xff828282),
-                  borderRadius: BorderRadius.circular(10)),
-              child: const Center(
-                child: Icon(Icons.camera_alt),
-              ),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              "Foto SIM C",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width / 2,
-              decoration: BoxDecoration(
-                  color: const Color(0xff828282),
-                  borderRadius: BorderRadius.circular(10)),
-              child: const Center(
-                child: Icon(Icons.camera_alt),
-              ),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              "Bukti Reservasi Hotel",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width / 2,
-              decoration: BoxDecoration(
-                  color: const Color(0xff828282),
-                  borderRadius: BorderRadius.circular(10)),
-              child: const Center(
-                child: Icon(Icons.camera_alt),
-              ),
-            ),
-            const SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff54B175),
-                minimumSize: const Size(double.infinity, 40),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                elevation: 0,
-              ),
-              child: const Text(
-                "Konfirmasi Pesanan",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                minimumSize: const Size(double.infinity, 40),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  side: const BorderSide(color: Color(0xff8A8A8E)),
-                ),
-                elevation: 0,
-              ),
-              child: const Text(
-                "Tolak Pesanan",
-                style: TextStyle(
-                  color: Color(0xff8A8A8E),
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-          ],
-        ),
-      ),
+            );
+          }),
     );
   }
 }

@@ -47,7 +47,8 @@ class PesananAdminView extends GetView<PesananAdminController> {
                   harga: FormatHarga.formatRupiah(
                       pesanan.rincianHarga["totalHarga"]),
                   onPressed: () {
-                    Get.toNamed(Routes.KONFIRMASI_PESANAN);
+                    Get.toNamed(Routes.KONFIRMASI_PESANAN,
+                        arguments: pesanan.pesananID.toString());
                   },
                 );
               },
