@@ -62,7 +62,7 @@ class DetailPesananView extends GetView<DetailPesananController> {
                   Center(
                     child: Text(
                       pesananSnapshot.data!.status,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Color(0xff54B175),
                       ),
