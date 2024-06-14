@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:bandung_sewa_motor/app/models/pembayaran_model.dart';
 import 'package:bandung_sewa_motor/app/modules/detail_motor/controllers/detail_motor_controller.dart';
+import 'package:bandung_sewa_motor/app/modules/detail_pembayaran/controllers/detail_pembayaran_controller.dart';
+import 'package:bandung_sewa_motor/app/modules/metode_bayar/controllers/metode_bayar_controller.dart';
 import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +18,7 @@ class BuktiPembayaranController extends GetxController {
 
   var pesananID = "".obs;
   var motorID = "".obs;
-  // var metode = "".obs;
+
   var totalHarga = 0.obs;
   var ongkir = 0.obs;
   var totalPembayaran = 0.obs;
@@ -119,8 +121,6 @@ class BuktiPembayaranController extends GetxController {
   void onInit() {
     pesananID.value = Get.arguments;
 
-    // metode.value = Get.arguments['metode'];
-
     getDetailPesanan();
 
     super.onInit();
@@ -134,6 +134,8 @@ class BuktiPembayaranController extends GetxController {
   @override
   void onClose() {
     Get.delete<DetailMotorController>();
+    Get.delete<MetodeBayarController>();
+    Get.delete<DetailPembayaranController>();
     super.onClose();
   }
 }

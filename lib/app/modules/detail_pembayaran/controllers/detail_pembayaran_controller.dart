@@ -1,4 +1,6 @@
 import 'package:bandung_sewa_motor/app/helper/auth_service.dart';
+import 'package:bandung_sewa_motor/app/modules/detail_motor/controllers/detail_motor_controller.dart';
+import 'package:bandung_sewa_motor/app/modules/metode_bayar/controllers/metode_bayar_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -60,13 +62,14 @@ class DetailPembayaranController extends GetxController {
 
   confirmPesananCash() async {
     await getDetailMotor();
+
     String pembayaranID = await firestoreService.addPembayaran(PembayaranModel(
         pembayaranID: "",
         rentalID: pesananID.value,
         userID: authService.user.value!.uid,
         totalHarga: totalPembayaran.value,
         buktiPembayaran: "",
-        metode: "cash",
+        metode: metode.value,
         status: "pending"));
     await firestoreService.updatePesananPembayaran(
       pesananID.value,
@@ -102,6 +105,9 @@ class DetailPembayaranController extends GetxController {
 
   @override
   void onClose() {
+    Get.delete<DetailMotorController>();
+    Get.delete<MetodeBayarController>();
+    Get.delete<DetailPembayaranController>();
     super.onClose();
   }
 }
