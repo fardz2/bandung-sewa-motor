@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/sewamotor_controller.dart';
 
 class SewamotorView extends GetView<SewamotorController> {
@@ -343,6 +344,10 @@ class SewamotorView extends GetView<SewamotorController> {
                               onPressed: () async {
                                 await controller.buatPesanan(controller
                                     .totalHarga(snapshot.data!.harga.toInt()));
+                                Get.offAndToNamed(
+                                  Routes.METODE_BAYAR,
+                                  arguments: controller.newIdPesanan.value,
+                                );
                               },
                               child: const Text('Ya'),
                             ),

@@ -6,6 +6,10 @@ class DetailMotorController extends GetxController {
 
   final motorID = Get.arguments;
   final firestoreService = Get.put(FirestoreService());
+  getDetailMotor() {
+    return firestoreService.getDetailMotor(motorID);
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -17,8 +21,7 @@ class DetailMotorController extends GetxController {
   }
 
   @override
-  void onClose() {}
-  getDetailMotor() {
-    return firestoreService.getDetailMotor(motorID);
+  void onClose() {
+    super.onClose();
   }
 }
