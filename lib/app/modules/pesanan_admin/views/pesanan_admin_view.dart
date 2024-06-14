@@ -5,7 +5,6 @@ import 'package:bandung_sewa_motor/app/widgets/card_pesanan.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../routes/app_pages.dart';
-import '../../../widgets/card_pesanan_admin.dart';
 import '../controllers/pesanan_admin_controller.dart';
 
 class PesananAdminView extends GetView<PesananAdminController> {

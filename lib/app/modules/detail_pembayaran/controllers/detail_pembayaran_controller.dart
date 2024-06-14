@@ -1,6 +1,6 @@
 import 'package:bandung_sewa_motor/app/helper/auth_service.dart';
-import 'package:bandung_sewa_motor/app/modules/detail_motor/controllers/detail_motor_controller.dart';
 import 'package:bandung_sewa_motor/app/modules/metode_bayar/controllers/metode_bayar_controller.dart';
+import 'package:bandung_sewa_motor/app/modules/sewamotor/controllers/sewamotor_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -55,7 +55,7 @@ class DetailPembayaranController extends GetxController {
   }
 
   getDetailMotor() async {
-    firestoreService.getDetailMotor(motorID.value).listen((even) {
+    return firestoreService.getDetailMotor(motorID.value).listen((even) {
       jumlah.value = even.jumlah;
     });
   }
@@ -71,6 +71,7 @@ class DetailPembayaranController extends GetxController {
         buktiPembayaran: "",
         metode: metode.value,
         status: "pending"));
+
     await firestoreService.updatePesananPembayaran(
       pesananID.value,
       pembayaranID,
@@ -78,6 +79,7 @@ class DetailPembayaranController extends GetxController {
 
     await firestoreService.updateMotorJumlah(motorID.value, jumlah.value - 1,
         jumlah.value - 1 == 0 ? "Tidak Tersedia" : "Tersedia");
+
     Get.snackbar(
       "Sukses",
       "Pesanan telah dibuat",
@@ -85,8 +87,13 @@ class DetailPembayaranController extends GetxController {
       backgroundColor: Colors.green,
       colorText: Colors.white,
     );
-
-    Get.offNamed(Routes.LANDING);
+    Get.delete<MetodeBayarController>();
+    Get.delete<SewamotorController>();
+    Get.delete<DetailPembayaranController>();
+    Get.offNamedUntil(
+      Routes.LANDING,
+      ModalRoute.withName(Routes.LANDING),
+    );
   }
 
   @override
@@ -105,9 +112,6 @@ class DetailPembayaranController extends GetxController {
 
   @override
   void onClose() {
-    // Get.delete<DetailMotorController>();
-    // Get.delete<MetodeBayarController>();
-    // Get.delete<DetailPembayaranController>();
     super.onClose();
   }
 }

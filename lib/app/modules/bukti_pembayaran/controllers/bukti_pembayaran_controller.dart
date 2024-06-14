@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:bandung_sewa_motor/app/models/pembayaran_model.dart';
-import 'package:bandung_sewa_motor/app/modules/detail_motor/controllers/detail_motor_controller.dart';
 import 'package:bandung_sewa_motor/app/modules/detail_pembayaran/controllers/detail_pembayaran_controller.dart';
 import 'package:bandung_sewa_motor/app/modules/metode_bayar/controllers/metode_bayar_controller.dart';
+import 'package:bandung_sewa_motor/app/modules/sewamotor/controllers/sewamotor_controller.dart';
 import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +14,6 @@ import 'package:image_picker/image_picker.dart';
 import '../../../helper/firestore_service.dart';
 
 class BuktiPembayaranController extends GetxController {
-  //TODO: Implement BuktiPembayaranController
-
   var pesananID = "".obs;
   var motorID = "".obs;
 
@@ -113,7 +111,10 @@ class BuktiPembayaranController extends GetxController {
       );
 
       buktiPembayaran.value = XFile("");
-      Get.offAndToNamed(Routes.LANDING);
+      Get.offNamedUntil(
+        Routes.LANDING,
+        ModalRoute.withName(Routes.LANDING),
+      );
     }
   }
 
@@ -133,7 +134,7 @@ class BuktiPembayaranController extends GetxController {
 
   @override
   void onClose() {
-    Get.delete<DetailMotorController>();
+    Get.delete<SewamotorController>();
     Get.delete<MetodeBayarController>();
     Get.delete<DetailPembayaranController>();
     super.onClose();

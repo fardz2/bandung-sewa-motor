@@ -6,10 +6,9 @@ import 'package:intl/intl.dart';
 
 import '../../../helper/auth_service.dart';
 import '../../../models/pesanan_model.dart';
-import '../../../routes/app_pages.dart';
 
 class SewamotorController extends GetxController {
-  //TODO: Implement SewamotorController
+  static SewamotorController get to => Get.find();
 
   String userID = "";
   final count = 0.obs;
@@ -19,6 +18,7 @@ class SewamotorController extends GetxController {
   final opsi = "ambil".obs;
   final ongkir = 10000.obs;
   final lokasi_antar = TextEditingController();
+  final newIdPesanan = "".obs;
 
   getUserData() async {
     final userUID = authService.user.value?.uid;
@@ -90,6 +90,7 @@ class SewamotorController extends GetxController {
 
   Future<void> buatPesanan(int totalHarga) async {
     final newId = await firestoreService.generateAutoId();
+    newIdPesanan.value = newId;
     final Map<String, dynamic> rincianHarga = {
       "totalHarga": totalHarga,
       "ongkir": opsi.value == "antar" ? ongkir.value : 0,
@@ -108,10 +109,6 @@ class SewamotorController extends GetxController {
         status: "Menunggu Konfirmasi",
         createdAt: Timestamp.now(),
       ));
-      Get.offNamed(
-        Routes.METODE_BAYAR,
-        arguments: newId,
-      );
     } else {
       if (lokasi_antar.text.isEmpty) {
         Get.snackbar(
@@ -136,17 +133,23 @@ class SewamotorController extends GetxController {
           status: "Menunggu Konfirmasi",
           createdAt: Timestamp.now(),
         ));
-        Get.offNamed(
-          Routes.METODE_BAYAR,
-          arguments: newId,
-        );
       }
     }
   }
 
   @override
   void onInit() {
-    getUserData();
     super.onInit();
+    getUserData();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
   }
 }

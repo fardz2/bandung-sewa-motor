@@ -138,69 +138,71 @@ class DetailPembayaranView extends GetView<DetailPembayaranController> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                ButtonCustom(
-                    name: controller.metode.value == "Transfer"
-                        ? "Bayar Sekarang"
-                        : "Pesan",
-                    onPressed: () {
-                      if (controller.fotoHotel.value.isEmpty ||
-                          controller.fotoSIM.value.isEmpty ||
-                          controller.fotoHotel.value.isEmpty) {
-                        Get.snackbar(
-                          "Persyaratan",
-                          "Mohon dilengkapi terlebih dahulu persyaratannya",
-                          snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: Colors.red,
-                          colorText: Colors.white,
-                        );
-                        Get.toNamed(Routes.PERSYARATAN);
-                      } else if (controller.metode.value == "Transfer") {
-                        Get.dialog(
-                          AlertDialog(
-                            title: const Text("Konfirmasi"),
-                            content: const Text(
-                                "Apakah anda yakin ingin melakukan pemesanan ini dengan transfer?"),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                child: const Text("Batal"),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  Get.toNamed(Routes.BUKTI_PEMBAYARAN,
-                                      arguments: controller.pesananID.value);
-                                },
-                                child: const Text("Ya"),
-                              ),
-                            ],
-                          ),
-                        );
-                      } else {
-                        Get.dialog(
-                          AlertDialog(
-                            title: const Text("Konfirmasi"),
-                            content: const Text(
-                                "Apakah anda yakin ingin melakukan pemesanan ini dengan Cash?"),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                child: const Text("Batal"),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  controller.confirmPesananCash();
-                                },
-                                child: const Text("Ya"),
-                              ),
-                            ],
-                          ),
-                        );
-                      }
-                    })
+                Obx(() {
+                  return ButtonCustom(
+                      name: controller.metode.value == "Transfer"
+                          ? "Bayar Sekarang"
+                          : "Pesan",
+                      onPressed: () {
+                        if (controller.fotoHotel.value.isEmpty ||
+                            controller.fotoSIM.value.isEmpty ||
+                            controller.fotoHotel.value.isEmpty) {
+                          Get.snackbar(
+                            "Persyaratan",
+                            "Mohon dilengkapi terlebih dahulu persyaratannya",
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.red,
+                            colorText: Colors.white,
+                          );
+                          Get.toNamed(Routes.PERSYARATAN);
+                        } else if (controller.metode.value == "Transfer") {
+                          Get.dialog(
+                            AlertDialog(
+                              title: const Text("Konfirmasi"),
+                              content: const Text(
+                                  "Apakah anda yakin ingin melakukan pemesanan ini dengan transfer?"),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                  child: const Text("Batal"),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Get.toNamed(Routes.BUKTI_PEMBAYARAN,
+                                        arguments: controller.pesananID.value);
+                                  },
+                                  child: const Text("Ya"),
+                                ),
+                              ],
+                            ),
+                          );
+                        } else {
+                          Get.dialog(
+                            AlertDialog(
+                              title: const Text("Konfirmasi"),
+                              content: const Text(
+                                  "Apakah anda yakin ingin melakukan pemesanan ini dengan Cash?"),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                  child: const Text("Batal"),
+                                ),
+                                TextButton(
+                                  onPressed: () async {
+                                    await controller.confirmPesananCash();
+                                  },
+                                  child: const Text("Ya"),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+                      });
+                })
               ],
             ),
           ],

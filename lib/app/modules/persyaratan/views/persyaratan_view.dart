@@ -62,12 +62,17 @@ class PersyaratanView extends GetView<PersyaratanController> {
                                       color: const Color(0xff828282),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: controller.fotoKTPUrl.value.path != ""
-                                      ? ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          child: Image.file(
-                                            File(controller
-                                                .fotoKTPUrl.value.path),
+                                      ? GestureDetector(
+                                          onTap: () async {
+                                            await controller.getImageKTP(true);
+                                          },
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.file(
+                                              File(controller
+                                                  .fotoKTPUrl.value.path),
+                                            ),
                                           ),
                                         )
                                       : GestureDetector(
@@ -114,12 +119,17 @@ class PersyaratanView extends GetView<PersyaratanController> {
                                       color: const Color(0xff828282),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: controller.fotoSIMUrl.value.path != ""
-                                      ? ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          child: Image.file(
-                                            File(controller
-                                                .fotoSIMUrl.value.path),
+                                      ? GestureDetector(
+                                          onTap: () async {
+                                            await controller.getImageSIM(true);
+                                          },
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.file(
+                                              File(controller
+                                                  .fotoSIMUrl.value.path),
+                                            ),
                                           ),
                                         )
                                       : GestureDetector(
@@ -167,12 +177,18 @@ class PersyaratanView extends GetView<PersyaratanController> {
                                       borderRadius: BorderRadius.circular(10)),
                                   child: controller.fotoHotelUrl.value.path !=
                                           ""
-                                      ? ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          child: Image.file(
-                                            File(controller
-                                                .fotoHotelUrl.value.path),
+                                      ? GestureDetector(
+                                          onTap: () async {
+                                            await controller
+                                                .getImageHotel(true);
+                                          },
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.file(
+                                              File(controller
+                                                  .fotoHotelUrl.value.path),
+                                            ),
                                           ),
                                         )
                                       : GestureDetector(

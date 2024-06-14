@@ -33,6 +33,8 @@ class PesananView extends GetView<PesananController> {
               pesananSnapshot.data!.isEmpty) {
             return const Center(child: Text('Tidak ada data'));
           } else {
+            pesananSnapshot.data!
+                .sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
             return ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
               itemCount: pesananSnapshot.data?.length,
