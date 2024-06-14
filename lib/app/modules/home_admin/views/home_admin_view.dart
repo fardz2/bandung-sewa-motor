@@ -1,3 +1,4 @@
+import 'package:bandung_sewa_motor/app/helper/format_harga.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -13,20 +14,21 @@ class HomeAdminView extends GetView<HomeAdminController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              StreamBuilder<UserModel>(
-                  stream: controller.getUserData(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 18,
+            ),
+            StreamBuilder<UserModel>(
+                stream: controller.getUserData(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const SizedBox();
+                  }
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -45,63 +47,67 @@ class HomeAdminView extends GetView<HomeAdminController> {
                               Image.asset('assets/icons/search.png', width: 24),
                         ),
                       ],
-                    );
-                  }),
-              const SizedBox(height: 14),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Obx(() {
-                  return Row(
-                    children: [
-                      KategoriBubble(
-                        text: 'All',
-                        isSelected: controller.selectedCategory.value == 'All',
-                        onTap: () => controller.selectCategory('All'),
-                      ),
-                      const SizedBox(width: 16),
-                      KategoriBubble(
-                        text: 'Honda',
-                        isSelected:
-                            controller.selectedCategory.value == 'Honda',
-                        onTap: () => controller.selectCategory('Honda'),
-                      ),
-                      const SizedBox(width: 16),
-                      KategoriBubble(
-                        text: 'Yamaha',
-                        isSelected:
-                            controller.selectedCategory.value == 'Yamaha',
-                        onTap: () => controller.selectCategory('Yamaha'),
-                      ),
-                      const SizedBox(width: 16),
-                      KategoriBubble(
-                        text: 'Suzuki',
-                        isSelected:
-                            controller.selectedCategory.value == 'Suzuki',
-                        onTap: () => controller.selectCategory('Suzuki'),
-                      ),
-                      const SizedBox(width: 16),
-                      KategoriBubble(
-                        text: 'Kawasaki',
-                        isSelected:
-                            controller.selectedCategory.value == 'Kawasaki',
-                        onTap: () => controller.selectCategory('Kawasaki'),
-                      ),
-                    ],
+                    ),
                   );
                 }),
+            const SizedBox(height: 14),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 18,
               ),
-              const SizedBox(height: 12),
-              Obx(() {
-                return StreamBuilder(
-                    stream: controller.getMotorbikeByCategory(),
-                    builder: (context, AsyncSnapshot<dynamic> snapshot) {
-                      if (!snapshot.hasData) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      return Expanded(
+              child: Obx(() {
+                return Row(
+                  children: [
+                    KategoriBubble(
+                      text: 'All',
+                      isSelected: controller.selectedCategory.value == 'All',
+                      onTap: () => controller.selectCategory('All'),
+                    ),
+                    const SizedBox(width: 16),
+                    KategoriBubble(
+                      text: 'Honda',
+                      isSelected: controller.selectedCategory.value == 'Honda',
+                      onTap: () => controller.selectCategory('Honda'),
+                    ),
+                    const SizedBox(width: 16),
+                    KategoriBubble(
+                      text: 'Yamaha',
+                      isSelected: controller.selectedCategory.value == 'Yamaha',
+                      onTap: () => controller.selectCategory('Yamaha'),
+                    ),
+                    const SizedBox(width: 16),
+                    KategoriBubble(
+                      text: 'Suzuki',
+                      isSelected: controller.selectedCategory.value == 'Suzuki',
+                      onTap: () => controller.selectCategory('Suzuki'),
+                    ),
+                    const SizedBox(width: 16),
+                    KategoriBubble(
+                      text: 'Kawasaki',
+                      isSelected:
+                          controller.selectedCategory.value == 'Kawasaki',
+                      onTap: () => controller.selectCategory('Kawasaki'),
+                    ),
+                  ],
+                );
+              }),
+            ),
+            const SizedBox(height: 12),
+            Obx(() {
+              return StreamBuilder(
+                  stream: controller.getMotorbikeByCategory(),
+                  builder: (context, AsyncSnapshot<dynamic> snapshot) {
+                    if (!snapshot.hasData) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
                         child: GridView.builder(
+                          padding: const EdgeInsets.only(bottom: 18),
                           shrinkWrap: true,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
@@ -175,15 +181,15 @@ class HomeAdminView extends GetView<HomeAdminController> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Text(
-                                              '${controller.formatCurrency(snapshot.data.docs[index].get("harga"))}/hari',
+                                              '${FormatHarga.formatRupiah(snapshot.data.docs[index].get("harga"))}/hari',
                                               style: const TextStyle(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                            InkWell(
+                                            GestureDetector(
                                               onTap: () => Get.toNamed(
-                                                Routes.DETAILMOTORADMIN,
+                                                Routes.DETAIL_MOTOR,
                                                 arguments: snapshot
                                                     .data.docs[index]
                                                     .get('motorID'),
@@ -214,11 +220,11 @@ class HomeAdminView extends GetView<HomeAdminController> {
                             );
                           },
                         ),
-                      );
-                    });
-              }),
-            ],
-          ),
+                      ),
+                    );
+                  });
+            }),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(

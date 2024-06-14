@@ -18,21 +18,6 @@ class PesananAdminController extends GetxController {
     return firestoreService.getDetailMotor(motorID);
   }
 
-  Stream<List<Map<String, dynamic>>> fetchPesananWithDetails() async* {
-    List<Map<String, dynamic>> combinedList = [];
-    List<PesananModel> pesananList = await getAllPesanan().first;
-
-    for (var pesanan in pesananList) {
-      MotorModel motor = await getDetailMotor(pesanan.motorID).first;
-      combinedList.add({
-        'pesanan': pesanan,
-        'motor': motor,
-      });
-    }
-
-    yield combinedList;
-  }
-
   @override
   void onInit() {
     super.onInit();

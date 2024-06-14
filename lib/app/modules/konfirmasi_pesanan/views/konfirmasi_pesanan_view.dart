@@ -439,45 +439,126 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                         );
                       }),
                   const SizedBox(height: 32),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff54B175),
-                      minimumSize: const Size(double.infinity, 40),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: const Text(
-                      "Konfirmasi Pesanan",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      minimumSize: const Size(double.infinity, 40),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        side: const BorderSide(color: Color(0xff8A8A8E)),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: const Text(
-                      "Tolak Pesanan",
-                      style: TextStyle(
-                        color: Color(0xff8A8A8E),
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                  pesananSnapshot.data!.status == "Ditolak" ||
+                          pesananSnapshot.data!.status == "Dibatalkan" ||
+                          pesananSnapshot.data!.status == "Dikembalikan"
+                      ? const SizedBox()
+                      : Column(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                Get.dialog(AlertDialog(
+                                  title: const Text('Konfirmasi Pesanan'),
+                                  content: Text(pesananSnapshot.data!.status ==
+                                          "Menunggu Konfirmasi"
+                                      ? 'Apakah anda yakin ingin menerima pesanan ini?'
+                                      : "Apakah anda yakin ingin konfirmasi bahwa pesanan ini sudah selesai"),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      child: const Text('Batal'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () async {
+                                        if (pesananSnapshot.data!.status ==
+                                            "Menunggu Konfirmasi") {
+                                          controller.konfirmasiPesanan(
+                                              "terima",
+                                              pesananSnapshot.data!.pesananID,
+                                              pesananSnapshot.data!.status);
+                                        } else {
+                                          controller.konfirmasiPesanan(
+                                              "kembalikan",
+                                              pesananSnapshot.data!.pesananID,
+                                              pesananSnapshot.data!.status);
+                                        }
+                                      },
+                                      child: const Text('Ya'),
+                                    ),
+                                  ],
+                                ));
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xff54B175),
+                                minimumSize: const Size(double.infinity, 40),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                elevation: 0,
+                              ),
+                              child: Text(
+                                pesananSnapshot.data!.status ==
+                                        "Menunggu Konfirmasi"
+                                    ? "Konfirmasi Pesanan"
+                                    : "Sudah Dikembalikan",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Get.dialog(AlertDialog(
+                                  title: const Text('Konfirmasi Pesanan'),
+                                  content: Text(pesananSnapshot.data!.status ==
+                                          "Menunggu Konfirmasi"
+                                      ? 'Apakah anda yakin ingin tolak pesanan ini?'
+                                      : "Apakah anda yakin ingin konfirmasi bahwa pesanan dibatalkan"),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      child: const Text('Batal'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () async {
+                                        if (pesananSnapshot.data!.status ==
+                                            "Menunggu Konfirmasi") {
+                                          controller.konfirmasiPesanan(
+                                              "tolak",
+                                              pesananSnapshot.data!.pesananID,
+                                              pesananSnapshot.data!.status);
+                                        } else {
+                                          controller.konfirmasiPesanan(
+                                              "batalkan",
+                                              pesananSnapshot.data!.pesananID,
+                                              pesananSnapshot.data!.status);
+                                        }
+                                      },
+                                      child: const Text('Ya'),
+                                    ),
+                                  ],
+                                ));
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                minimumSize: const Size(double.infinity, 40),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  side: const BorderSide(
+                                      color: Color(0xff8A8A8E)),
+                                ),
+                                elevation: 0,
+                              ),
+                              child: Text(
+                                pesananSnapshot.data!.status ==
+                                        "Menunggu Konfirmasi"
+                                    ? "Tolak Pesanan"
+                                    : "Batalkan Pesanan",
+                                style: const TextStyle(
+                                  color: Color(0xff8A8A8E),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                   const SizedBox(height: 16),
                 ],
               ),

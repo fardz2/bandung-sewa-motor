@@ -45,15 +45,12 @@ class SearchMotorView extends GetView<SearchMotorController> {
                 return StreamBuilder<List<MotorModel>>(
                   stream: controller.getMotorSearch(controller.search.value),
                   builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    if (snapshot.data!.isEmpty) {
-                      return const Center(
-                        child: Text('No results found'),
-                      );
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasError) {
+                      return Center(child: Text('Error: ${snapshot.error}'));
+                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return const Center(child: Text('Motor tidak ditemukan'));
                     }
                     return ListView.builder(
                       physics: const AlwaysScrollableScrollPhysics(),

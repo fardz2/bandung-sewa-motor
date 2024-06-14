@@ -1,3 +1,5 @@
+import 'package:bandung_sewa_motor/app/models/pesanan_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../helper/firestore_service.dart';
@@ -22,6 +24,51 @@ class KonfirmasiPesananController extends GetxController {
 
   getPembayaranData(String pembayaranID) {
     return firestoreService.getPembayaranByIdStream(pembayaranID);
+  }
+
+  konfirmasiPesanan(String even, String pesananID, String status) async {
+    if (status == "Menunggu Konfirmasi") {
+      if (even == "terima") {
+        await firestoreService.updatePesananStatus(pesananID, "Diterima");
+        Get.snackbar(
+          "Sukses",
+          "Pesanan telah Diterima",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      } else {
+        await firestoreService.updatePesananStatus(pesananID, "Ditolak");
+        Get.snackbar(
+          "Sukses",
+          "Pesanan telah Ditolak",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      }
+    } else {
+      if (even == "kembalikan") {
+        await firestoreService.updatePesananStatus(pesananID, "Dikembalikan");
+        Get.snackbar(
+          "Sukses",
+          "Pesanan telah dikembalikan",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      } else {
+        await firestoreService.updatePesananStatus(pesananID, "Dibatalkan");
+        Get.snackbar(
+          "Sukses",
+          "Pesanan telah dibatalkan",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      }
+      Get.back();
+    }
   }
 
   @override

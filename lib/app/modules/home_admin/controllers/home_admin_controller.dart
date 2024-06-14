@@ -1,18 +1,10 @@
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 import '../../../helper/auth_service.dart';
 import '../../../helper/firestore_service.dart';
 
 class HomeAdminController extends GetxController {
   static HomeAdminController get to => Get.find();
-
-  //format currency
-  String formatCurrency(int value) {
-    final formatter =
-        NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0);
-    return formatter.format(value);
-  }
 
   // Selected category
   var selectedCategory = 'All'.obs;
