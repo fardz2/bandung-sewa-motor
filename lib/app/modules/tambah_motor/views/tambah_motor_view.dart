@@ -54,10 +54,15 @@ class TambahMotorView extends GetView<TambahMotorController> {
                           color: const Color(0xff828282),
                           borderRadius: BorderRadius.circular(10)),
                       child: controller.gambarMotor.value.path != ""
-                          ? ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.file(
-                                File(controller.gambarMotor.value.path),
+                          ? GestureDetector(
+                              onTap: () async {
+                                await controller.getImage(true);
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.file(
+                                  File(controller.gambarMotor.value.path),
+                                ),
                               ),
                             )
                           : GestureDetector(

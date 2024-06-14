@@ -30,6 +30,7 @@ class KonfirmasiPesananController extends GetxController {
     if (status == "Menunggu Konfirmasi") {
       if (even == "terima") {
         await firestoreService.updatePesananStatus(pesananID, "Diterima");
+
         Get.snackbar(
           "Sukses",
           "Pesanan telah Diterima",
@@ -67,7 +68,6 @@ class KonfirmasiPesananController extends GetxController {
           colorText: Colors.white,
         );
       }
-      Get.back();
     }
   }
 
