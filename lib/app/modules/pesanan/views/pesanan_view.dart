@@ -22,40 +22,44 @@ class PesananView extends GetView<PesananController> {
         backgroundColor: const Color.fromARGB(255, 0x54, 0xB1, 0x75),
         centerTitle: true,
       ),
-      body: StreamBuilder<List<Map<String, dynamic>>>(
-        stream: controller.fetchPesananWithDetails(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
+      body: StreamBuilder<List<PesananModel>>(
+        stream: controller.getPesananByUserIDData(),
+        builder: (context, pesananSnapshot) {
+          if (pesananSnapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          } else if (pesananSnapshot.hasError) {
+            return Center(child: Text('Error: ${pesananSnapshot.error}'));
+          } else if (!pesananSnapshot.hasData ||
+              pesananSnapshot.data!.isEmpty) {
             return const Center(child: Text('Tidak ada data'));
           } else {
-            final combinedList = snapshot.data as List<Map<String, dynamic>>;
-            combinedList.sort((a, b) => (b['pesanan'] as PesananModel)
-                .pesananID
-                .compareTo((a['pesanan'] as PesananModel).pesananID));
             return ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-              itemCount: combinedList.length,
+              itemCount: pesananSnapshot.data?.length,
               itemBuilder: (context, index) {
-                final pesanan = combinedList[index]['pesanan'] as PesananModel;
-                final motor = combinedList[index]['motor'] as MotorModel;
-                return CardPesanan(
-                  noPesanan: pesanan.pesananID.toString(),
-                  tanggal:
-                      pesanan.tanggalPemesanan, // Format this date properly
-                  namaMotor: motor.namaMotor,
-                  lokasi: "Sewa Motor Lempuyangan",
-                  harga: FormatHarga.formatRupiah(
-                      pesanan.rincianHarga["totalHarga"]),
-                  status: pesanan.status,
-                  onPressed: () {
-                    Get.toNamed(Routes.DETAIL_PESANAN,
-                        arguments: pesanan.pesananID.toString());
-                  },
-                );
+                return StreamBuilder<MotorModel>(
+                    stream: controller
+                        .getDetailMotor(pesananSnapshot.data![index].motorID),
+                    builder: (context, motorSnapshot) {
+                      if (!motorSnapshot.hasData) {
+                        return const SizedBox();
+                      }
+                      return CardPesanan(
+                        noPesanan: pesananSnapshot.data![index].pesananID,
+                        tanggal: pesananSnapshot.data![index]
+                            .tanggalPemesanan, // Format this date properly
+                        namaMotor: motorSnapshot.data!.namaMotor,
+                        lokasi: "Sewa Motor Lempuyangan",
+                        harga: FormatHarga.formatRupiah(pesananSnapshot
+                            .data?[index].rincianHarga["totalHarga"]),
+                        status: pesananSnapshot.data![index].status,
+                        onPressed: () {
+                          Get.toNamed(Routes.DETAIL_PESANAN,
+                              arguments:
+                                  pesananSnapshot.data![index].pesananID);
+                        },
+                      );
+                    });
               },
             );
           }

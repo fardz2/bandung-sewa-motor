@@ -161,6 +161,17 @@ class FirestoreService extends GetxController {
     }
   }
 
+  Future<void> updatePesananStatus(String pesananID, String status) async {
+    QuerySnapshot querySnapshot = await _firestore
+        .collection('pesanan')
+        .where("pesananID", isEqualTo: pesananID)
+        .get();
+
+    for (DocumentSnapshot doc in querySnapshot.docs) {
+      await doc.reference.update({"status": status});
+    }
+  }
+
   Stream<List<PesananModel>> getAllPesananStream() {
     return FirebaseFirestore.instance
         .collection('pesanan')
