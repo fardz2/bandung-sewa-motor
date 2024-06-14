@@ -113,7 +113,7 @@ class BuktiPembayaranController extends GetxController {
       );
 
       buktiPembayaran.value = XFile("");
-      Get.offNamed(Routes.LANDING);
+      Get.offAndToNamed(Routes.LANDING);
     }
   }
 

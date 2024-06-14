@@ -474,6 +474,7 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                                               pesananSnapshot.data!.pesananID,
                                               pesananSnapshot.data!.status);
                                         }
+                                        Get.back();
                                       },
                                       child: const Text('Ya'),
                                     ),
@@ -529,6 +530,7 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                                               pesananSnapshot.data!.pesananID,
                                               pesananSnapshot.data!.status);
                                         }
+                                        Get.back();
                                       },
                                       child: const Text('Ya'),
                                     ),

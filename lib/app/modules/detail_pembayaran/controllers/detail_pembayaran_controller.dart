@@ -105,9 +105,9 @@ class DetailPembayaranController extends GetxController {
 
   @override
   void onClose() {
-    Get.delete<DetailMotorController>();
-    Get.delete<MetodeBayarController>();
-    Get.delete<DetailPembayaranController>();
+    // Get.delete<DetailMotorController>();
+    // Get.delete<MetodeBayarController>();
+    // Get.delete<DetailPembayaranController>();
     super.onClose();
   }
 }

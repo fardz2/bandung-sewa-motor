@@ -189,7 +189,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                                             ),
                                             GestureDetector(
                                               onTap: () => Get.toNamed(
-                                                Routes.DETAIL_MOTOR,
+                                                Routes.DETAILMOTORADMIN,
                                                 arguments: snapshot
                                                     .data.docs[index]
                                                     .get('motorID'),
