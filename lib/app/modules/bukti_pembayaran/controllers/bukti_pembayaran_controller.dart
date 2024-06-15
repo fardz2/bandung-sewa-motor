@@ -22,6 +22,8 @@ class BuktiPembayaranController extends GetxController {
   var totalPembayaran = 0.obs;
   var jumlah = 0.obs;
 
+  final clipboardController = TextEditingController();
+
   final authService = Get.put(AuthService());
   final firestoreService = Get.put(FirestoreService());
 
