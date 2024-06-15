@@ -39,25 +39,65 @@ class AuthService extends GetxController {
           phone: phone,
         );
         await _firestoreController.addUser(userModel);
-        Get.snackbar('Success', 'Akun berhasil di buat',
-            colorText: Colors.white, backgroundColor: Colors.green);
       }
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      switch (e.code) {
+        case 'email-already-in-use':
+          errorMessage = 'Email sudah digunakan oleh akun lain.';
+          break;
+        case 'invalid-email':
+          errorMessage = 'Alamat email tidak valid.';
+          break;
+        case 'operation-not-allowed':
+          errorMessage = 'Operasi ini tidak diizinkan.';
+          break;
+        case 'weak-password':
+          errorMessage = 'Kata sandi terlalu lemah.';
+          break;
+        default:
+          errorMessage = 'Terjadi kesalahan. Silakan coba lagi.';
+      }
+      throw Exception(errorMessage);
     } catch (e) {
-      Get.snackbar('Error', e.toString());
+      throw Exception('Terjadi kesalahan. Silakan coba lagi.');
     }
   }
 
   Future<void> login(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      Get.snackbar('Success', 'Login Berhasil',
-          colorText: Colors.white, backgroundColor: Colors.green);
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      switch (e.code) {
+        case 'invalid-email':
+          errorMessage = 'Alamat email tidak valid.';
+          break;
+        case 'user-disabled':
+          errorMessage = 'Pengguna ini telah dinonaktifkan.';
+          break;
+        case 'user-not-found':
+          errorMessage = 'Pengguna dengan email ini tidak ditemukan.';
+          break;
+        case 'wrong-password':
+          errorMessage = 'Kata sandi salah.';
+          break;
+        default:
+          errorMessage = 'Terjadi kesalahan. Silakan coba lagi.';
+      }
+      throw Exception(
+          errorMessage); // Melempar exception dengan pesan kesalahan yang spesifik
     } catch (e) {
-      Get.snackbar('Error', e.toString());
+      throw Exception(
+          'Terjadi kesalahan. Silakan coba lagi.'); // Melempar exception umum untuk kesalahan lainnya
     }
   }
 
   Future<void> logout() async {
-    await _auth.signOut();
+    try {
+      await _auth.signOut();
+    } catch (e) {
+      throw Exception('Gagal keluar. Silakan coba lagi.');
+    }
   }
 }

@@ -155,7 +155,12 @@ class EditMotorController extends GetxController {
         cc.clear();
         gambarMotor.value = XFile("");
       }
-      Get.offNamed(Routes.LANDING_ADMIN);
+      Get.offNamedUntil(
+        Routes.LANDING_ADMIN,
+        ModalRoute.withName(
+          Routes.LANDING_ADMIN,
+        ),
+      );
     }
   }
 }

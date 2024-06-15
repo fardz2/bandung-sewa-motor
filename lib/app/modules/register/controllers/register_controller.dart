@@ -1,3 +1,4 @@
+import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,10 +38,14 @@ class RegisterController extends GetxController {
         noHpController.text,
         passwordController.text,
       );
-      Get.offAllNamed('/login');
+      Get.snackbar('Success', 'Akun berhasil dibuat',
+          colorText: Colors.white, backgroundColor: Colors.green);
+      Get.offAllNamed(Routes.LANDING);
       isLoading.value = false;
     } catch (e) {
-      null;
+      isLoading.value = false;
+      Get.snackbar('Error', e.toString(),
+          colorText: Colors.white, backgroundColor: Colors.red);
     }
   }
 

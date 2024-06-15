@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:widget_zoom/widget_zoom.dart';
 
 import '../../../helper/format_harga.dart';
 import '../../../models/motor_model.dart';
@@ -345,9 +346,13 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                                 child: pembayaranSnapshot.connectionState ==
                                         ConnectionState.waiting
                                     ? const SizedBox()
-                                    : Image.network(
-                                        pembayaranSnapshot
+                                    : WidgetZoom(
+                                        heroAnimationTag: pembayaranSnapshot
                                             .data!.buktiPembayaran,
+                                        zoomWidget: Image.network(
+                                          pembayaranSnapshot
+                                              .data!.buktiPembayaran,
+                                        ),
                                       ),
                               )
                             : Row(
@@ -389,8 +394,12 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                               child: userSnapshot.connectionState ==
                                       ConnectionState.waiting
                                   ? const SizedBox()
-                                  : Image.network(
-                                      userSnapshot.data!.ktpUrl,
+                                  : WidgetZoom(
+                                      heroAnimationTag:
+                                          userSnapshot.data!.ktpUrl,
+                                      zoomWidget: Image.network(
+                                        userSnapshot.data!.ktpUrl,
+                                      ),
                                     ),
                             ),
                             const SizedBox(height: 16),
@@ -410,8 +419,12 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                               child: userSnapshot.connectionState ==
                                       ConnectionState.waiting
                                   ? const SizedBox()
-                                  : Image.network(
-                                      userSnapshot.data!.simUrl,
+                                  : WidgetZoom(
+                                      heroAnimationTag:
+                                          userSnapshot.data!.simUrl,
+                                      zoomWidget: Image.network(
+                                        userSnapshot.data!.simUrl,
+                                      ),
                                     ),
                             ),
                             const SizedBox(height: 16),
@@ -431,8 +444,12 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                               child: userSnapshot.connectionState ==
                                       ConnectionState.waiting
                                   ? const SizedBox()
-                                  : Image.network(
-                                      userSnapshot.data!.hotelUrl,
+                                  : WidgetZoom(
+                                      heroAnimationTag:
+                                          userSnapshot.data!.hotelUrl,
+                                      zoomWidget: Image.network(
+                                        userSnapshot.data!.hotelUrl,
+                                      ),
                                     ),
                             ),
                           ],

@@ -162,6 +162,7 @@ class PersyaratanController extends GetxController {
           simUrl: fotoSIMAwal.value,
         ),
       );
+      Get.back();
       Get.snackbar(
         "Sukses",
         "Foto Hotel dan KTP berhasil diupdate",
@@ -169,7 +170,6 @@ class PersyaratanController extends GetxController {
         backgroundColor: Colors.green,
         colorText: Colors.white,
       );
-      Get.back();
     } else if (fotoHotelUrl.value.path.isNotEmpty &&
         fotoKTPUrl.value.path == "" &&
         fotoSIMUrl.value.path.isNotEmpty) {
@@ -186,6 +186,7 @@ class PersyaratanController extends GetxController {
           simUrl: urlSIM,
         ),
       );
+      Get.back();
       Get.snackbar(
         "Sukses",
         "Foto Hotel dan SIM berhasil diupdate",
@@ -193,7 +194,6 @@ class PersyaratanController extends GetxController {
         backgroundColor: Colors.green,
         colorText: Colors.white,
       );
-      Get.back();
     } else if (fotoHotelUrl.value.path == "" &&
         fotoKTPUrl.value.path.isNotEmpty &&
         fotoSIMUrl.value.path.isNotEmpty) {
@@ -210,6 +210,7 @@ class PersyaratanController extends GetxController {
           simUrl: urlSIM,
         ),
       );
+      Get.back();
       Get.snackbar(
         "Sukses",
         "Foto SIM dan KTP berhasil diupdate",
@@ -217,7 +218,6 @@ class PersyaratanController extends GetxController {
         backgroundColor: Colors.green,
         colorText: Colors.white,
       );
-      Get.back();
     } else if (fotoKTPUrl.value.path.isNotEmpty &&
             fotoSIMUrl.value.path == "" ||
         fotoHotelUrl.value.path == "") {
@@ -256,6 +256,7 @@ class PersyaratanController extends GetxController {
           simUrl: urlSIM,
         ),
       );
+      Get.back();
       Get.snackbar(
         "Sukses",
         "Foto SIM berhasil diupdate",
@@ -263,7 +264,6 @@ class PersyaratanController extends GetxController {
         backgroundColor: Colors.green,
         colorText: Colors.white,
       );
-      Get.back();
     } else if (fotoHotelUrl.value.path.isNotEmpty &&
             fotoKTPUrl.value.path == "" ||
         fotoSIMUrl.value.path == "") {
@@ -279,6 +279,7 @@ class PersyaratanController extends GetxController {
           simUrl: fotoSIMAwal.value,
         ),
       );
+      Get.back();
       Get.snackbar(
         "Sukses",
         "Foto Hotel berhasil diupdate",
@@ -286,7 +287,6 @@ class PersyaratanController extends GetxController {
         backgroundColor: Colors.green,
         colorText: Colors.white,
       );
-      Get.back();
     } else {
       String urlKTP = await uploadFile(File(fotoKTPUrl.value.path));
       String urlSIM = await uploadFile(File(fotoSIMUrl.value.path));
@@ -302,7 +302,7 @@ class PersyaratanController extends GetxController {
           simUrl: urlSIM,
         ),
       );
-
+      Get.back();
       Get.snackbar(
         "Sukses",
         "Data persyaratan berhasil disimpan",
@@ -310,7 +310,6 @@ class PersyaratanController extends GetxController {
         backgroundColor: Colors.green,
         colorText: Colors.white,
       );
-      Get.back();
     }
   }
 
