@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:bandung_sewa_motor/app/helper/format_harga.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
 
@@ -62,7 +64,7 @@ class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
                       ),
                     ),
                     Text(
-                      "Salman Ananda",
+                      "Bandung Sewa Motor",
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -112,7 +114,18 @@ class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
                     ],
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Clipboard.setData(const ClipboardData(text: "8648499124"))
+                          .then((_) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            margin: EdgeInsets.fromLTRB(24, 0, 24, 400),
+                            content: Text("Nomor rekening berhasil disalin"),
+                          ),
+                        );
+                      });
+                    },
                     icon: const Icon(
                       Icons.copy_rounded,
                       color: Color(0xff54B175),
@@ -145,10 +158,26 @@ class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    const Icon(
-                      Icons.copy_rounded,
-                      size: 18,
-                      color: Color(0xff828282),
+                    GestureDetector(
+                      onTap: () {
+                        Clipboard.setData(ClipboardData(
+                                text: controller.totalPembayaran.value
+                                    .toString()))
+                            .then((_) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              behavior: SnackBarBehavior.floating,
+                              margin: EdgeInsets.fromLTRB(24, 0, 24, 350),
+                              content: Text("Total bayar berhasil disalin"),
+                            ),
+                          );
+                        });
+                      },
+                      child: const Icon(
+                        Icons.copy_rounded,
+                        size: 18,
+                        color: Color(0xff828282),
+                      ),
                     ),
                   ],
                 ),

@@ -111,11 +111,9 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(
-                                  pesananSnapshot.data!.antar
-                                      ? "Diantar"
-                                      : "Ambil Di Tempat",
-                                  style: const TextStyle(
+                                const Text(
+                                  "Bandung Sewa Motor",
+                                  style: TextStyle(
                                     fontSize: 12,
                                     color: Color(0xff4F4F4F),
                                   ),
@@ -133,9 +131,11 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                         width: 18,
                       ),
                       const SizedBox(width: 8),
-                      const Text(
-                        "Bisa Refund",
-                        style: TextStyle(
+                      Text(
+                        pesananSnapshot.data!.antar
+                            ? "Diantar"
+                            : "Ambil Di Tempat",
+                        style: const TextStyle(
                           fontSize: 12,
                           color: Color(0xff4F4F4F),
                         ),

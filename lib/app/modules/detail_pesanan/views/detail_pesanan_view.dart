@@ -5,6 +5,7 @@ import 'package:bandung_sewa_motor/app/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../controllers/detail_pesanan_controller.dart';
 
@@ -129,9 +130,11 @@ class DetailPesananView extends GetView<DetailPesananController> {
                         width: 18,
                       ),
                       const SizedBox(width: 8),
-                      const Text(
-                        "Bisa Refund",
-                        style: TextStyle(
+                      Text(
+                        pesananSnapshot.data!.antar
+                            ? "Diantar"
+                            : "Ambil Di Tempat",
+                        style: const TextStyle(
                           fontSize: 12,
                           color: Color(0xff4F4F4F),
                         ),
@@ -184,22 +187,25 @@ class DetailPesananView extends GetView<DetailPesananController> {
                           ),
                           child: Text(
                             "${userSnapshot.data!.name} (${userSnapshot.data!.phone})",
-                            style:
-                                const TextStyle(color: const Color(0xff4F4F4F)),
+                            style: const TextStyle(color: Color(0xff4F4F4F)),
                           ),
                         );
                       }),
                   const SizedBox(height: 16),
-                  const Text(
-                    "Lokasi Pengambilan *",
-                    style: TextStyle(
+                  Text(
+                    pesananSnapshot.data!.antar
+                        ? "Lokasi Pengantaran *"
+                        : "Lokasi Pengambilan *",
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 4),
-                  const Text(
-                    "Jl. Melati II No. 30 Blok 8 Perumahan Sadang Serang Kel. Sekeloa Kec. Coblong",
-                    style: TextStyle(color: Color(0xff4F4F4F)),
+                  Text(
+                    pesananSnapshot.data!.antar
+                        ? pesananSnapshot.data!.lokasiAntar.toString()
+                        : "Jl. Melati II No. 30 Blok 8 Perumahan Sadang Serang Kel. Sekeloa Kec. Coblong",
+                    style: const TextStyle(color: Color(0xff4F4F4F)),
                   ),
                   const SizedBox(height: 16),
                   const Text(
@@ -214,9 +220,9 @@ class DetailPesananView extends GetView<DetailPesananController> {
                     style: TextStyle(color: Color(0xff4F4F4F)),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    "Durasi Sewa *",
-                    style: TextStyle(
+                  Text(
+                    "Durasi Sewa (${DateFormat("dd MMMM yyyy", "id_ID").parse(pesananSnapshot.data!.tanggalAkhir).difference(DateFormat("dd MMMM yyyy", "id_ID").parse(pesananSnapshot.data!.tanggalAwal)).inDays + 1} Hari)",
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -256,46 +262,54 @@ class DetailPesananView extends GetView<DetailPesananController> {
                     ],
                   ),
                   const SizedBox(height: 52),
-                  Row(
-                    children: [
-                      Image.asset(
-                        "assets/icons/warning_icon.png",
-                        width: 18,
-                      ),
-                      const SizedBox(width: 8),
-                      const Text(
-                        "Untuk membatalkan pesanan bisa\n hubungi kantor sewa",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xff4F4F4F),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff54B175),
-                      minimumSize: const Size(double.infinity, 40),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: const Text(
-                      "Hubungi Kantor Sewa",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
                 ],
               ),
             );
           }),
+      bottomNavigationBar: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 24),
+        height: 100,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Image.asset(
+                  "assets/icons/warning_icon.png",
+                  width: 18,
+                ),
+                const SizedBox(width: 8),
+                const Text(
+                  "Untuk membatalkan pesanan bisa\n hubungi kantor sewa",
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Color(0xff4F4F4F),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xff54B175),
+                minimumSize: const Size(double.infinity, 40),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                elevation: 0,
+              ),
+              child: const Text(
+                "Hubungi Kantor Sewa",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

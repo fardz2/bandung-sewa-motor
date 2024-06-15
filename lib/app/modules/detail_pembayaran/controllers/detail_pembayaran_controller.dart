@@ -29,9 +29,10 @@ class DetailPembayaranController extends GetxController {
         .getPesananByIdStream(pesananID.value)
         .listen((event) {
       motorID.value = event.motorID;
-      totalHarga.value = event.rincianHarga['totalHarga'];
+      totalHarga.value =
+          event.rincianHarga['totalHarga'] - event.rincianHarga['ongkir'];
       ongkir.value = event.rincianHarga['ongkir'];
-      totalPembayaran.value = totalHarga.value + ongkir.value;
+      totalPembayaran.value = event.rincianHarga['totalHarga'];
       totalHari.value = DateFormat("dd MMMM yyyy", "id_ID")
               .parse(event.tanggalAkhir)
               .difference(
