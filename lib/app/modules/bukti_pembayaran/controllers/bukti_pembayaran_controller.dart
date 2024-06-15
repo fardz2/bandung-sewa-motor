@@ -27,10 +27,11 @@ class BuktiPembayaranController extends GetxController {
 
   getDetailPesanan() async {
     firestoreService.getPesananByIdStream(pesananID.value).listen((event) {
-      totalHarga.value = event.rincianHarga['totalHarga'];
+      totalHarga.value =
+          event.rincianHarga['totalHarga'] - event.rincianHarga['ongkir'];
       ongkir.value = event.rincianHarga['ongkir'];
       motorID.value = event.motorID;
-      totalPembayaran.value = totalHarga.value + ongkir.value;
+      totalPembayaran.value = event.rincianHarga['totalHarga'];
     });
   }
 

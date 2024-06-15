@@ -4,6 +4,7 @@ import 'package:bandung_sewa_motor/app/models/pesanan_model.dart';
 import 'package:bandung_sewa_motor/app/widgets/card_pesanan.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/pesanan_admin_controller.dart';
 
@@ -49,8 +50,10 @@ class PesananAdminView extends GetView<PesananAdminController> {
                         noPesanan: pesananSnapshot.data![index].pesananID,
                         tanggal: pesananSnapshot.data![index]
                             .tanggalPemesanan, // Format this date properly
-                        namaMotor: motorSnapshot.data!.namaMotor,
-                        lokasi: "Sewa Motor Lempuyangan",
+                        namaMotor:
+                            "${motorSnapshot.data!.merek} ${motorSnapshot.data!.namaMotor}",
+                        lokasi:
+                            "${DateFormat("dd MMMM yyyy", "id_ID").parse(pesananSnapshot.data![index].tanggalAkhir).difference(DateFormat("dd MMMM yyyy", "id_ID").parse(pesananSnapshot.data![index].tanggalAwal)).inDays + 1} Hari - ${pesananSnapshot.data![index].antar ? 'Diantar' : 'Ambil Di Tempat'}",
                         harga: FormatHarga.formatRupiah(pesananSnapshot
                             .data?[index].rincianHarga["totalHarga"]),
                         status: pesananSnapshot.data![index].status,

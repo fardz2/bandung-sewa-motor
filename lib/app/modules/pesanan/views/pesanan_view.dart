@@ -51,7 +51,8 @@ class PesananView extends GetView<PesananController> {
                         noPesanan: pesananSnapshot.data![index].pesananID,
                         tanggal: pesananSnapshot.data![index]
                             .tanggalPemesanan, // Format this date properly
-                        namaMotor: motorSnapshot.data!.namaMotor,
+                        namaMotor:
+                            "${motorSnapshot.data!.merek} ${motorSnapshot.data!.namaMotor}",
                         lokasi:
                             "${DateFormat("dd MMMM yyyy", "id_ID").parse(pesananSnapshot.data![index].tanggalAkhir).difference(DateFormat("dd MMMM yyyy", "id_ID").parse(pesananSnapshot.data![index].tanggalAwal)).inDays + 1} Hari - ${pesananSnapshot.data![index].antar ? 'Diantar' : 'Ambil Di Tempat'}",
                         harga: FormatHarga.formatRupiah(pesananSnapshot
