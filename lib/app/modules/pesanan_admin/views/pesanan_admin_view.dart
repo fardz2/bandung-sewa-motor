@@ -21,6 +21,7 @@ class PesananAdminView extends GetView<PesananAdminController> {
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: const Color.fromARGB(255, 0x54, 0xB1, 0x75),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: StreamBuilder<List<PesananModel>>(
         stream: controller.getAllPesanan(),

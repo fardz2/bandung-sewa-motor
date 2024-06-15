@@ -33,8 +33,12 @@ class LoginController extends GetxController {
       } else {
         Get.offAllNamed(Routes.LANDING);
       }
+      Get.snackbar('Login', 'Login Berhasil',
+          colorText: Colors.white, backgroundColor: Colors.green);
     } catch (e) {
-      null;
+      isLoading.value = false;
+      Get.snackbar('Error', e.toString(),
+          colorText: Colors.white, backgroundColor: Colors.red);
     }
   }
 

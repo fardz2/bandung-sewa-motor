@@ -19,6 +19,7 @@ class ProfileAdminView extends GetView<ProfileAdminController> {
                 color: Colors.white,
                 fontWeight: FontWeight.bold)),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: StreamBuilder<UserModel>(
           stream: controller.getUserData(),

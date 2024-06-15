@@ -20,6 +20,7 @@ class ProfilePelangganView extends GetView<ProfilePelangganController> {
                 fontWeight: FontWeight.bold)),
         centerTitle: true,
         leading: const SizedBox(),
+        automaticallyImplyLeading: false,
       ),
       body: StreamBuilder<UserModel>(
           stream: controller.getUserData(),
