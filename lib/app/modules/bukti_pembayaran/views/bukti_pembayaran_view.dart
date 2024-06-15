@@ -64,7 +64,7 @@ class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
                       ),
                     ),
                     Text(
-                      "Salman Ananda",
+                      "Bandung Sewa Motor",
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
