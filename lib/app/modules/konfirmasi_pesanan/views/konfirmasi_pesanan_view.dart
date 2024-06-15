@@ -80,6 +80,8 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                             child: SizedBox(),
                           );
                         }
+                        controller.jumlahMotor.value =
+                            motorSnapshot.data!.jumlah;
                         return Row(
                           children: [
                             Container(
@@ -482,14 +484,17 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                                         if (pesananSnapshot.data!.status ==
                                             "Menunggu Konfirmasi") {
                                           controller.konfirmasiPesanan(
-                                              "terima",
-                                              pesananSnapshot.data!.pesananID,
-                                              pesananSnapshot.data!.status);
+                                            "terima",
+                                            pesananSnapshot.data!.pesananID,
+                                            pesananSnapshot.data!.status,
+                                            pesananSnapshot.data!.motorID,
+                                          );
                                         } else {
                                           controller.konfirmasiPesanan(
                                               "kembalikan",
                                               pesananSnapshot.data!.pesananID,
-                                              pesananSnapshot.data!.status);
+                                              pesananSnapshot.data!.status,
+                                              pesananSnapshot.data!.motorID);
                                         }
                                         Get.back();
                                       },
@@ -540,12 +545,14 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                                           controller.konfirmasiPesanan(
                                               "tolak",
                                               pesananSnapshot.data!.pesananID,
-                                              pesananSnapshot.data!.status);
+                                              pesananSnapshot.data!.status,
+                                              pesananSnapshot.data!.motorID);
                                         } else {
                                           controller.konfirmasiPesanan(
                                               "batalkan",
                                               pesananSnapshot.data!.pesananID,
-                                              pesananSnapshot.data!.status);
+                                              pesananSnapshot.data!.status,
+                                              pesananSnapshot.data!.motorID);
                                         }
                                         Get.back();
                                       },
