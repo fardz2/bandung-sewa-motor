@@ -30,6 +30,7 @@ abstract class Routes {
   static const PROFILE_ADMIN = _Paths.PROFILE_ADMIN;
   static const KONFIRMASI_PESANAN = _Paths.KONFIRMASI_PESANAN;
   static const EDIT_MOTOR = _Paths.EDIT_MOTOR;
+  static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
 }
 
 abstract class _Paths {
@@ -60,4 +61,5 @@ abstract class _Paths {
   static const PROFILE_ADMIN = '/profile-admin';
   static const KONFIRMASI_PESANAN = '/konfirmasi-pesanan';
   static const EDIT_MOTOR = '/edit-motor';
+  static const EDIT_PROFILE = '/edit-profile';
 }

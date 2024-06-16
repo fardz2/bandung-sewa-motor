@@ -39,17 +39,36 @@ class ProfilePelangganView extends GetView<ProfilePelangganController> {
                     child: Column(
                       children: [
                         Container(
-                          width: 60,
-                          height: 60,
+                          width: 100,
+                          height: 100,
                           decoration: BoxDecoration(
-                            color: const Color(0xff54B175),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: const Icon(
-                            Icons.person,
-                            color: Colors.white,
-                            size: 40,
-                          ),
+                              border: Border.all(
+                                  color: const Color(0xff54B175), width: 2),
+                              color: snapshot.data!.gambarUrl == ""
+                                  ? const Color(0xff54B175)
+                                  : Colors.white,
+                              borderRadius: BorderRadius.circular(50),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ]),
+                          child: snapshot.data!.gambarUrl == ""
+                              ? const Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                  size: 30,
+                                )
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Image.network(
+                                    snapshot.data!.gambarUrl,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                         ),
                         const SizedBox(height: 10),
                         Text(
@@ -61,7 +80,15 @@ class ProfilePelangganView extends GetView<ProfilePelangganController> {
                           snapshot.data!.email,
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.bold),
-                        )
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          "(${snapshot.data!.phone})",
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 106, 106, 106),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
                   ),
@@ -69,10 +96,14 @@ class ProfilePelangganView extends GetView<ProfilePelangganController> {
                     height: 40,
                   ),
                   ListTile(
-                    leading: const Icon(Icons.phone),
-                    title: Text(
-                      snapshot.data!.phone,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    onTap: () {
+                      Get.toNamed(Routes.EDIT_PROFILE,
+                          arguments: snapshot.data!.userID);
+                    },
+                    leading: const Icon(Icons.manage_accounts),
+                    title: const Text(
+                      "Edit Profile",
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                   ListTile(
