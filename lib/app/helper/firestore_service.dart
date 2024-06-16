@@ -61,6 +61,13 @@ class FirestoreService extends GetxController {
     await _firestore.collection('motor').doc(motorID).delete();
   }
 
+  Stream<QuerySnapshot<Map<String, dynamic>>> getAllTersediaMotorbike() {
+    return _firestore
+        .collection('motor')
+        .where('status', isEqualTo: 'Tersedia')
+        .snapshots();
+  }
+
   Stream<QuerySnapshot<Map<String, dynamic>>> getAllMotorbike() {
     return _firestore.collection('motor').snapshots();
   }
@@ -81,6 +88,16 @@ class FirestoreService extends GetxController {
   }
 
   //stream motor by merek
+  //stream motor by merek
+  Stream<QuerySnapshot<Map<String, dynamic>>> getMotorTersediaByMerek(
+      String merek) {
+    return _firestore
+        .collection('motor')
+        .where('merek', isEqualTo: merek)
+        .where('status', isEqualTo: 'Tersedia')
+        .snapshots();
+  }
+
   Stream<QuerySnapshot<Map<String, dynamic>>> getMotorByMerek(String merek) {
     return _firestore
         .collection('motor')
@@ -91,6 +108,18 @@ class FirestoreService extends GetxController {
   Stream<List<MotorModel>> getMotorSearchStream(String namaMotor) {
     return _firestore
         .collection('motor')
+        .orderBy('namaMotor')
+        .startAt([namaMotor])
+        .endAt(['$namaMotor\uf8ff'])
+        .snapshots()
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => MotorModel.fromFirestore(doc)).toList());
+  }
+
+  Stream<List<MotorModel>> getMotorTersediaSearchStream(String namaMotor) {
+    return _firestore
+        .collection('motor')
+        .where('status', isEqualTo: 'Tersedia')
         .orderBy('namaMotor')
         .startAt([namaMotor])
         .endAt(['$namaMotor\uf8ff'])
@@ -187,6 +216,7 @@ class FirestoreService extends GetxController {
   Stream<PesananModel> getPesananByIdStream(String pesananID) {
     return _firestore
         .collection('pesanan')
+        .orderBy('createdAt', descending: true)
         .where('pesananID', isEqualTo: pesananID)
         .snapshots()
         .map((event) => PesananModel.fromFirestore(event.docs.first));
@@ -196,6 +226,7 @@ class FirestoreService extends GetxController {
     return _firestore
         .collection('pesanan')
         .where('userID', isEqualTo: userID)
+        .orderBy('createdAt', descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs
             .map((doc) => PesananModel.fromFirestore(doc))
