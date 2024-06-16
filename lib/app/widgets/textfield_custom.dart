@@ -10,6 +10,7 @@ class TextFieldCustom extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType? keyboardType;
   final String? initialValue;
+  final bool? enabled;
 
   const TextFieldCustom({
     super.key,
@@ -22,6 +23,7 @@ class TextFieldCustom extends StatelessWidget {
     this.keyboardType,
     this.fontWeight,
     this.initialValue,
+    this.enabled,
   });
 
   @override
@@ -38,6 +40,7 @@ class TextFieldCustom extends StatelessWidget {
           height: 8,
         ),
         TextFormField(
+          enabled: enabled,
           initialValue: initialValue,
           validator: validator,
           obscureText: obscureText,

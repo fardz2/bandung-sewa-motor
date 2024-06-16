@@ -31,8 +31,14 @@ class FirestoreService extends GetxController {
         .map((event) => UserModel.fromFirestore(event));
   }
 
-  Future<void> updateUser(UserModel user) async {
-    await _firestore.collection('users').doc(user.userID).update(user.toMap());
+  Future<void> updateUserDetail(
+      String userID, String name, email, phone, gambarUrl) async {
+    await _firestore.collection('users').doc(userID).update({
+      'name': name,
+      'email': email,
+      'phone': phone,
+      'gambarUrl': gambarUrl,
+    });
   }
 
   //update user hotelUrl ktpURl simUrl

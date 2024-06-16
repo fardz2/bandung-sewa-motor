@@ -1,14 +1,9 @@
-import 'package:bandung_sewa_motor/app/modules/bukti_pembayaran/bindings/bukti_pembayaran_binding.dart';
-import 'package:bandung_sewa_motor/app/modules/bukti_pembayaran/views/bukti_pembayaran_view.dart';
 import 'package:get/get.dart';
 
-import 'package:bandung_sewa_motor/app/modules/detail_motor/bindings/detail_motor_binding.dart';
-import 'package:bandung_sewa_motor/app/modules/detail_motor/views/detail_motor_view.dart';
-import 'package:bandung_sewa_motor/app/modules/pesanan/bindings/pesanan_binding.dart';
-import 'package:bandung_sewa_motor/app/modules/pesanan/views/pesanan_view.dart';
-import 'package:bandung_sewa_motor/app/modules/reset/bindings/reset_binding.dart';
-import 'package:bandung_sewa_motor/app/modules/reset/views/reset_view.dart';
-
+import '../modules/bukti_pembayaran/bindings/bukti_pembayaran_binding.dart';
+import '../modules/bukti_pembayaran/views/bukti_pembayaran_view.dart';
+import '../modules/detail_motor/bindings/detail_motor_binding.dart';
+import '../modules/detail_motor/views/detail_motor_view.dart';
 import '../modules/detail_pembayaran/bindings/detail_pembayaran_binding.dart';
 import '../modules/detail_pembayaran/views/detail_pembayaran_view.dart';
 import '../modules/detail_pesanan/bindings/detail_pesanan_binding.dart';
@@ -17,6 +12,8 @@ import '../modules/detailmotoradmin/bindings/detailmotoradmin_binding.dart';
 import '../modules/detailmotoradmin/views/detailmotoradmin_view.dart';
 import '../modules/edit_motor/bindings/edit_motor_binding.dart';
 import '../modules/edit_motor/views/edit_motor_view.dart';
+import '../modules/edit_profile/bindings/edit_profile_binding.dart';
+import '../modules/edit_profile/views/edit_profile_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home_admin/bindings/home_admin_binding.dart';
@@ -33,6 +30,8 @@ import '../modules/metode_bayar/bindings/metode_bayar_binding.dart';
 import '../modules/metode_bayar/views/metode_bayar_view.dart';
 import '../modules/persyaratan/bindings/persyaratan_binding.dart';
 import '../modules/persyaratan/views/persyaratan_view.dart';
+import '../modules/pesanan/bindings/pesanan_binding.dart';
+import '../modules/pesanan/views/pesanan_view.dart';
 import '../modules/pesanan_admin/bindings/pesanan_admin_binding.dart';
 import '../modules/pesanan_admin/views/pesanan_admin_view.dart';
 import '../modules/profile_admin/bindings/profile_admin_binding.dart';
@@ -41,6 +40,8 @@ import '../modules/profile_pelanggan/bindings/profile_pelanggan_binding.dart';
 import '../modules/profile_pelanggan/views/profile_pelanggan_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+import '../modules/reset/bindings/reset_binding.dart';
+import '../modules/reset/views/reset_view.dart';
 import '../modules/search_motor/bindings/search_motor_binding.dart';
 import '../modules/search_motor/views/search_view.dart';
 import '../modules/sewamotor/bindings/sewamotor_binding.dart';
@@ -180,6 +181,11 @@ class AppPages {
       name: _Paths.EDIT_MOTOR,
       page: () => const EditMotorView(),
       binding: EditMotorBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PROFILE,
+      page: () => const EditProfileView(),
+      binding: EditProfileBinding(),
     ),
   ];
 }
