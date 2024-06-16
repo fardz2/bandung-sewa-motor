@@ -22,8 +22,11 @@ class SearchMotorController extends GetxController {
     super.onClose();
   }
 
-  getMotorSearch(String search) {
-    return firestoreService
-        .getMotorSearchStream(search.capitalizeFirst.toString());
+  getMotorTersediaSearch(String search) {
+    return authService.user.value?.email == "admin@gmail.com"
+        ? firestoreService
+            .getMotorSearchStream(search.capitalizeFirst.toString())
+        : firestoreService
+            .getMotorTersediaSearchStream(search.capitalizeFirst.toString());
   }
 }

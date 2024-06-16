@@ -43,7 +43,8 @@ class SearchMotorView extends GetView<SearchMotorController> {
             Expanded(
               child: Obx(() {
                 return StreamBuilder<List<MotorModel>>(
-                  stream: controller.getMotorSearch(controller.search.value),
+                  stream: controller
+                      .getMotorTersediaSearch(controller.search.value),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const Center(child: CircularProgressIndicator());
