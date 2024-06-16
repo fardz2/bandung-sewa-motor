@@ -216,7 +216,6 @@ class FirestoreService extends GetxController {
   Stream<PesananModel> getPesananByIdStream(String pesananID) {
     return _firestore
         .collection('pesanan')
-        .orderBy('createdAt', descending: true)
         .where('pesananID', isEqualTo: pesananID)
         .snapshots()
         .map((event) => PesananModel.fromFirestore(event.docs.first));
