@@ -5,6 +5,7 @@ import 'package:bandung_sewa_motor/app/widgets/card_pesanan.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/pesanan_admin_controller.dart';
 
@@ -28,13 +29,33 @@ class PesananAdminView extends GetView<PesananAdminController> {
         stream: controller.getAllPesanan(),
         builder: (context, pesananSnapshot) {
           if (pesananSnapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            controller.enabled.value = true;
+            return Skeletonizer(
+              enabled: controller.enabled.value,
+              child: ListView.builder(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+                itemCount: pesananSnapshot.data?.length,
+                itemBuilder: (context, index) {
+                  return CardPesanan(
+                    noPesanan: "Fake",
+                    tanggal: "Fake",
+                    namaMotor: "Fake",
+                    lokasi: "Fake - Fake",
+                    harga: "Fake",
+                    status: "Fake",
+                    onPressed: () {},
+                  );
+                },
+              ),
+            );
           } else if (pesananSnapshot.hasError) {
             return Center(child: Text('Error: ${pesananSnapshot.error}'));
           } else if (!pesananSnapshot.hasData ||
               pesananSnapshot.data!.isEmpty) {
             return const Center(child: Text('Tidak ada data'));
           } else {
+            controller.enabled.value = false;
             return ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
               itemCount: pesananSnapshot.data?.length,

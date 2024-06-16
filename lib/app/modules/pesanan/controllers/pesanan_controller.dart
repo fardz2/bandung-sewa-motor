@@ -5,6 +5,7 @@ import 'package:bandung_sewa_motor/app/models/pesanan_model.dart';
 import 'package:get/get.dart';
 
 class PesananController extends GetxController {
+  var enabled = true.obs;
   final authService = Get.put(AuthService());
   final firestoreService = Get.put(FirestoreService());
 
