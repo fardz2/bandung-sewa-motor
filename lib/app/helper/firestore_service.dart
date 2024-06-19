@@ -31,6 +31,13 @@ class FirestoreService extends GetxController {
         .map((event) => UserModel.fromFirestore(event));
   }
 
+  //update user token
+  Future<void> updateUserToken(String userID, String token) async {
+    await _firestore.collection('users').doc(userID).update({
+      'token': token,
+    });
+  }
+
   Future<void> updateUserDetail(
       String userID, String name, email, phone, gambarUrl) async {
     await _firestore.collection('users').doc(userID).update({
@@ -182,6 +189,13 @@ class FirestoreService extends GetxController {
 
   Future<void> addPesanan(PesananModel pesanan) async {
     await _firestore.collection('pesanan').add(pesanan.toMap());
+  }
+
+  //get pesanan detail
+  Future<PesananModel> getPesananById(String pesananID) async {
+    DocumentSnapshot doc =
+        await _firestore.collection('pesanan').doc(pesananID).get();
+    return PesananModel.fromFirestore(doc);
   }
 
   Future<void> updatePesananPembayaran(

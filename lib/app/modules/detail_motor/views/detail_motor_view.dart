@@ -38,143 +38,154 @@ class DetailMotorView extends GetView<DetailMotorController> {
                 child: CircularProgressIndicator(),
               );
             }
-            return Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      // Image
-                      SizedBox(
-                        height: 300,
-                        child: Image.network(
-                          snapshot.data!.gambarUrl,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      // Title
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 18, vertical: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 18),
-                            Text(
-                              snapshot.data!.namaMotor,
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              snapshot.data!.merek,
-                              style: const TextStyle(
-                                  fontSize: 12, color: Colors.black26),
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              "${snapshot.data!.cc.toString()} cc",
-                              style: const TextStyle(
-                                  fontSize: 12, color: Colors.black26),
-                            ),
-                            const SizedBox(height: 25),
-                            const Text(
-                              'Fitur',
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(height: 8),
-                            const Row(
-                              children: [
-                                Expanded(
-                                  child: Row(
-                                    children: [
-                                      // Feature Card 1
-                                      FeatureCard(
-                                        imagePath: 'assets/images/helm.png',
-                                        text: '2 Helm',
-                                      ),
-                                      SizedBox(width: 16),
-                                      // Feature Card 2
-                                      FeatureCard(
-                                        imagePath: 'assets/images/jas.png',
-                                        text: '2 Jas Hujan',
-                                      ),
-                                      SizedBox(width: 16),
-                                      // Feature Card 3
-                                      FeatureCard(
-                                        imagePath: 'assets/images/driver.png',
-                                        text: 'Antar motor',
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 100,
-                      )
-                    ],
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Image
+                  SizedBox(
+                    height: 300,
+                    child: Image.network(
+                      snapshot.data!.gambarUrl,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    color: Colors.white, // Set background color to white
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // Title
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 18, vertical: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              FormatHarga.formatRupiah(snapshot.data!.harga),
-                              style: const TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
-                            ),
-                            const Text(
-                              'Per Hari',
-                              style: TextStyle(
-                                  fontSize: 16, color: Colors.black54),
-                            ),
-                          ],
+                        const SizedBox(height: 18),
+                        Text(
+                          snapshot.data!.namaMotor,
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Get.offAndToNamed(Routes.SEWAMOTOR,
-                                arguments: snapshot.data?.motorID);
-                          },
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                const Color.fromARGB(255, 0x54, 0xB1, 0x75)),
-                            shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
+                        Text(
+                          snapshot.data!.merek,
+                          style: const TextStyle(
+                              fontSize: 12, color: Colors.black26),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "${snapshot.data!.cc.toString()} cc",
+                          style: const TextStyle(
+                              fontSize: 12, color: Colors.black26),
+                        ),
+                        const SizedBox(height: 25),
+                        const Text(
+                          'Fitur',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 8),
+                        const Row(
+                          children: [
+                            Expanded(
+                              child: Row(
+                                children: [
+                                  // Feature Card 1
+                                  FeatureCard(
+                                    imagePath: 'assets/images/helm.png',
+                                    text: '2 Helm',
+                                  ),
+                                  SizedBox(width: 16),
+                                  // Feature Card 2
+                                  FeatureCard(
+                                    imagePath: 'assets/images/jas.png',
+                                    text: '2 Jas Hujan',
+                                  ),
+                                  SizedBox(width: 16),
+                                  // Feature Card 3
+                                  FeatureCard(
+                                    imagePath: 'assets/images/driver.png',
+                                    text: 'Antar motor',
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
-                          child: const Text(
-                            'Pesan Sekarang',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                          ],
                         ),
                       ],
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    height: 100,
+                  )
+                ],
+              ),
             );
           }),
+      bottomNavigationBar: Container(
+        height: 80,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 0,
+              blurRadius: 10,
+              offset: const Offset(0, -4),
+            ),
+          ],
+          color: Colors.white,
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: StreamBuilder<MotorModel>(
+            stream: controller.getDetailMotor(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const Center(
+                  child: SizedBox(),
+                );
+              }
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        FormatHarga.formatRupiah(snapshot.data!.harga),
+                        style: const TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      const Text(
+                        'Per Hari',
+                        style: TextStyle(fontSize: 16, color: Colors.black54),
+                      ),
+                    ],
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.offAndToNamed(Routes.SEWAMOTOR,
+                          arguments: snapshot.data?.motorID);
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          const Color.fromARGB(255, 0x54, 0xB1, 0x75)),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    ),
+                    child: const Text(
+                      'Pesan Sekarang',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            }),
+      ),
     );
   }
 }

@@ -67,6 +67,7 @@ class AuthService extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
+      print(e.code);
       String errorMessage;
       switch (e.code) {
         case 'invalid-email':
@@ -78,17 +79,13 @@ class AuthService extends GetxController {
         case 'user-not-found':
           errorMessage = 'Pengguna dengan email ini tidak ditemukan.';
           break;
-        case 'wrong-password':
-          errorMessage = 'Kata sandi salah.';
+        case 'invalid-credential':
+          errorMessage = 'Email atau Kata sandi salah.';
           break;
         default:
           errorMessage = 'Terjadi kesalahan. Silakan coba lagi.';
       }
-      throw Exception(
-          errorMessage); // Melempar exception dengan pesan kesalahan yang spesifik
-    } catch (e) {
-      throw Exception(
-          'Terjadi kesalahan. Silakan coba lagi.'); // Melempar exception umum untuk kesalahan lainnya
+      throw errorMessage;
     }
   }
 

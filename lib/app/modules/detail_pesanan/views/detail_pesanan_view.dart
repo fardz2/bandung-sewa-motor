@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../controllers/detail_pesanan_controller.dart';
 
@@ -288,25 +289,41 @@ class DetailPesananView extends GetView<DetailPesananController> {
               ],
             ),
             const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff54B175),
-                minimumSize: const Size(double.infinity, 40),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                elevation: 0,
-              ),
-              child: const Text(
-                "Hubungi Kantor Sewa",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            StreamBuilder<PesananModel>(
+                stream: controller.getDetailPesanan(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const SizedBox();
+                  }
+                  return ElevatedButton(
+                    onPressed: () async {
+                      var pesananID = snapshot.data!.pesananID;
+                      var message = Uri.encodeComponent(
+                          "Hai, saya ingin menanyakan pesanan dengan nomor $pesananID");
+                      var whatsappUrl =
+                          "whatsapp://send?phone=+6283829092428&text=$message";
+                      await canLaunch(whatsappUrl)
+                          ? launch(whatsappUrl)
+                          : print("Could not launch $whatsappUrl");
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xff54B175),
+                      minimumSize: const Size(double.infinity, 40),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      elevation: 0,
+                    ),
+                    child: const Text(
+                      "Hubungi Kantor Sewa",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  );
+                }),
           ],
         ),
       ),
