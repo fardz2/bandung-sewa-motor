@@ -104,13 +104,17 @@ class MetodeBayarView extends GetView<MetodeBayarController> {
                                   );
                                 }
                               }),
-                          Text(
-                            snapshot.data!.antar
-                                ? "Diantar"
-                                : "Ambil di tempat",
-                            style: const TextStyle(
-                              color: Color(0xff54B175),
-                              fontWeight: FontWeight.bold,
+                          const Spacer(),
+                          Expanded(
+                            child: Text(
+                              snapshot.data!.antar
+                                  ? "Diantar"
+                                  : "Ambil di tempat",
+                              style: const TextStyle(
+                                color: Color(0xff54B175),
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],
