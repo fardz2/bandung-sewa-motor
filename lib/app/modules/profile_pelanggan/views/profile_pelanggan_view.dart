@@ -123,12 +123,20 @@ class ProfilePelangganView extends GetView<ProfilePelangganController> {
                           colorText: Colors.white, backgroundColor: Colors.red);
                       Get.offAllNamed(Routes.LOGIN);
                     },
-                    child: const ListTile(
-                      leading: Icon(Icons.logout),
-                      title: Text(
-                        "Logout",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                    child: ListTile(
+                      leading: const Icon(Icons.logout),
+                      title: Obx(() {
+                        return controller.isLoading.value
+                            ? const LinearProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Color(0xff54B175),
+                                ),
+                              )
+                            : const Text(
+                                "Logout",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              );
+                      }),
                     ),
                   ),
                 ],

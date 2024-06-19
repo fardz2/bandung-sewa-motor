@@ -81,7 +81,6 @@ class ResetView extends GetView<ResetController> {
                     color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'QuickSand',
                   ),
                 ),
               ),

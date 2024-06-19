@@ -1,3 +1,5 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../helper/auth_service.dart';
@@ -5,6 +7,8 @@ import '../../../helper/firestore_service.dart';
 
 class ProfilePelangganController extends GetxController {
   static ProfilePelangganController get to => Get.find();
+
+  final isLoading = false.obs;
 
   final authService = Get.put(AuthService());
   final firestoreService = Get.put(FirestoreService());
@@ -18,8 +22,18 @@ class ProfilePelangganController extends GetxController {
     }
   }
 
-  logout() {
-    authService.logout();
+  logout() async {
+    try {
+      isLoading.value = true;
+      await FirebaseMessaging.instance
+          .unsubscribeFromTopic(authService.user.value!.uid);
+      await authService.logout();
+      isLoading.value = false;
+    } catch (e) {
+      isLoading.value = false;
+      Get.snackbar('Error', e.toString(),
+          colorText: Colors.white, backgroundColor: Colors.red);
+    }
   }
 
   final count = 0.obs;

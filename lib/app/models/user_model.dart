@@ -9,6 +9,7 @@ class UserModel {
   String ktpUrl;
   String hotelUrl;
   String simUrl;
+  String token;
 
   UserModel({
     required this.userID,
@@ -19,6 +20,7 @@ class UserModel {
     this.ktpUrl = '',
     this.hotelUrl = '',
     this.simUrl = '',
+    this.token = '',
   });
 
   factory UserModel.fromMap(Map<String, dynamic> data) {
@@ -31,6 +33,7 @@ class UserModel {
       ktpUrl: data['ktpUrl'],
       hotelUrl: data['hotelUrl'],
       simUrl: data['simUrl'],
+      token: data['token'],
     );
   }
 
@@ -45,6 +48,7 @@ class UserModel {
       ktpUrl: data['ktpUrl'],
       hotelUrl: data['hotelUrl'],
       simUrl: data['simUrl'],
+      token: data['token'],
     );
   }
 
@@ -58,6 +62,7 @@ class UserModel {
       'ktpUrl': ktpUrl,
       'hotelUrl': hotelUrl,
       'simUrl': simUrl,
+      'token': token,
     };
   }
 }
