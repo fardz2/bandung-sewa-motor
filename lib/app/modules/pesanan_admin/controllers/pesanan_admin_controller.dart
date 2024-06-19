@@ -9,9 +9,17 @@ class PesananAdminController extends GetxController {
 
   final authService = Get.put(AuthService());
   final firestoreService = Get.put(FirestoreService());
+  var selectedCategory = "All".obs;
+  void selectCategory(String category) {
+    selectedCategory.value = category;
+  }
 
   Stream<List<PesananModel>> getAllPesanan() {
-    return firestoreService.getAllPesananStream();
+    if (selectedCategory.value == 'All') {
+      return firestoreService.getAllPesananStream();
+    } else {
+      return firestoreService.getAllPesananStatusStream(selectedCategory.value);
+    }
   }
 
   Stream<MotorModel> getDetailMotor(String motorID) {

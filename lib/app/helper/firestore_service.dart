@@ -219,6 +219,19 @@ class FirestoreService extends GetxController {
     });
   }
 
+  Stream<List<PesananModel>> getAllPesananStatusStream(String status) {
+    return FirebaseFirestore.instance
+        .collection('pesanan')
+        .where('status', isEqualTo: status)
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map((querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        return PesananModel.fromFirestore(doc);
+      }).toList();
+    });
+  }
+
   Stream<PesananModel> getPesananByIdStream(String pesananID) {
     return _firestore
         .collection('pesanan')
@@ -231,6 +244,18 @@ class FirestoreService extends GetxController {
     return _firestore
         .collection('pesanan')
         .where('userID', isEqualTo: userID)
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+            .map((doc) => PesananModel.fromFirestore(doc))
+            .toList());
+  }
+
+  Stream<List<PesananModel>> getPesananByUserIDStatusStream(String userID,String status) {
+    return _firestore
+        .collection('pesanan')
+        .where('userID', isEqualTo: userID)
+        .where('status', isEqualTo: status)
         .orderBy('createdAt', descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs
