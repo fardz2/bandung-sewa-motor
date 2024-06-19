@@ -8,11 +8,20 @@ class PesananController extends GetxController {
   var enabled = true.obs;
   final authService = Get.put(AuthService());
   final firestoreService = Get.put(FirestoreService());
+  var selectedCategory = "All".obs;
+  void selectCategory(String category) {
+    selectedCategory.value = category;
+  }
 
   Stream<List<PesananModel>> getPesananByUserIDData() {
     final userUID = authService.user.value?.uid;
     if (userUID != null) {
-      return firestoreService.getPesananByUserIDStream(userUID);
+      if (selectedCategory.value == 'All') {
+        return firestoreService.getPesananByUserIDStream(userUID);
+      } else {
+        return firestoreService.getPesananByUserIDStatusStream(
+            userUID, selectedCategory.value);
+      }
     } else {
       return Stream.value([]);
     }
