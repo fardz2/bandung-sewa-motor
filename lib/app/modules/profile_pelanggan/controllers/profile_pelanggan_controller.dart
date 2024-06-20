@@ -22,11 +22,11 @@ class ProfilePelangganController extends GetxController {
     }
   }
 
-  logout() {
+  Future<void> logout() async {
     isLoading.value = true;
-    FirebaseMessaging.instance
+    await FirebaseMessaging.instance
         .unsubscribeFromTopic(authService.user.value!.uid);
-    authService.logout();
+    await authService.logout();
     isLoading.value = false;
   }
 

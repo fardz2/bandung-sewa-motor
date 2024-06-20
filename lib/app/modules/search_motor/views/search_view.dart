@@ -13,7 +13,14 @@ class SearchMotorView extends GetView<SearchMotorController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: const Color(0xff54B175),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text(
+          'Cari Motor',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Column(

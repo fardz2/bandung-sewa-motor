@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../models/user_model.dart';
+import '../routes/app_pages.dart';
 import 'firestore_service.dart';
 
 class AuthService extends GetxController {
@@ -57,9 +59,7 @@ class AuthService extends GetxController {
         default:
           errorMessage = 'Terjadi kesalahan. Silakan coba lagi.';
       }
-      throw Exception(errorMessage);
-    } catch (e) {
-      throw Exception('Terjadi kesalahan. Silakan coba lagi.');
+      throw errorMessage;
     }
   }
 
@@ -92,6 +92,9 @@ class AuthService extends GetxController {
   Future<void> logout() async {
     try {
       await _auth.signOut();
+      Get.snackbar('Logout', 'Logout Berhasil',
+          colorText: Colors.white, backgroundColor: Colors.red);
+      Get.offAllNamed(Routes.LOGIN);
     } catch (e) {
       throw Exception('Gagal keluar. Silakan coba lagi.');
     }

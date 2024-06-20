@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../../models/user_model.dart';
 import '../../../routes/app_pages.dart';
-import '../../../widgets/button_custom.dart';
 import '../../../widgets/textfield_custom.dart';
 import '../controllers/edit_profile_controller.dart';
 
@@ -127,16 +126,41 @@ class EditProfileView extends GetView<EditProfileController> {
                   },
                 ),
                 const SizedBox(height: 40),
-                ButtonCustom(
-                  onPressed: () async {
-                    if (controller.formKey.currentState!.validate()) {
-                      await controller.updateProfile();
-                      Get.offNamedUntil(
-                          Routes.LANDING, ModalRoute.withName(Routes.LANDING));
-                    }
-                  },
-                  name: 'Simpan',
-                )
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 44,
+                  child: Obx(() {
+                    return ElevatedButton(
+                      onPressed: () async {
+                        if (controller.formKey.currentState!.validate()) {
+                          await controller.updateProfile();
+                          Get.offNamedUntil(Routes.LANDING,
+                              ModalRoute.withName(Routes.LANDING));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            const Color(0xff54B175), // background color
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: controller.isLoading.value
+                          ? const CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.white,
+                              ),
+                            )
+                          : const Text(
+                              "Simpan",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                    );
+                  }),
+                ),
               ],
             ),
           ),

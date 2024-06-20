@@ -23,6 +23,7 @@ class EditMotorController extends GetxController {
   final hargaMotor = TextEditingController();
   final cc = TextEditingController();
   final gambarMotorUrl = "".obs;
+  final isLoading = false.obs;
 
   final motorID = Get.arguments;
 
@@ -109,6 +110,7 @@ class EditMotorController extends GetxController {
   void submit() async {
     if (formKey.currentState!.validate()) {
       if (gambarMotor.value.path == "") {
+        isLoading.value = true;
         firestoreService.updateMotor(MotorModel(
           motorID: motorID,
           merek: selectedMerek.value,
@@ -131,6 +133,7 @@ class EditMotorController extends GetxController {
         hargaMotor.clear();
         cc.clear();
       } else {
+        isLoading.value = true;
         String url = await uploadFile(File(gambarMotor.value.path));
         firestoreService.updateMotor(MotorModel(
           motorID: motorID,
@@ -155,6 +158,7 @@ class EditMotorController extends GetxController {
         cc.clear();
         gambarMotor.value = XFile("");
       }
+      isLoading.value = false;
       Get.offNamedUntil(
         Routes.LANDING_ADMIN,
         ModalRoute.withName(

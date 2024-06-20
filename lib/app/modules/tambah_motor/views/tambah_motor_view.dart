@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:bandung_sewa_motor/app/helper/motor_validation.dart';
-import 'package:bandung_sewa_motor/app/widgets/button_custom.dart';
 import 'package:bandung_sewa_motor/app/widgets/dropdown_custom.dart';
 import 'package:bandung_sewa_motor/app/widgets/textfield_custom.dart';
 import 'package:flutter/material.dart';
@@ -138,8 +137,37 @@ class TambahMotorView extends GetView<TambahMotorController> {
                   const SizedBox(
                     height: 30,
                   ),
-                  ButtonCustom(
-                      name: "Tambah Motor", onPressed: controller.submit)
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: 44,
+                    child: Obx(() {
+                      return ElevatedButton(
+                        onPressed: () async {
+                          controller.submit();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color(0xff54B175), // background color
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: controller.isLoading.value
+                            ? const CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.white,
+                                ),
+                              )
+                            : const Text(
+                                "Tambah",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                      );
+                    }),
+                  ),
                 ],
               )),
         ),

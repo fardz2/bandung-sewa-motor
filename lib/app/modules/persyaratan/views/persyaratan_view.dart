@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../models/user_model.dart';
-import '../../../widgets/button_custom.dart';
 import '../controllers/persyaratan_controller.dart';
 
 class PersyaratanView extends GetView<PersyaratanController> {
@@ -215,14 +214,43 @@ class PersyaratanView extends GetView<PersyaratanController> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Center(
-                            child: ButtonCustom(
-                          name: 'Simpan',
-                          onPressed: () {
-                            controller.submit();
-                          },
-                        )),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            height: 44,
+                            child: Obx(() {
+                              return ElevatedButton(
+                                onPressed: () async {
+                                  controller.isLoading.value = true;
+                                  await controller.submit();
+                                  controller.isLoading.value = false;
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(
+                                      0xff54B175), // background color
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                child: controller.isLoading.value
+                                    ? const CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          Colors.white,
+                                        ),
+                                      )
+                                    : const Text(
+                                        "Simpan",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                              );
+                            }),
+                          ),
+                        ),
                       ],
                     ),
                   ),
