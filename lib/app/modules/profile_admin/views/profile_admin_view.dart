@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../models/user_model.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/profile_admin_controller.dart';
 
 class ProfileAdminView extends GetView<ProfileAdminController> {
@@ -67,21 +66,26 @@ class ProfileAdminView extends GetView<ProfileAdminController> {
                   const SizedBox(
                     height: 40,
                   ),
-                  GestureDetector(
-                    onTap: () async {
-                      await controller.logout();
-                      Get.snackbar('Logout', 'Logout Berhasil',
-                          colorText: Colors.white, backgroundColor: Colors.red);
-                      Get.offAllNamed(Routes.LOGIN);
-                    },
-                    child: const ListTile(
-                      leading: Icon(Icons.logout),
-                      title: Text(
-                        "Logout",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                  Obx(() {
+                    return GestureDetector(
+                      onTap: () async {
+                        await controller.logout();
+                      },
+                      child: ListTile(
+                        leading: const Icon(Icons.logout),
+                        title: controller.isLoading.value
+                            ? const LinearProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Color(0xff54B175),
+                                ),
+                              )
+                            : const Text(
+                                "Logout",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
                       ),
-                    ),
-                  ),
+                    );
+                  }),
                 ],
               ),
             );

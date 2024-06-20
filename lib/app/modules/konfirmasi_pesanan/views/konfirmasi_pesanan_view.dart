@@ -504,7 +504,7 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                                               controller.sendPushNotification(
                                                 pesananSnapshot.data!.userID,
                                                 "Diterima",
-                                                "${pesananSnapshot.data!.pesananID} Telah diterima",
+                                                "Pesanan ${pesananSnapshot.data!.pesananID} Telah diterima",
                                               );
                                             } else {
                                               await controller
@@ -519,7 +519,7 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                                               controller.sendPushNotification(
                                                 pesananSnapshot.data!.userID,
                                                 "Dikembalikan",
-                                                "${pesananSnapshot.data!.pesananID} Telah dikembalikan",
+                                                "Pesanan ${pesananSnapshot.data!.pesananID} Telah dikembalikan",
                                               );
                                             }
                                             Get.close(1);
@@ -580,7 +580,7 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                                               controller.sendPushNotification(
                                                 pesananSnapshot.data!.userID,
                                                 "Ditolak",
-                                                "${pesananSnapshot.data!.pesananID} Telah ditolak",
+                                                "Pesanan ${pesananSnapshot.data!.pesananID} Telah ditolak",
                                               );
                                             } else {
                                               controller.konfirmasiPesanan(
@@ -593,7 +593,7 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                                               controller.sendPushNotification(
                                                 pesananSnapshot.data!.userID,
                                                 "Dibatalkan",
-                                                "${pesananSnapshot.data!.pesananID} Telah dibatalkan",
+                                                "Pesanan ${pesananSnapshot.data!.pesananID} Telah dibatalkan",
                                               );
                                             }
                                             Get.close(1);

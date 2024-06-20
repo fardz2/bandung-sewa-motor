@@ -10,8 +10,6 @@ import '../../../models/motor_model.dart';
 import '../../../routes/app_pages.dart';
 
 class TambahMotorController extends GetxController {
-  //TODO: Implement TambahMotorController
-
   List<String> merekOptions = ['Honda', 'Yamaha', 'Suzuki', 'Kawasaki'];
   Rx<String> selectedMerek = 'Honda'.obs;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -19,6 +17,7 @@ class TambahMotorController extends GetxController {
   final jumlahMotor = TextEditingController();
   final hargaMotor = TextEditingController();
   final cc = TextEditingController();
+  final isLoading = false.obs;
 
   @override
   void onInit() {
@@ -85,6 +84,7 @@ class TambahMotorController extends GetxController {
           colorText: Colors.white,
         );
       } else {
+        isLoading.value = true;
         String url = await uploadFile(File(gambarMotor.value.path));
         firestoreService.addMotorbike(MotorModel(
           motorID: "",
@@ -108,6 +108,7 @@ class TambahMotorController extends GetxController {
         hargaMotor.clear();
         cc.clear();
         gambarMotor.value = XFile("");
+        isLoading.value = false;
         Get.offNamedUntil(
           Routes.LANDING_ADMIN,
           ModalRoute.withName(

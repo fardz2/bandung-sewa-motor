@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
 import '../../../helper/auth_service.dart';
@@ -6,10 +7,16 @@ import '../../../helper/firestore_service.dart';
 class ProfileAdminController extends GetxController {
   static ProfileAdminController get to => Get.find();
 
+  final isLoading = false.obs;
+
   final authService = Get.put(AuthService());
 
-  logout() {
-    authService.logout();
+  Future<void> logout() async {
+    isLoading.value = true;
+    await FirebaseMessaging.instance
+        .unsubscribeFromTopic(authService.user.value!.uid);
+    await authService.logout();
+    isLoading.value = false;
   }
 
   final firestoreService = Get.put(FirestoreService());

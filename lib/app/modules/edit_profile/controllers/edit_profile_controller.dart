@@ -14,6 +14,7 @@ class EditProfileController extends GetxController {
   final namaController = TextEditingController();
   final emailController = TextEditingController();
   final noHpController = TextEditingController();
+  final isLoading = false.obs;
 
   final authService = Get.put(AuthService());
   final firestoreService = Get.put(FirestoreService());
@@ -66,7 +67,8 @@ class EditProfileController extends GetxController {
 
   updateProfile() async {
     if (gambarUrl.value.path == "") {
-      firestoreService.updateUserDetail(
+      isLoading.value = true;
+      await firestoreService.updateUserDetail(
         userID,
         namaController.text,
         emailController.text,
@@ -85,6 +87,7 @@ class EditProfileController extends GetxController {
       noHpController.clear();
       gambarUrl.value = XFile("");
     } else {
+      isLoading.value = true;
       String url = await uploadFile(File(gambarUrl.value.path));
       firestoreService.updateUserDetail(userID, namaController.text,
           emailController.text, noHpController.text, url);
@@ -100,6 +103,7 @@ class EditProfileController extends GetxController {
       noHpController.clear();
       gambarUrl.value = XFile("");
     }
+    isLoading.value = false;
   }
 
   @override

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../helper/motor_validation.dart';
-import '../../../widgets/button_custom.dart';
 import '../../../widgets/dropdown_custom.dart';
 import '../../../widgets/textfield_custom.dart';
 import '../controllers/edit_motor_controller.dart';
@@ -150,7 +149,37 @@ class EditMotorView extends GetView<EditMotorController> {
                   const SizedBox(
                     height: 30,
                   ),
-                  ButtonCustom(name: "Edit Motor", onPressed: controller.submit)
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: 44,
+                    child: Obx(() {
+                      return ElevatedButton(
+                        onPressed: () async {
+                          controller.submit();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color(0xff54B175), // background color
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: controller.isLoading.value
+                            ? const CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.white,
+                                ),
+                              )
+                            : const Text(
+                                "Edit Motor",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                      );
+                    }),
+                  ),
                 ],
               )),
         ),

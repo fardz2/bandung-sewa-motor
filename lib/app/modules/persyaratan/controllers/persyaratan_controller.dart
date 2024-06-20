@@ -16,6 +16,7 @@ class PersyaratanController extends GetxController {
   final fotoKTPAwal = "".obs;
   final fotoSIMAwal = "".obs;
   final fotoHotelAwal = "".obs;
+  final isLoading = false.obs;
 
   final authService = Get.put(AuthService());
   final firestoreService = Get.put(FirestoreService());
@@ -110,7 +111,7 @@ class PersyaratanController extends GetxController {
     return returnURL;
   }
 
-  void submit() async {
+  submit() async {
     if (fotoHotelUrl.value.path == "" &&
         fotoKTPUrl.value.path == "" &&
         fotoSIMUrl.value.path == "" &&
