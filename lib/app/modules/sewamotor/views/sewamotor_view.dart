@@ -344,10 +344,6 @@ class SewamotorView extends GetView<SewamotorController> {
                               onPressed: () async {
                                 await controller.buatPesanan(controller
                                     .totalHarga(snapshot.data!.harga.toInt()));
-                                Get.offAndToNamed(
-                                  Routes.METODE_BAYAR,
-                                  arguments: controller.newIdPesanan.value,
-                                );
                               },
                               child: const Text('Ya'),
                             ),

@@ -76,10 +76,10 @@ class PesananAdminView extends GetView<PesananAdminController> {
                     ),
                     const SizedBox(width: 16),
                     KategoriBubble(
-                      text: 'Dikembalikan',
+                      text: 'Dibatalkan',
                       isSelected:
-                          controller.selectedCategory.value == 'Dikembalikan',
-                      onTap: () => controller.selectCategory('Dikembalikan'),
+                          controller.selectedCategory.value == 'Dibatalkan',
+                      onTap: () => controller.selectCategory('Dibatalkan'),
                     ),
                   ],
                 );
@@ -119,7 +119,7 @@ class PesananAdminView extends GetView<PesananAdminController> {
                 } else if (!pesananSnapshot.hasData ||
                     pesananSnapshot.data!.isEmpty) {
                   return const Expanded(
-                      child: Center(child: Text('Tidak ada data')));
+                      child: Center(child: Text('Tidak ada pesanan')));
                 } else {
                   controller.enabled.value = false;
                   return Expanded(

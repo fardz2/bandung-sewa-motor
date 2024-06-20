@@ -63,15 +63,13 @@ class DetailmotoradminView extends GetView<DetailmotoradminController> {
                                     content: Text(
                                         'Yakin ingin menghapus motor ${snapshot.data!.namaMotor}?'),
                                     actions: [
-                                      ElevatedButton(
+                                      TextButton(
                                         onPressed: () {
                                           Get.back();
                                         },
                                         child: const Text('CANCEL'),
                                       ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.red),
+                                      TextButton(
                                         onPressed: () {
                                           controller.hapusMotor(
                                               snapshot.data!.motorID,
@@ -86,7 +84,7 @@ class DetailmotoradminView extends GetView<DetailmotoradminController> {
                                   ),
                                 );
                               },
-                              child: Text(
+                              child: const Text(
                                 'Hapus',
                                 style: TextStyle(color: Colors.white),
                               ),

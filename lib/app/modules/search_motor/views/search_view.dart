@@ -36,6 +36,7 @@ class SearchMotorView extends GetView<SearchMotorController> {
                   ),
                   fillColor: const Color(0xFFF4F4F4),
                   filled: true,
+                  hintText: "Cari motor",
                   contentPadding: const EdgeInsets.all(10),
                   enabledBorder: const OutlineInputBorder(
                     borderSide:
