@@ -110,6 +110,10 @@ class SewamotorController extends GetxController {
         status: "Menunggu Konfirmasi",
         createdAt: Timestamp.now(),
       ));
+      Get.offAndToNamed(
+        Routes.METODE_BAYAR,
+        arguments: newIdPesanan.value,
+      );
     } else {
       if (lokasi_antar.text.isEmpty) {
         Get.back();
