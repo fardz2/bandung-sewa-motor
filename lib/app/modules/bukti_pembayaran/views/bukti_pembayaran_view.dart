@@ -241,28 +241,38 @@ class BuktiPembayaranView extends GetView<BuktiPembayaranController> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-        child: ElevatedButton(
-          onPressed: controller.submit,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xff54B175),
-            minimumSize: const Size(double.infinity, 40),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+      bottomNavigationBar: Obx(() {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          child: ElevatedButton(
+            onPressed: () {
+              if (!controller.isLoading.value) controller.submit();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xff54B175),
+              minimumSize: const Size(double.infinity, 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              elevation: 0,
             ),
-            elevation: 0,
+            child: controller.isLoading.value
+                ? const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      Colors.white,
+                    ),
+                  )
+                : const Text(
+                    "Sudah Bayar",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
           ),
-          child: const Text(
-            "Sudah Bayar",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

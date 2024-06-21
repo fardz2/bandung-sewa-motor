@@ -5,18 +5,20 @@ import 'package:get/get.dart';
 import '../controllers/reset_controller.dart';
 
 class ResetView extends GetView<ResetController> {
+  const ResetView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 131, horizontal: 24),
+        padding: const EdgeInsets.symmetric(vertical: 131, horizontal: 18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
               'Reset Password',
               style: TextStyle(
-                fontFamily: 'QuickSand',
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
@@ -51,7 +53,6 @@ class ResetView extends GetView<ResetController> {
                 hintStyle: const TextStyle(
                   color: Colors.black26,
                   fontSize: 16,
-                  fontFamily: 'QuickSand',
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
@@ -67,9 +68,9 @@ class ResetView extends GetView<ResetController> {
                 onPressed: () =>
                     controller.resetPassword(controller.emailController.text),
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                      Color.fromARGB(255, 0x54, 0xB1, 0x75)),
-                  shape: MaterialStateProperty.all(
+                  backgroundColor: WidgetStateProperty.all(
+                      const Color.fromARGB(255, 0x54, 0xB1, 0x75)),
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),

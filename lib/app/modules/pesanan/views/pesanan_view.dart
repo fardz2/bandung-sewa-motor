@@ -84,6 +84,9 @@ class PesananView extends GetView<PesananController> {
                 );
               }),
             ),
+            const SizedBox(
+              height: 15,
+            ),
             StreamBuilder<List<PesananModel>>(
               stream: controller.getPesananByUserIDData(),
               builder: (context, pesananSnapshot) {
@@ -116,7 +119,7 @@ class PesananView extends GetView<PesananController> {
                 } else if (!pesananSnapshot.hasData ||
                     pesananSnapshot.data!.isEmpty) {
                   return const Expanded(
-                      child: Center(child: Text('Tidak ada data')));
+                      child: Center(child: Text('Tidak ada pesanan')));
                 } else {
                   controller.enabled.value = false;
                   pesananSnapshot.data!

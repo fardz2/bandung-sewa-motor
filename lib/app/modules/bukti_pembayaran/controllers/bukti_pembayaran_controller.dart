@@ -23,7 +23,7 @@ class BuktiPembayaranController extends GetxController {
   var ongkir = 0.obs;
   var totalPembayaran = 0.obs;
   var jumlah = 0.obs;
-
+  final isLoading = false.obs;
   final clipboardController = TextEditingController();
 
   final authService = Get.put(AuthService());
@@ -79,6 +79,7 @@ class BuktiPembayaranController extends GetxController {
   }
 
   void submit() async {
+    isLoading.value = true;
     if (buktiPembayaran.value.path == "") {
       Get.snackbar(
         "Peringatan",
@@ -125,6 +126,7 @@ class BuktiPembayaranController extends GetxController {
         ModalRoute.withName(Routes.LANDING),
       );
     }
+    isLoading.value = false;
   }
 
   void sendPushNotification(String title, String body) async {

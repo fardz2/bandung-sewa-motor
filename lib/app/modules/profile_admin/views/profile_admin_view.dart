@@ -69,7 +69,9 @@ class ProfileAdminView extends GetView<ProfileAdminController> {
                   Obx(() {
                     return GestureDetector(
                       onTap: () async {
-                        await controller.logout();
+                        if (!controller.isLoading.value) {
+                          await controller.logout();
+                        }
                       },
                       child: ListTile(
                         leading: const Icon(Icons.logout),

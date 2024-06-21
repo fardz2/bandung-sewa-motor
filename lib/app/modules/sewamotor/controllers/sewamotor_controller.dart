@@ -1,4 +1,5 @@
 import 'package:bandung_sewa_motor/app/helper/firestore_service.dart';
+import 'package:bandung_sewa_motor/app/routes/app_pages.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -109,8 +110,13 @@ class SewamotorController extends GetxController {
         status: "Menunggu Konfirmasi",
         createdAt: Timestamp.now(),
       ));
+      Get.offAndToNamed(
+        Routes.METODE_BAYAR,
+        arguments: newIdPesanan.value,
+      );
     } else {
       if (lokasi_antar.text.isEmpty) {
+        Get.back();
         Get.snackbar(
           "Peringatan",
           "Lokasi pengantaran harus diisi",
@@ -133,6 +139,10 @@ class SewamotorController extends GetxController {
           status: "Menunggu Konfirmasi",
           createdAt: Timestamp.now(),
         ));
+        Get.offAndToNamed(
+          Routes.METODE_BAYAR,
+          arguments: newIdPesanan.value,
+        );
       }
     }
   }

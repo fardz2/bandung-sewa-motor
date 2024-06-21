@@ -108,7 +108,7 @@ class LoginView extends GetView<LoginController> {
                       return ElevatedButton(
                         onPressed: () {
                           if (controller.formKey.currentState!.validate()) {
-                            controller.login();
+                            if (!controller.isLoading.value) controller.login();
                           }
                         },
                         style: ElevatedButton.styleFrom(

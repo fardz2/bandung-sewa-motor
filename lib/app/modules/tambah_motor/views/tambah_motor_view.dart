@@ -143,7 +143,7 @@ class TambahMotorView extends GetView<TambahMotorController> {
                     child: Obx(() {
                       return ElevatedButton(
                         onPressed: () async {
-                          controller.submit();
+                          if (!controller.isLoading.value) controller.submit();
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
