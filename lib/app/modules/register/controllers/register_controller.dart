@@ -38,9 +38,10 @@ class RegisterController extends GetxController {
         noHpController.text,
         passwordController.text,
       );
-      Get.snackbar('Success', 'Akun berhasil dibuat',
+      await authService.logoutReg();
+      Get.snackbar('Success', 'Akun berhasil dibuat, Silahkan login',
           colorText: Colors.white, backgroundColor: Colors.green);
-      Get.offAllNamed(Routes.LANDING);
+
       isLoading.value = false;
     } catch (e) {
       isLoading.value = false;
