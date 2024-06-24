@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
 import '../controllers/sewamotor_controller.dart';
 
 class SewamotorView extends GetView<SewamotorController> {
@@ -20,11 +19,13 @@ class SewamotorView extends GetView<SewamotorController> {
         ),
         centerTitle: true,
         leading: IconButton(
-          icon: Image.asset('assets/images/back.png'),
-          color: Colors.white,
           onPressed: () {
             Get.back();
           },
+          icon: const Icon(
+            Icons.arrow_back_outlined,
+            color: Colors.white,
+          ),
         ),
       ),
       body: StreamBuilder<MotorModel>(

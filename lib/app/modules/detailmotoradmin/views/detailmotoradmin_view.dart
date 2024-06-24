@@ -22,11 +22,13 @@ class DetailmotoradminView extends GetView<DetailmotoradminController> {
         ),
         centerTitle: true,
         leading: IconButton(
-          icon: Image.asset('assets/images/back.png'),
-          color: Colors.white,
           onPressed: () {
-            Get.offNamed(Routes.LANDING_ADMIN);
+            Get.back();
           },
+          icon: const Icon(
+            Icons.arrow_back_outlined,
+            color: Colors.white,
+          ),
         ),
       ),
       body: StreamBuilder<MotorModel>(

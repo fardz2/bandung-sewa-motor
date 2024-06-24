@@ -19,11 +19,13 @@ class PersyaratanView extends GetView<PersyaratanController> {
         ),
         centerTitle: true,
         leading: IconButton(
-          icon: Image.asset('assets/images/back.png'),
-          color: Colors.white,
           onPressed: () {
             Get.back();
           },
+          icon: const Icon(
+            Icons.arrow_back_outlined,
+            color: Colors.white,
+          ),
         ),
       ),
       body: SingleChildScrollView(
