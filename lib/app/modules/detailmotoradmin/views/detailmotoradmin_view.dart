@@ -77,7 +77,6 @@ class DetailmotoradminView extends GetView<DetailmotoradminController> {
                                         },
                                         child: const Text(
                                           'HAPUS',
-                                          style: TextStyle(color: Colors.white),
                                         ),
                                       ),
                                     ],
@@ -185,7 +184,7 @@ class DetailmotoradminView extends GetView<DetailmotoradminController> {
                   left: 0,
                   right: 0,
                   child: Container(
-                    color: Colors.white, // Set background color to white
+                    color: Colors.white,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Row(
