@@ -18,6 +18,15 @@ class SewamotorView extends GetView<SewamotorController> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(
+            Icons.arrow_back_outlined,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: StreamBuilder<MotorModel>(
           stream: controller.getDetailMotor(),
