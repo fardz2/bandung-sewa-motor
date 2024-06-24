@@ -99,4 +99,9 @@ class AuthService extends GetxController {
       throw Exception('Gagal keluar. Silakan coba lagi.');
     }
   }
+
+  Future<void> logoutReg() async {
+    await _auth.signOut();
+    Get.offAllNamed(Routes.LOGIN);
+  }
 }
