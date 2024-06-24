@@ -18,13 +18,6 @@ class PersyaratanView extends GetView<PersyaratanController> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        leading: IconButton(
-          icon: Image.asset('assets/images/back.png'),
-          color: Colors.white,
-          onPressed: () {
-            Get.back();
-          },
-        ),
       ),
       body: SingleChildScrollView(
         child: StreamBuilder<UserModel>(

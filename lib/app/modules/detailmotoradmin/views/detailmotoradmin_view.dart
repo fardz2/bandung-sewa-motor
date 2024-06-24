@@ -21,13 +21,6 @@ class DetailmotoradminView extends GetView<DetailmotoradminController> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        leading: IconButton(
-          icon: Image.asset('assets/images/back.png'),
-          color: Colors.white,
-          onPressed: () {
-            Get.offNamed(Routes.LANDING_ADMIN);
-          },
-        ),
       ),
       body: StreamBuilder<MotorModel>(
           stream: controller.getDetailMotor(),

@@ -23,7 +23,7 @@ class DetailMotorView extends GetView<DetailMotorController> {
           ),
         ),
         title: const Text(
-          'Detail',
+          'Detail Motor',
           style: TextStyle(color: Colors.white),
         ),
         iconTheme: const IconThemeData(color: Colors.white),
