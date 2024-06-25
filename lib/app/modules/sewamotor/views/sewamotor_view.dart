@@ -322,7 +322,7 @@ class SewamotorView extends GetView<SewamotorController> {
                                 fontSize: 24, fontWeight: FontWeight.bold),
                           )),
                       const Text(
-                        'Per Hari',
+                        'Total',
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                     ],
