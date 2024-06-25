@@ -279,7 +279,8 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                       ),
                       Text(
                         FormatHarga.formatRupiah(
-                            pesananSnapshot.data!.rincianHarga['totalHarga']),
+                            pesananSnapshot.data!.rincianHarga['totalHarga'] -
+                                pesananSnapshot.data!.rincianHarga['ongkir']),
                         style: const TextStyle(color: Color(0xff8A8A8E)),
                       ),
                     ],
@@ -313,8 +314,7 @@ class KonfirmasiPesananView extends GetView<KonfirmasiPesananController> {
                       ),
                       Text(
                         FormatHarga.formatRupiah(
-                            pesananSnapshot.data!.rincianHarga['totalHarga'] +
-                                pesananSnapshot.data!.rincianHarga['ongkir']),
+                            pesananSnapshot.data!.rincianHarga['totalHarga']),
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Color(0xff8A8A8E)),
